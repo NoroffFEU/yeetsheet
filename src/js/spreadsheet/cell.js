@@ -7,7 +7,7 @@ export default function cell(col, row) {
     'w-28 border outline-none focus:bg-red-100',
   );
 
-  cellInput.setAttribute('id', col + row);
+  cellInput.setAttribute('id', col + '' + row);
   cellContainer.append(cellInput);
 
   return cellContainer;
