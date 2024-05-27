@@ -2,7 +2,7 @@ import createEle from '../helpers/createEle';
 import cell from './cell';
 
 export default function cellRow(cols, row) {
-  const rowContainer = createEle('div', `row-${row} flex`);
+  const rowContainer = createEle('tr', `row-${row} flex`);
 
   const rowNumber = createEle(
     'div',

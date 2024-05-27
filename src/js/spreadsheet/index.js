@@ -5,7 +5,7 @@ const number = numberToLetter(0);
 console.log(number);
 
 export default function spreadsheet(cols, rows) {
-  const container = createEle('div', 'spreadsheet-container ');
+  const container = createEle('table', 'spreadsheet-container ');
 
   const columnNumbers = createEle('div', 'flex pl-24 bg-gray-200 w-fit');
 
