@@ -21,7 +21,7 @@ Checkout the Workflow Branch:
 git checkout workflow
 ```
 
-### Create a New Branch: Create your own feature branch from the workflow branch:
+### Create your own feature branch from the workflow branch:
 
 ```bash
 git checkout -b <your-branch-name>
@@ -65,3 +65,5 @@ npm run preview
 
 ### Linting and Formatting
 Prettier and ESLint: The project uses Prettier for code formatting and ESLint for linting. These tools are integrated into the project and will run automatically on staged files before each commit.
+
+### Push your branch to the repository and create a pull request to merge your changes.
