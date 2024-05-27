@@ -23,5 +23,5 @@ export default function spreadsheet(cols, rows) {
     container.append(cellRow(cols, i));
   }
 
-  document.body.append(container);
+  document.querySelector('#spreadsheetContainer').append(container);
 }

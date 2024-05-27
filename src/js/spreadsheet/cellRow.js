@@ -6,7 +6,7 @@ export default function cellRow(cols, row) {
 
   const rowNumber = createEle(
     'div',
-    'w-24 text-center border-y border-gray-300 bg-gray-200',
+    'w-24 text-center border-y border-gray-300 bg-gray-200 flex-none',
     row + 1,
   );
 
