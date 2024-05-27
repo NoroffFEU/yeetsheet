@@ -2,13 +2,73 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta
+      name="description"
+      content="An innovative spreadsheet web application utilizing JavaScript syntax for formulas, featuring a modern dark mode interface and versatile export options including CSV and JSON. Designed for offline use, offering a seamless and efficient user experience."
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/src/js/main.js" type="module"></script>
     <link rel="stylesheet" href="/src/index.css" />
-    <script type="module" src="/src/js/main.js"></script>
-    <title>Vite App</title>
+    <title>YeetSheet</title>
   </head>
   <body>
-    <h1 class="text-red-500">Hello World</h1>
+    <header class="flex justify-between p-5 flex-wrap">
+      <h1 class="font-bold">YeetSheet</h1>
+      <nav>
+        <ul class="flex gap-3">
+          <li><a href=""></a>Example1</li>
+          <li><a href=""></a>Example2</li>
+          <li><a href=""></a>Example3</li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="flex mx-auto max-w-[90rem] gap-5 p-5">
+      <main>
+        <section>
+          <div id="spreadsheetContainer">
+            <!-- Spreadsheet content goes here -->
+          </div>
+          <button type="button">Enlarge sheet</button>
+        </section>
+        <section>
+          <h2>Feedback</h2>
+          <textarea name="" id="" aria-label="">
+          <!-- Assistance messages -->
+          <!-- Success messages -->
+          <!-- Error messages -->
+        </textarea
+          >
+        </section>
+      </main>
+      <aside>
+        <section>
+          <h2>Declerations</h2>
+          <textarea name="" id="" aria-label="">
+          <!-- Declerations goes here -->
+        </textarea
+          >
+        </section>
+        <section>
+          <h2>Function</h2>
+          <textarea name="" id="" aria-label="">
+          <!-- Function goes here -->
+        </textarea
+          >
+        </section>
+        <section>
+          <h2>Run code</h2>
+          <textarea name="" id="" aria-label="">
+          <!-- Code to run goes here -->
+        </textarea
+          >
+          <button type="button">Run now</button>
+        </section>
+      </aside>
+    </div>
+
+    <footer>
+      <!-- If there´s going to be a footer -->
+    </footer>
   </body>
 </html>

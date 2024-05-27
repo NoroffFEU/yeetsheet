@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+button {
+  @apply bg-yellow-400 border border-black p-2 rounded-md
+}
+
+textarea {
+  @apply w-full bg-gray-300
+}
