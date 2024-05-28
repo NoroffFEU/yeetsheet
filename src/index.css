@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 button {
-  @apply bg-yellow-400 border border-black p-2 rounded-md
+  @apply bg-yellow-400 border border-black p-2 rounded-md dark:text-black
 }
 
 textarea {
-  @apply w-full bg-gray-300
+  @apply w-full bg-gray-300 text-black
+}
+
+.spreadsheet-container div {
+  @apply dark:text-black
 }
