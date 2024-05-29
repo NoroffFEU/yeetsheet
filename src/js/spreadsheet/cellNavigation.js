@@ -1,5 +1,14 @@
 /**
- * Callback for adding two numbers.
+ * Callback to get the cell value.
+ *
+ * @callback LoadCellCallback
+ * @param {number} col - The column index.
+ * @param {number} row - The row index.
+ * @return {string} value - The cell value content.
+ */
+
+/**
+ * Callback to save the cell value.
  *
  * @callback SaveCellCallback
  * @param {number} col - The column index.
@@ -10,9 +19,14 @@
 /**
  * @description Add events to handle cell navigation.
  * @param {string} tableSelector
+ * @param {LoadCellCallback} loadCellCallback Callback function to handle the load cell content on `focus` event. It sends col, row and expects back the text that should be used.
  * @param {SaveCellCallback} saveCellCallback Callback function to handle the save cell content on `blur`event. It sends col, row and value params.
  */
-export function addCellTargetingEvents(tableSelector, saveCellCallback) {
+export function addCellTargetingEvents(
+  tableSelector,
+  loadCellCallback,
+  saveCellCallback,
+) {
   const table = document.querySelector(tableSelector);
 
   table.addEventListener(
@@ -32,6 +46,8 @@ export function addCellTargetingEvents(tableSelector, saveCellCallback) {
 
       input.dataset.col = col;
       input.dataset.row = row;
+
+      input.value = loadCellCallback(col, row);
 
       //Add the FocusEvent
       input.addEventListener('blur', (ev) => {
@@ -110,7 +126,16 @@ function selectNextCell(col, row) {
   }
 
   //handle max col and row
-  // TODO: as it's not yet defined how max col & max row should work, I cannot handle the upper limits.
+  const maxCol = document.querySelectorAll('[data-row="0"]').length - 1;
+  const maxRow = document.querySelectorAll('[data-col="0"]').length - 1;
+
+  if (col > maxCol) {
+    col = maxCol;
+  }
+
+  if (row > maxRow) {
+    row = maxRow;
+  }
 
   const td = document.querySelector(`td[data-col="${col}"][data-row="${row}"]`);
   if (td) {
