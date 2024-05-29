@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="/src/index.css" />
     <title>YeetSheet</title>
   </head>
-  <body>
-    <header class="flex justify-between p-5 flex-wrap">
+  <body
+    class="min-h-screen bg-gray-100 dark:bg-gray-800 text-black dark:text-neutral-100"
+  >
+    <header class="flex justify-between p-5 flex-wrap items-center">
       <h1 class="font-bold">YeetSheet</h1>
       <nav>
         <ul class="flex gap-3">
@@ -21,6 +23,12 @@
           <li><a href=""></a>Example3</li>
         </ul>
       </nav>
+      <button
+        id="darkModeToggleBtn"
+        class="rounded-full h-12 w-12 bg-neutral-900 dark:bg-white text-neutral-100 dark:text-black"
+      >
+        LHT
+      </button>
     </header>
 
     <div class="flex flex-wrap mx-auto max-w-[90rem] gap-5 p-5">
