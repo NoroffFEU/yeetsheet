@@ -2,23 +2,27 @@ export function showMessage(message, type) {
   if (!showMessage.errorMessageDisplayed) {
     showMessage.errorMessageDisplayed = true;
 
-    let borderColor, textShadowColor;
+    let borderColor, textShadowColor, bgColor;
     switch (type) {
       case 'success':
-        borderColor = 'border-green-500';
-        textShadowColor = 'text-green-700';
+        borderColor = 'border-green-100';
+        textShadowColor = 'text-green-800';
+        bgColor = 'bg-green-100';
         break;
       case 'error':
-        borderColor = 'border-red-500';
-        textShadowColor = 'text-red-700';
+        borderColor = 'border-red-200';
+        textShadowColor = 'text-red-600';
+        bgColor = 'bg-red-200';
         break;
       case 'warning':
-        borderColor = 'border-yellow-500';
-        textShadowColor = 'text-yellow-700';
+        borderColor = 'border-yellow-100';
+        textShadowColor = 'text-yellow-600';
+        bgColor = 'bg-yellow-100';
         break;
       default:
-        borderColor = 'border-blue-500';
-        textShadowColor = 'text-blue-700';
+        borderColor = 'border-sky-300';
+        textShadowColor = 'text-sky-900';
+        bgColor = 'bg-sky-300';
     }
 
     const modalElement = document.createElement('div');
@@ -36,6 +40,8 @@ export function showMessage(message, type) {
     const modalDialog = document.createElement('div');
     modalDialog.classList.add(
       'bg-white',
+      bgColor,
+      'bgColor',
       'rounded-lg',
       'shadow-lg',
       'max-w-lg',
@@ -60,6 +66,7 @@ export function showMessage(message, type) {
       'pb-2',
       'border-b',
       borderColor,
+      'uppercase',
     );
     const modalTitle = document.createElement('h5');
     modalTitle.classList.add('text-lg', 'font-bold', textShadowColor);
