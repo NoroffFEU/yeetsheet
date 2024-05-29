@@ -3,6 +3,7 @@
 ## Getting started
 
 ### Cloning the Repository
+
 Clone the Repository: Open your terminal and run the following command to clone the repository:
 
 ```bash
@@ -26,8 +27,8 @@ git checkout workflow
 ```bash
 git checkout -b <your-branch-name>
 ```
-Replace <your-branch-name> with the name of your feature branch.
 
+Replace <your-branch-name> with the name of your feature branch.
 
 ### Installing Dependencies
 
@@ -64,6 +65,16 @@ npm run preview
 ```
 
 ### Linting and Formatting
+
 Prettier and ESLint: The project uses Prettier for code formatting and ESLint for linting. These tools are integrated into the project and will run automatically on staged files before each commit.
 
 ### Push your branch to the repository and create a pull request to merge your changes.
+
+## Cell navigation
+
+It's possible to navigate through the cells with the keyboard in an Excel-like mode:
+
+- arrow keys
+- Tab navigate to the right,
+- shift+Tab to the left,
+- enter to the bottom

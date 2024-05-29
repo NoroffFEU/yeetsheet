@@ -1,6 +1,6 @@
 import createEle from '../helpers/createEle';
 import numberToLetter from '../helpers/numberToLetter';
-import { saveCellValue, getCellValue } from './db.js';
+import { /* saveCellValue, */ getCellValue } from './db.js';
 
 export default function cell(row, col) {
   const cellContainer = createEle('td', 'p-0  w-28  border relative');
@@ -20,19 +20,19 @@ export default function cell(row, col) {
     }
   });
 
-  cellContainer.addEventListener('click', handleCellClick);
+  // cellContainer.addEventListener('click', handleCellClick);
 
   return cellContainer;
 }
 
 //--Click eventlistner for cell --//
-function handleCellClick(event) {
-  const cell = event.target;
-  const cellId = cell.getAttribute('id');
-  const cellValue = prompt('Enter cell value:', cell.textContent);
+// function handleCellClick(event) {
+//   const cell = event.target;
+//   const cellId = cell.getAttribute('id');
+//   const cellValue = prompt('Enter cell value:', cell.textContent);
 
-  if (cellValue !== null) {
-    cell.textContent = cellValue;
-    saveCellValue(cellId, cellValue);
-  }
-}
+//   if (cellValue !== null) {
+//     cell.textContent = cellValue;
+//     saveCellValue(cellId, cellValue);
+//   }
+// }
