@@ -11,13 +11,18 @@ button {
 }
 
 .console-btn {
-  @apply rounded-none border-none bg-transparent text-ys-whiteGrey 
+  @apply rounded-none border-none bg-transparent text-ys-whiteGrey
 }
 
 textarea {
-  @apply w-full bg-gray-300 text-black
+  @apply w-full bg-gray-300 text-black;
 }
 
 .spreadsheet-container div {
-  @apply dark:text-black
+  @apply dark:text-black;
+}
+
+/* It handles online cell editing */
+table tr td input {
+  @apply size-full p-4;
 }
