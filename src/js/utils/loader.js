@@ -18,7 +18,7 @@ export function showLoader() {
   whiteCircle.appendChild(innerCircle);
   loader.appendChild(whiteCircle);
   loaderContainer.appendChild(loader);
-  document.body.appendChild(loaderContainer);
+container.appendChild(loaderContainer);
 }
 
 export function hideLoader() {
