@@ -12,67 +12,105 @@
     <title>YeetSheet</title>
   </head>
   <body
-    class="min-h-screen bg-gray-100 dark:bg-gray-800 text-black dark:text-neutral-100"
+    class="flex min-h-screen bg-gray-100 dark:bg-ys-darkGrey text-black dark:text-ys-whiteGrey"
   >
-    <header class="flex justify-between p-5 flex-wrap items-center">
-      <h1 class="font-bold">YeetSheet</h1>
-      <nav>
-        <ul class="flex gap-3">
-          <li><a href=""></a>Example1</li>
-          <li><a href=""></a>Example2</li>
-          <li><a href=""></a>Example3</li>
-        </ul>
-      </nav>
-      <button
-        id="darkModeToggleBtn"
-        class="rounded-full h-12 w-12 bg-neutral-900 dark:bg-white text-neutral-100 dark:text-black"
+    <aside class="w-44 p-4 items-start">
+      <div class="mb-20">
+        <a href="#">LOGO</a>
+      </div>
+      <p>example1</p>
+      <p>example2</p>
+      <p>example3</p>
+      <p>example4</p>
+    </aside>
+    <div
+      class="container w-full bg-gray-100 dark:bg-ys-darkGrey text-black dark:text-neutral-100"
+    >
+      <header
+        class="container bg-gray-300 dark:bg-ys-black text-black dark:text-ys-whiteGrey flex justify-between flex-wrap items-center py-3"
       >
-        LHT
-      </button>
-    </header>
-
-    <div class="flex flex-wrap mx-auto max-w-[90rem] gap-5 p-5">
-      <main class="flex-[1_1_40rem] w-full max-w-[60rem]">
-        <section>
-          <div id="spreadsheetContainer" class="overflow-x-auto w-full">
+        <nav class="mx-5">
+          <ul class="flex gap-8">
+            <li><a href="">File</a></li>
+            <li><a href="">Edit</a></li>
+            <li><a href="">Help</a></li>
+            <li><a href="">Share</a></li>
+            <li><a href="">Zoom</a></li>
+          </ul>
+        </nav>
+        <div class="flex gap-7 mr-10">
+          <input
+            type="search"
+            class="max-w-60 w-full px-2 mr-9 bg-ys-whiteGrey text-ys-black"
+            placeholder="Search..."
+            aria-label="search-input"
+            id="searchInput"
+          />
+          <button
+            id="darkModeToggleBtn"
+            class="text-xs p-1 h-8 w-10 bg-ys-black dark:bg-ys-whiteGrey text-ys-whiteGrey dark:text-ys-black"
+          >
+            LHT
+          </button>
+        </div>
+      </header>
+      <div class="container max-w-[86rem]">
+        <h1 class="flex justify-center p-5">Name of the file</h1>
+      </div>
+      <main class="container max-w-[86rem] bg-gray-200 dark:bg-ys-mediumGrey">
+        <section class="p-5">
+          <div
+            id="spreadsheetContainer"
+            class="overflow-x-auto overflow-y-auto w-full bg-white dark:bg-ys-black"
+          >
             <!-- Spreadsheet content goes here -->
           </div>
-          <button type="button">Enlarge sheet</button>
         </section>
-        <section>
-          <h2>Feedback</h2>
-          <textarea name="" id="" aria-label="">
-          <!-- Assistance messages -->
-          <!-- Success messages -->
-          <!-- Error messages -->
-        </textarea
-          >
+        <section class="p-5">
+          <div class="bg-neutral-800">
+            <div class="p-1">
+              <button type="button" class="console-btn">Code editor</button>
+              <button type="button" class="console-btn">Console</button>
+              <button type="button" class="console-btn">Errors</button>
+            </div>
+            <div class="p-5 bg-neutral-900">
+              <div id="codeEditorConsoleContainer">
+                <label for="console"></label>
+                <textarea
+                  class="bg-neutral-900 text-neutral-100 p-5"
+                  name=""
+                  id="console"
+                  aria-label=""
+                  rows="6"
+                >
+                <!-- Code -->
+                <!-- Console -->
+                <!-- Errors -->
+                </textarea>
+                <div class="flex gap-3">
+                  <input
+                    type="text"
+                    class="w-20 text-center"
+                    placeholder="cell"
+                    aria-label=""
+                    id=""
+                  />
+                  <input
+                    type="text"
+                    class="w-full text-start pl-5"
+                    placeholder="function"
+                    aria-label=""
+                    id=""
+                  />
+                  <button id="runFunctionBtn" class="default-btn" type="submit">
+                    Run
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
-      <aside class="flex-[1_1_10rem]">
-        <section>
-          <h2>Declerations</h2>
-          <textarea name="" id="" aria-label="">
-          <!-- Declerations goes here -->
-        </textarea
-          >
-        </section>
-        <section>
-          <h2>Function</h2>
-          <textarea name="" id="" aria-label="">
-          <!-- Function goes here -->
-        </textarea
-          >
-        </section>
-        <section>
-          <h2>Run code</h2>
-          <textarea name="" id="" aria-label="">
-          <!-- Code to run goes here -->
-        </textarea
-          >
-          <button type="button">Run now</button>
-        </section>
-      </aside>
     </div>
 
     <footer>
