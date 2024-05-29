@@ -19,10 +19,18 @@ initDB()
     // Create and append the spreadsheet to the container
     spreadsheetContainer.append(spreadsheet(cols, rows));
 
-    addCellTargetingEvents('#spreadsheetContainer table', (col, row, value) => {
-      // Here you can put the save function with params for cell contents.
-      console.log('save', col, row, value);
-    });
+    addCellTargetingEvents(
+      '#spreadsheetContainer table',
+      (col, row) => {
+        // read cell value from db/memory
+        console.log('load', col, row);
+        return `() => { return 'hi' }`;
+      },
+      (col, row, value) => {
+        // Here you can put the save function with params for cell contents.
+        console.log('save', col, row, value);
+      },
+    );
   })
   .catch((error) => {
     console.error('Failed to initialize IndexedDB:', error);

@@ -78,3 +78,8 @@ It's possible to navigate through the cells with the keyboard in an Excel-like m
 - Tab navigate to the right,
 - shift+Tab to the left,
 - enter to the bottom
+
+## Cell editing callbacks
+
+When the cell get the focus, a callback is available to fetch the cell content to be shown.
+When the cell blurs, a callback is available to save the cell content.
