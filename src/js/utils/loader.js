@@ -1,4 +1,5 @@
-export function showLoader() {
+export function showLoader(container = false) {
+container = container ? container : document.body
   const loaderContainer = document.createElement('div');
   loaderContainer.id = 'loaderContainer';
   loaderContainer.className =
