@@ -33,7 +33,9 @@ export function saveCellValue(id, value) {
 
   const request = store.put(cell);
 
-  request.onsuccess = function () {};
+  request.onsuccess = function () {
+    console.log(`Cell ${id} saved successfully`);
+  };
 
   request.onerror = function (event) {
     console.error(`Error saving cell ${id}:`, event.target.error);
