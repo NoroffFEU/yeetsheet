@@ -1,8 +1,9 @@
 import spreadsheet from './spreadsheet';
 import userColsAndRows from './helpers/userColsAndRows';
+import numberToLetter from './helpers/numberToLetter';
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
-import { initDB } from './spreadsheet/db.js';
+import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
@@ -22,13 +23,14 @@ initDB()
     addCellTargetingEvents(
       '#spreadsheetContainer table',
       (col, row) => {
-        // read cell value from db/memory
-        console.log('load', col, row);
-        return `() => { return 'hi' }`;
+        const cellId = numberToLetter(col) + (row + 1);
+        // read cell value from IndexedDB
+        return getCellValue(cellId).then((value) => value || '');
       },
       (col, row, value) => {
-        // Here you can put the save function with params for cell contents.
-        console.log('save', col, row, value);
+        const cellId = numberToLetter(col) + (row + 1);
+        // save cell value to IndexedDB
+        saveCellValue(cellId, value);
       },
     );
   })
