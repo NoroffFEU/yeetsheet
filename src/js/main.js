@@ -4,12 +4,13 @@ import numberToLetter from './helpers/numberToLetter';
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
 import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
+import { attachSearchEventListener } from './spreadsheet/search.js';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
 // indexedDB
 initDB()
-  .then(() => {
+  .then((db) => {
     console.log('IndexedDB initialized');
 
     // DarkMode
@@ -33,6 +34,7 @@ initDB()
         saveCellValue(cellId, value);
       },
     );
+    attachSearchEventListener(db);
   })
   .catch((error) => {
     console.error('Failed to initialize IndexedDB:', error);
