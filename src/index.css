@@ -3,9 +3,26 @@
 @tailwind utilities;
 
 button {
-  @apply bg-yellow-400 border border-black p-2 rounded-md
+  @apply  p-2 rounded-sm dark:text-ys-black w-40
+}
+
+.default-btn {
+  @apply bg-ys-purple uppercase
+}
+
+.console-btn {
+  @apply rounded-none border-none bg-transparent text-ys-whiteGrey
 }
 
 textarea {
-  @apply w-full bg-gray-300
+  @apply w-full bg-gray-300 text-black;
+}
+
+.spreadsheet-container div {
+  @apply dark:text-black;
+}
+
+/* It handles online cell editing */
+table tr td input {
+  @apply size-full p-4;
 }

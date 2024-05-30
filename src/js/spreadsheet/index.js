@@ -30,8 +30,9 @@ export default function spreadsheet(cols, rows) {
       numberToLetter(i),
     );
     columnNumbers.appendChild(colNumber);
-
-    container.append(cellRow(cols, i));
+  }
+  for (let i = 0; i < rows; i++) {
+    container.appendChild(cellRow(cols, i));
   }
 
   return container;
