@@ -15,6 +15,14 @@ export default function cell(row, col) {
       cellContainer.textContent = value;
     }
   });
+  cellContainer.addEventListener('click', () => {
+    const cellIdentifierDisplay = document.getElementById(
+      'cellIdentifierDisplay',
+    );
+    if (cellIdentifierDisplay) {
+      cellIdentifierDisplay.value = cellId;
+    }
+  });
 
   return cellContainer;
 }
