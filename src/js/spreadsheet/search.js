@@ -33,7 +33,11 @@ export function searchCellValue(db, query) {
 }
 
 /**
- * Attaches an event listener to the search input element to perform searches on input.
+ * Attaches an input event listener to the search input element to perform searches on input.
+ *
+ * When the user types in the search input, this function searches the IndexedDB for matching cell values. It then highlights the cells that contain the matching      values by adding specific CSS classes.
+ *
+ * If the search input is cleared, all previous highlights are removed.
  *
  * @param {IDBDatabase} db - The IndexedDB database instance.
  */
@@ -44,24 +48,22 @@ export function attachSearchEventListener(db) {
     const query = this.value.trim();
 
     if (!query) {
-      // If the search input is empty, clear all highlights
       document.querySelectorAll('.bg-red-400').forEach((cell) => {
         cell.classList.remove('bg-red-400', 'text-black');
       });
-      return; // Exit the function early
+      return;
     }
 
     searchCellValue(db, query)
       .then((results) => {
         console.log('Search results:', results);
-        // Clear previous highlights
+
         document.querySelectorAll('.bg-red-400').forEach((cell) => {
           cell.classList.remove('bg-red-400', 'text-black');
         });
 
-        // Highlight the cells that match the search results
         results.forEach((result) => {
-          const cellId = result.id; // Assuming each result has an 'id' field that corresponds to the cell's ID
+          const cellId = result.id;
           const cellElement = document.getElementById(cellId);
           if (cellElement) {
             cellElement.classList.add('bg-red-400', 'text-black');
