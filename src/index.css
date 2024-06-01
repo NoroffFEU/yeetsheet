@@ -14,6 +14,10 @@ button {
   @apply rounded-none border-none bg-transparent text-ys-whiteGrey
 }
 
+.nav-btn {
+  @apply text-ys-whiteGrey w-20
+}
+
 textarea {
   @apply w-full bg-gray-300 text-black;
 }

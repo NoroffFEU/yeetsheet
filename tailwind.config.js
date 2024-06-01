@@ -5,7 +5,7 @@ export default {
     extend: {
       container: {
         padding: '0 0.75rem',
-        start: true,
+        center: true,
       },
       colors: {
         'ys-black': '#101216',

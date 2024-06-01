@@ -12,102 +12,269 @@
     <title>YeetSheet</title>
   </head>
   <body
-    class="flex min-h-screen bg-gray-100 dark:bg-ys-darkGrey text-black dark:text-ys-whiteGrey"
+    class="flex flex-wrap min-h-screen bg-gray-100 dark:bg-ys-darkGrey text-black dark:text-ys-whiteGrey"
   >
-    <aside class="w-44 p-4 items-start">
-      <div class="mb-20">
-        <a href="#">LOGO</a>
-      </div>
-      <p>example1</p>
-      <p>example2</p>
-      <p>example3</p>
-      <p>example4</p>
-    </aside>
     <div
-      class="container w-full bg-gray-100 dark:bg-ys-darkGrey text-black dark:text-neutral-100"
+      class="w-full bg-gray-100 dark:bg-ys-darkGrey text-black dark:text-neutral-100"
     >
       <header
-        class="container bg-gray-300 dark:bg-ys-black text-black dark:text-ys-whiteGrey flex justify-between flex-wrap items-center py-3"
+        class="bg-gray-300 dark:bg-ys-black text-black dark:text-ys-whiteGrey py-3"
       >
-        <nav class="mx-5">
-          <ul class="flex gap-8">
-            <li><a href="">File</a></li>
-            <li><a href="">Edit</a></li>
-            <li><a href="">Help</a></li>
-            <li><a href="">Share</a></li>
-            <li><a href="">Zoom</a></li>
-          </ul>
-        </nav>
-        <div class="flex gap-7 mr-10">
-          <input
-            type="search"
-            class="max-w-60 w-full px-2 mr-9 bg-ys-whiteGrey text-ys-black"
-            placeholder="Search..."
-            aria-label="search-input"
-            id="searchInput"
-          />
-          <button
+        <div class="container flex flex-wrap items-center justify-between">
+          <div class="mr-20">
+            <a href="#" class="p-3">LOGO</a>
+          </div>
+          <nav class="flex flex-1 justify-start">
+            <ul class="flex">
+              <li class="relative">
+                <button
+                  type="button"
+                  class="nav-btn"
+                  id="fileBtn"
+                  aria-label=""
+                  aria-haspopup=""
+                >
+                  File
+                </button>
+                <!-- Dropdown-menu -->
+                <!-- could also be made with JS instead -->
+                <div
+                  id="fileMenu"
+                  class="hidden absolute z-10 top-full left-0 w-56 bg-white focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="fileBtn"
+                  tabindex="-1"
+                >
+                  <div class="py-1" role="none">
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="file-item-1"
+                      >New file...</a
+                    >
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="file-item-2"
+                      >Import existing file</a
+                    >
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="file-item-3"
+                      >Edit</a
+                    >
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="file-item-4"
+                      >Save</a
+                    >
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="file-item-5"
+                      >Save as...</a
+                    >
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="file-item-6"
+                      >Save copy</a
+                    >
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="file-item-7"
+                      >Export</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="nav-btn"
+                  id="fileBtn"
+                  aria-label=""
+                >
+                  Help
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="nav-btn"
+                  id="fileBtn"
+                  aria-label=""
+                >
+                  Settings
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="nav-btn"
+                  id="zoomBtn"
+                  aria-label=""
+                >
+                  100%
+                </button>
+                <!-- Dropdown-menu -->
+                <!-- could also be made with JS instead -->
+                <div
+                  id="zoomMenu"
+                  class="hidden absolute z-10 top-13 left-100 w-56 bg-white focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="zoomBtn"
+                  tabindex="-1"
+                >
+                  <div class="py-1" role="none">
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="zoom-item-1"
+                      >125%</a
+                    >
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="zoom-item-2"
+                      >150%</a
+                    >
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="zoom-item-3"
+                      >75%</a
+                    >
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="zoom-item-4"
+                      >50%</a
+                    >
+                    <a
+                      href="#"
+                      class="text-gray-700 block px-4 py-2 text-sm"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="zoom-item-5"
+                      >Custom...</a
+                    >
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <div class="flex gap-7 items-center flex-1 flex-row-reverse">
+            <input
+              type="search"
+              class="w-[20rem] p-1 ps-2 bg-ys-darkGrey text-ys-whiteGrey border border-ys-lightGrey"
+              placeholder="Search..."
+              aria-label="search-input"
+              id="searchInput"
+            />
+            <!-- <button
             id="darkModeToggleBtn"
             class="text-xs p-1 h-8 w-10 bg-ys-black dark:bg-ys-whiteGrey text-ys-whiteGrey dark:text-ys-black"
           >
             LHT
-          </button>
+          </button> -->
+          </div>
         </div>
       </header>
-      <div class="container max-w-[86rem]">
-        <h1 class="flex justify-center p-5">Name of the file</h1>
-      </div>
-      <main class="container max-w-[86rem] bg-gray-200 dark:bg-ys-mediumGrey">
-        <section class="p-5">
-          <div
-            id="spreadsheetContainer"
-            class="overflow-x-auto overflow-y-auto w-full bg-white dark:bg-ys-black"
-          >
-            <!-- Spreadsheet content goes here -->
-          </div>
-        </section>
-        <section class="p-5">
-          <div class="bg-neutral-800">
-            <div class="p-1">
-              <button class="console-btn">Code editor</button>
-              <button class="console-btn">Console</button>
-              <button class="console-btn">Errors</button>
-            </div>
-            <div class="p-5 bg-neutral-900">
-              <div id="codeEditorConsoleContainer">
-                <textarea
-                  class="bg-neutral-900 text-neutral-100 p-5"
-                  name=""
-                  id=""
-                  aria-label=""
-                  rows="6"
-                >
-                <!-- Code -->
-                <!-- Console -->
-                <!-- Errors -->
-                </textarea>
-                <div class="flex gap-3">
-                  <input
-                    type="text"
-                    class="w-20 text-center"
-                    placeholder="cell"
-                    aria-label=""
-                    id=""
-                  />
-                  <input
-                    type="text"
-                    class="w-full text-start pl-5"
-                    placeholder="function"
-                    aria-label=""
-                    id=""
-                  />
-                  <button id="runFunctionBtn" class="default-btn">Run</button>
+      <div class="container flex">
+        <aside class="max-w-44 w-full items-start flex-none mt-16 p-3">
+          <ul>
+            <li>example1</li>
+            <li>example2</li>
+            <li>example3</li>
+            <li>example4</li>
+          </ul>
+        </aside>
+        <div class="flex flex-col overflow-hidden">
+          <h1 class="flex justify-center p-5">Name of the file</h1>
+
+          <main class="flex flex-col bg-gray-200 dark:bg-ys-mediumGrey">
+            <section class="p-5">
+              <div
+                id="spreadsheetContainer"
+                class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-black"
+              >
+                <!-- Spreadsheet content goes here -->
+              </div>
+            </section>
+            <section class="p-5">
+              <div class="bg-neutral-800">
+                <div class="p-1">
+                  <button class="console-btn">Code editor</button>
+                  <button class="console-btn">Console</button>
+                  <button class="console-btn">Errors</button>
+                </div>
+                <div class="p-5 bg-neutral-900">
+                  <div id="codeEditorConsoleContainer">
+                    <textarea
+                      class="bg-neutral-900 text-neutral-100 p-5"
+                      name=""
+                      id=""
+                      aria-label=""
+                      rows="6"
+                    >
+                    <!-- Code -->
+                    <!-- Console -->
+                    <!-- Errors -->
+                    </textarea>
+                    <div class="flex gap-3">
+                      <input
+                        type="text"
+                        class="w-20 text-center"
+                        placeholder="cell"
+                        aria-label=""
+                        id=""
+                      />
+                      <input
+                        type="text"
+                        class="w-full text-start pl-5"
+                        placeholder="function"
+                        aria-label=""
+                        id=""
+                      />
+                      <button id="runFunctionBtn" class="default-btn">
+                        Run
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-      </main>
+            </section>
+          </main>
+        </div>
+      </div>
     </div>
 
     <footer>

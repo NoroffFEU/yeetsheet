@@ -4,6 +4,8 @@ import numberToLetter from './helpers/numberToLetter';
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
 import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
+import showFileMenu from './header/file.mjs';
+import showZoomMenu from './header/zoom.mjs';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
@@ -11,6 +13,12 @@ const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 initDB()
   .then(() => {
     console.log('IndexedDB initialized');
+
+    // FileBtn
+    showFileMenu();
+
+    // ZoomBtn
+    showZoomMenu();
 
     // DarkMode
     toggleDarkMode();
