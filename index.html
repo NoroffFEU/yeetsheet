@@ -9,23 +9,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="/src/js/main.js" type="module"></script>
     <link rel="stylesheet" href="/src/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
     <title>YeetSheet</title>
   </head>
   <body
-    class="flex flex-wrap min-h-screen bg-gray-100 dark:bg-ys-darkGrey text-black dark:text-ys-whiteGrey"
+    class="flex flex-wrap min-h-screen bg-gray-100 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
   >
     <div
-      class="w-full bg-gray-100 dark:bg-ys-darkGrey text-black dark:text-neutral-100"
+      class="w-full bg-gray-100 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
     >
       <header
-        class="bg-gray-300 dark:bg-ys-black text-black dark:text-ys-whiteGrey py-3"
+        class="bg-gray-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight py-3"
       >
         <div class="container flex flex-wrap items-center justify-between">
-          <div class="mr-20">
+          <div class="mr-24">
             <a href="#" class="p-3">LOGO</a>
           </div>
           <nav class="flex flex-1 justify-start">
-            <ul class="flex">
+            <ul class="flex gap-8">
               <li class="relative">
                 <button
                   type="button"
@@ -129,7 +135,7 @@
               <li>
                 <button
                   type="button"
-                  class="nav-btn"
+                  class="nav-btn bg-ys-overlay-5"
                   id="zoomBtn"
                   aria-label=""
                 >
@@ -191,17 +197,17 @@
               </li>
             </ul>
           </nav>
-          <div class="flex gap-7 items-center flex-1 flex-row-reverse">
+          <div class="flex gap-7 items-center flex-1 flex-row-reverse p-5">
             <input
               type="search"
-              class="w-[20rem] p-1 ps-2 bg-ys-darkGrey text-ys-whiteGrey border border-ys-lightGrey"
+              class="w-[20rem] p-2 ps-4 rounded-md bg-ys-overlay-5 text-ys-textAndIconsLight outline-none"
               placeholder="Search..."
               aria-label="search-input"
               id="searchInput"
             />
             <!-- <button
             id="darkModeToggleBtn"
-            class="text-xs p-1 h-8 w-10 bg-ys-black dark:bg-ys-whiteGrey text-ys-whiteGrey dark:text-ys-black"
+            class="text-xs p-1 h-8 w-10 bg-ys-backgroundAndText dark:bg-ys-whiteGrey text-ys-whiteGrey dark:text-ys-backgroundAndText"
           >
             LHT
           </button> -->
@@ -210,61 +216,71 @@
       </header>
       <div class="container flex">
         <aside class="max-w-44 w-full items-start flex-none mt-16 p-3">
-          <ul>
-            <li>example1</li>
-            <li>example2</li>
-            <li>example3</li>
-            <li>example4</li>
+          <ul class="flex flex-col gap-3 mb-8">
+            <li>Sheet1</li>
+            <li>Sheet2</li>
+            <li>Sheet3</li>
           </ul>
+          <button class="default-btn">Save changes</button>
         </aside>
-        <div class="flex flex-col overflow-hidden">
-          <h1 class="flex justify-center p-5">Name of the file</h1>
+        <div class="flex flex-col overflow-hidden p-5">
+          <h1 class="text-sm flex justify-center p-5 dark:bg-ys-black">
+            Name of the file
+          </h1>
 
-          <main class="flex flex-col bg-gray-200 dark:bg-ys-mediumGrey">
+          <main class="flex flex-col bg-gray-200 dark:bg-ys-overlay-5 p-4">
             <section class="p-5">
               <div
                 id="spreadsheetContainer"
-                class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-black"
+                class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText"
               >
                 <!-- Spreadsheet content goes here -->
               </div>
             </section>
             <section class="p-5">
-              <div class="bg-neutral-800">
-                <div class="p-1">
+              <div class="dark:bg-ys-overlay-15">
+                <div class="flex">
                   <button class="console-btn">Code editor</button>
                   <button class="console-btn">Console</button>
                   <button class="console-btn">Errors</button>
+                  <button class="console-btn">Terminal</button>
                 </div>
-                <div class="p-5 bg-neutral-900">
-                  <div id="codeEditorConsoleContainer">
+                <div class="p-8 dark:bg-ys-backgroundAndText">
+                  <div>
                     <textarea
-                      class="bg-neutral-900 text-neutral-100 p-5"
+                      class="dark:bg-ys-backgroundAndText text-ys-purple p-5"
                       name=""
                       id=""
                       aria-label=""
                       rows="6"
                     >
-                    <!-- Code -->
-                    <!-- Console -->
-                    <!-- Errors -->
+                    <!--   function laugh() {
+                            let laughter = '';
+                            for (let i = 0; i < 10; i++) {
+                                laughter += 'ha';
+                            }
+                            return laughter + '!';
+                            }
+
+                            console.log(laugh()); // Output: hahahahahahahaha!
+                           -->
                     </textarea>
-                    <div class="flex gap-3">
+                    <div class="flex gap-1 pt-5">
                       <input
                         type="text"
-                        class="w-20 text-center"
+                        class="w-20 text-center dark:bg-ys-overlay-15"
                         placeholder="cell"
                         aria-label=""
                         id=""
                       />
                       <input
                         type="text"
-                        class="w-full text-start pl-5"
+                        class="w-full text-start pl-5 dark:bg-ys-overlay-15"
                         placeholder="function"
                         aria-label=""
                         id=""
                       />
-                      <button id="runFunctionBtn" class="default-btn">
+                      <button id="runFunctionBtn" class="default-btn ml-2">
                         Run
                       </button>
                     </div>

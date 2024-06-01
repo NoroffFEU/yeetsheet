@@ -2,20 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: "Martel Sans", system-ui, sans-serif;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+}
+
 button {
-  @apply  p-2 rounded-sm dark:text-ys-black w-40
+  @apply  p-2 rounded-md dark:text-ys-backgroundAndText w-36
 }
 
 .default-btn {
-  @apply bg-ys-purple uppercase
+  @apply bg-ys-pink 
 }
 
 .console-btn {
-  @apply rounded-none border-none bg-transparent text-ys-whiteGrey
+  @apply border-r rounded-none border-ys-backgroundAndText text-ys-textAndIconsLight
+}
+
+.console-btn.active {
+  @apply bg-ys-backgroundAndText
 }
 
 .nav-btn {
-  @apply text-ys-whiteGrey w-20
+  @apply text-ys-textAndIconsLight w-20
 }
 
 textarea {
@@ -23,7 +45,7 @@ textarea {
 }
 
 .spreadsheet-container div {
-  @apply dark:text-black;
+  @apply dark:text-ys-textAndIconsLight dark:bg-ys-overlay-15;
 }
 
 /* It handles online cell editing */
