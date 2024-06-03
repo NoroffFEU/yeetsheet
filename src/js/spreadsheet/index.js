@@ -16,24 +16,36 @@ console.log(number);
 export default function spreadsheet(cols, rows) {
   if (!ifValidNumber(cols, rows)) return;
 
-  const container = createEle('table', 'spreadsheet-container ');
+  const container = createEle('table', 'spreadsheet-container');
 
-  const columnNumbers = createEle('div', 'flex pl-24 bg-gray-200 w-fit');
+  const tableHead = createEle('thead');
 
-  container.appendChild(columnNumbers);
+  const columnNumbers = createEle('tr', 'flex bg-ys-overlay-15 w-fit');
+
+  const emptyTh = createEle('th', 'w-28');
+
+  container.appendChild(tableHead);
+
+  tableHead.appendChild(columnNumbers);
+
+  columnNumbers.appendChild(emptyTh);
 
   for (let i = 0; i < cols; i++) {
     const colNumber = createEle(
-      'div',
-
-      'w-28 text-center border-x border-gray-300 bg-gray-200 py-2',
+      'th',
+      'w-28 text-center border-x border-ys-backgroundAndText bg-ys-overlay-15 py-2 snap-start',
       numberToLetter(i),
     );
     columnNumbers.appendChild(colNumber);
   }
+
+  const tableBody = createEle('tbody');
+
   for (let i = 0; i < rows; i++) {
-    container.appendChild(cellRow(cols, i));
+    tableBody.appendChild(cellRow(cols, i));
   }
+
+  container.appendChild(tableBody);
 
   return container;
 }
