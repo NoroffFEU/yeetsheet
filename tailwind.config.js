@@ -5,15 +5,28 @@ export default {
     extend: {
       container: {
         padding: '0 0.75rem',
-        start: true,
+        center: true,
       },
       colors: {
-        'ys-black': '#101216',
-        'ys-darkGrey': '#1F2124',
-        'ys-mediumGrey': '#939393',
-        'ys-lightGrey': '#4A4C4F',
-        'ys-whiteGrey': '#D9D9D9',
-        'ys-purple': '#915EFF',
+        // Dark mode
+        'ys-backgroundAndText': '#0B0821',
+        'ys-textAndIconsLight': '#DDDDDD',
+        'ys-black': '#09071C',
+        // Different shades of backgroundcolor(#0B0821)
+        'ys-overlay-5': '#17142C',
+        'ys-overlay-10': '#232137',
+        'ys-overlay-15': '#302D42',
+        'ys-overlay-20': '#3C394D',
+        'ys-overlay-30': '#545264',
+        // Buttons
+        'ys-buttonPrimary': '#D55FA8',
+        'ys-buttonSecondary': '#C7ADFF',
+        'ys-buttonTertiary': '#FDB0C4',
+        // Logo and Loading colors
+        'ys-logoLoader-purple': '#915EFF',
+        'ys-logoLoader-pink': '#FF6188',
+        'ys-logoLoader-blue': '#51CEE8',
+        'ys-logoLoader-yellow': '#FFB740',
       },
     },
   },

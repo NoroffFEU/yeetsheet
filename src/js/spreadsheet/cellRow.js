@@ -13,8 +13,8 @@ export default function cellRow(cols, row) {
 
   // Displaying the row number
   const rowNumber = createEle(
-    'div',
-    'w-24 text-center border-y border-gray-300 bg-gray-200 py-2 flex-none',
+    'th',
+    'w-28 text-center border-y border-ys-backgroundAndText bg-ys-overlay-15 py-2 flex-none snap-start',
     rowIndex,
   );
 
