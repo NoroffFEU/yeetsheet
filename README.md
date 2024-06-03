@@ -83,3 +83,22 @@ It's possible to navigate through the cells with the keyboard in an Excel-like m
 
 When the cell get the focus, a callback is available to fetch the cell content to be shown.
 When the cell blurs, a callback is available to save the cell content.
+
+---
+
+## Custom Colors in Tailwind CSS
+
+Our project uses a set of custom colors defined in the Tailwind configuration file. These colors are prefixed with `ys-` to indicate their association with this project.
+
+- **ys-buttonPrimary**: Used for primary buttons, links, and important highlights.
+- **ys-buttonSecondary**: Used for secondary buttons and borders.
+- **ys-buttonTertiary**: Used for uploading buttons.
+
+### Usage Examples
+
+To use these custom colors in your CSS classes, simply refer to them by their names:
+
+```html
+<button class="bg-ys-buttonPrimary text-ys-backgroundAndText">Primary Button</button>
+<button class="border-ys-buttonSecondary p-4">Secondary Border</div>
+<button class="bg-ys-buttonTertiary text-ys-backgroundAndText">Tertiary Button</button>
