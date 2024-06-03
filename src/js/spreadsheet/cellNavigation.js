@@ -1,4 +1,22 @@
 /**
+ * Callback to get the cell value.
+ *
+ * @callback LoadCellCallback
+ * @param {number} col - The column index.
+ * @param {number} row - The row index.
+ * @return {string} value - The cell value content.
+ */
+
+/**
+ * Callback to save the cell value.
+ *
+ * @callback SaveCellCallback
+ * @param {number} col - The column index.
+ * @param {number} row - The row index.
+ * @param {string} value - The cell value content.
+ */
+
+/**
  * @description Add events to handle cell navigation.
  * @param {string} tableSelector
  * @param {LoadCellCallback} loadCellCallback Callback function to handle the load cell content on `focus` event. It sends col, row and expects back the text that should be used.
