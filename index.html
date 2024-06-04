@@ -251,8 +251,22 @@
               </button>
               <div id="sheet1" class="hidden">
                 <ul class="dark:text-ys-logoLoader-yellow text-start pl-5">
-                  <li>#</li>
-                  <li>#</li>
+                  <li>
+                    <button
+                      class="text-gray-400 text-left text-sm py-1 hover:text-white duration-200"
+                      id="add-col-btn"
+                    >
+                      Add col
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      class="text-gray-400 text-left text-sm py-1 hover:text-white duration-200"
+                      id="add-row-btn"
+                    >
+                      Add row
+                    </button>
+                  </li>
                   <li>#</li>
                 </ul>
               </div>
@@ -323,26 +337,28 @@
                     <textarea
                       class="dark:bg-ys-backgroundAndText bg-ys-amethyst-200 p-5 outline-none"
                       name=""
-                      id=""
+                      id="code-editor-input"
                       aria-label=""
                       rows="6"
                     >
                     </textarea>
                     <div class="flex gap-1 pt-5">
-                      <input
-                        type="text"
-                        class="w-20 text-center dark:bg-ys-overlay-15"
-                        placeholder="cell"
-                        aria-label=""
-                        id=""
-                      />
+                      <div>
+                        <button
+                          type="text"
+                          class="w-20 text-center dark:bg-ys-overlay-15 text-white"
+                          id="selected-cell"
+                        >
+                          A1
+                        </button>
+                      </div>
                       <input
                         type="text"
                         class="w-full text-start pl-5 dark:bg-ys-overlay-15"
                         placeholder="function"
                         value=""
                         aria-label=""
-                        id=""
+                        id="function-call-input"
                       />
                       <button id="runFunctionBtn" class="default-btn ml-2">
                         Run

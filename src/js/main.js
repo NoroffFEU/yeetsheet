@@ -1,6 +1,4 @@
-import spreadsheet from './spreadsheet';
-import userColsAndRows from './helpers/userColsAndRows';
-import numberToLetter from './helpers/numberToLetter';
+// import numberToLetter from './helpers/numberToLetter';
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
 import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
@@ -10,6 +8,8 @@ import { showDropdownMenu } from './header/menu.mjs';
 import getIcon from './icons/index.js';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
+
+const sheet = new Spreadsheet();
 
 // indexedDB
 initDB()
@@ -24,8 +24,6 @@ initDB()
 
     // DarkMode
     toggleDarkMode();
-
-    const [cols, rows] = userColsAndRows();
 
     // Create and append the spreadsheet to the container
     spreadsheetContainer.append(spreadsheet(cols, rows));
