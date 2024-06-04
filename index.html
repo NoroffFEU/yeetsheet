@@ -217,9 +217,21 @@
       <div class="container flex">
         <aside class="max-w-44 w-full items-start flex-none mt-16 p-3">
           <ul class="flex flex-col gap-3 mb-8">
-            <li>Sheet1</li>
-            <li>Sheet2</li>
-            <li>Sheet3</li>
+            <div>
+              <li>Sheet1</li>
+              <button
+                class="text-gray-400 text-left text-sm py-1 hover:text-white duration-200"
+                id="add-col-btn"
+              >
+                Add col
+              </button>
+              <button
+                class="text-gray-400 text-left text-sm py-1 hover:text-white duration-200"
+                id="add-row-btn"
+              >
+                Add row
+              </button>
+            </div>
           </ul>
           <button class="default-btn">Save changes</button>
         </aside>
@@ -250,7 +262,7 @@
                     <textarea
                       class="dark:bg-ys-backgroundAndText text-ys-logoLoader-purple p-5 outline-none"
                       name=""
-                      id=""
+                      id="code-editor-input"
                       aria-label=""
                       rows="6"
                     >
@@ -266,20 +278,22 @@
        
                     </textarea>
                     <div class="flex gap-1 pt-5">
-                      <input
-                        type="text"
-                        class="w-20 text-center dark:bg-ys-overlay-15"
-                        placeholder="cell"
-                        aria-label=""
-                        id=""
-                      />
+                      <div>
+                        <button
+                          type="text"
+                          class="w-20 text-center dark:bg-ys-overlay-15 text-white"
+                          id="selected-cell"
+                        >
+                          A1
+                        </button>
+                      </div>
                       <input
                         type="text"
                         class="w-full text-start pl-5 dark:bg-ys-overlay-15"
                         placeholder="function"
                         value="laugh()"
                         aria-label=""
-                        id=""
+                        id="function-call-input"
                       />
                       <button id="runFunctionBtn" class="default-btn ml-2">
                         Run
