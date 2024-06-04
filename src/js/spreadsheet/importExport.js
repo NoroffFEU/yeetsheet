@@ -1,0 +1,269 @@
+// Function to import CSV
+export function importCSV(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const csvData = event.target.result;
+            const parsedData = parseCSV(csvData);
+            resolve(parsedData);
+        };
+        reader.onerror = (error) => {
+            reject(error);
+        };
+        reader.readAsText(file);
+    });
+}
+
+// Function to parse CSV data
+function parseCSV(csvData) {
+    try {
+        const rows = csvData.split('\n');
+        return rows.map(row => row.split(','));
+    } catch (error) {
+        console.error('Error parsing CSV data:', error);
+        return null;
+    }
+}
+
+// Function to import JSON
+export function importJSON(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const jsonData = JSON.parse(event.target.result);
+                const parsedData = parseJSON(jsonData);
+                resolve(parsedData);
+            } catch (error) {
+                reject(new Error('Invalid JSON file format'));
+            }
+        };
+        reader.onerror = (error) => {
+            reject(error);
+        };
+        reader.readAsText(file);
+    });
+}
+
+// Function to parse JSON data
+function parseJSON(jsonData) {
+    try {
+        const keys = Object.keys(jsonData);
+        const maxCol = keys.reduce((max, key) => {
+            const col = key.charCodeAt(0) - 'A'.charCodeAt(0);
+            return Math.max(max, col);
+        }, -1);
+        const maxRow = keys.reduce((max, key) => {
+            const row = parseInt(key.substring(1), 10) - 1;
+            return Math.max(max, row);
+        }, -1);
+        const data = Array.from({ length: maxRow + 1 }, () => Array(maxCol + 1).fill(''));
+
+        keys.forEach(key => {
+            const col = key.charCodeAt(0) - 'A'.charCodeAt(0);
+            const row = parseInt(key.substring(1), 10) - 1;
+            data[row][col] = jsonData[key];
+        });
+
+        return data;
+    } catch (error) {
+        console.error('Error parsing JSON data:', error);
+        return null;
+    }
+}
+
+// Function to generate CSV data from an array
+export function generateCSVFromData(data) {
+    return data.map(row => row.map(cell => `${cell}`).join(',')).join('\n');
+}
+
+// Function to open IndexedDB
+function openIndexedDB() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open('SpreadsheetDB');
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = (event) => reject(event.target.error);
+    });
+}
+
+// Function to generate CSV from IndexedDB
+export async function generateCSVFromIndexedDB() {
+    const allCells = await getAllCellsFromIndexedDB();
+    const rows = [];
+    let maxRow = 0;
+    let maxCol = 0;
+
+    allCells.forEach(cell => {
+        const match = cell.id.match(/([A-Z]+)(\d+)/);
+        if (match) {
+            const col = match[1].charCodeAt(0) - 'A'.charCodeAt(0);
+            const row = parseInt(match[2], 10) - 1;
+            maxRow = Math.max(maxRow, row);
+            maxCol = Math.max(maxCol, col);
+            if (!rows[row]) {
+                rows[row] = [];
+            }
+            rows[row][col] = cell.value;
+        }
+    });
+
+    const csvData = [];
+    for (let r = 0; r <= maxRow; r++) {
+        const row = [];
+        for (let c = 0; c <= maxCol; c++) {
+            row.push(rows[r] && rows[r][c] ? rows[r][c] : '');
+        }
+        csvData.push(row);
+    }
+
+    return generateCSVFromData(csvData);
+}
+
+// Function to get all cells from IndexedDB
+async function getAllCellsFromIndexedDB() {
+    const db = await openIndexedDB();
+    const transaction = db.transaction(['cells'], 'readonly');
+    const objectStore = transaction.objectStore('cells');
+    return new Promise((resolve, reject) => {
+        const getAllRequest = objectStore.getAll();
+        getAllRequest.onsuccess = (event) => resolve(event.target.result);
+        getAllRequest.onerror = (event) => reject(event.target.error);
+    });
+}
+
+// Function to generate JSON from IndexedDB
+export async function generateJSONFromIndexedDB() {
+    const allCells = await getAllCellsFromIndexedDB();
+    const jsonData = {};
+
+    allCells.forEach(cell => {
+        jsonData[cell.id] = cell.value;
+    });
+
+    return JSON.stringify(jsonData, null, 2); // Adds indentation for better readability
+}
+
+// Function to display data from IndexedDB
+export function displayDataFromIndexedDB() {
+    getAllCellsFromIndexedDB().then(allCells => {
+        clearSpreadsheet();
+        updateSpreadsheet(allCells);
+    });
+}
+
+// Function to update the spreadsheet
+export function updateSpreadsheet(cells) {
+    cells.forEach(cell => {
+        const match = cell.id.match(/([A-Z]+)(\d+)/);
+        if (match) {
+            const col = match[1].charCodeAt(0) - 'A'.charCodeAt(0);
+            const row = parseInt(match[2], 10) - 1;
+            const cellElement = document.querySelector(`#spreadsheetContainer table tr:nth-child(${row + 1}) td:nth-child(${col + 2})`);
+            if (cellElement) {
+                cellElement.textContent = cell.value;
+            }
+        }
+    });
+}
+
+// Function to clear the existing spreadsheet
+export function clearSpreadsheet() {
+    const cells = document.querySelectorAll('#spreadsheetContainer table td');
+    cells.forEach(cell => {
+        cell.textContent = '';
+    });
+}
+
+// Function to clear IndexedDB before importing new data
+export async function clearIndexedDB() {
+    const db = await openIndexedDB();
+    const transaction = db.transaction(['cells'], 'readwrite');
+    const objectStore = transaction.objectStore('cells');
+    return new Promise((resolve, reject) => {
+        const clearRequest = objectStore.clear();
+        clearRequest.onsuccess = () => resolve();
+        clearRequest.onerror = (event) => reject(event.target.error);
+    });
+}
+
+// Function to handle export button click
+export function exportButton(exportButtonId) {
+    const exportButton = document.getElementById(exportButtonId);
+    exportButton.addEventListener('click', async () => {
+        const exportFormat = prompt('Enter export format (csv/json):').toLowerCase();
+        if (exportFormat !== 'csv' && exportFormat !== 'json') {
+            alert('Invalid export format. Please enter "csv" or "json".');
+            return;
+        }
+
+        try {
+            let exportContent;
+            if (exportFormat === 'csv') {
+                exportContent = await generateCSVFromIndexedDB();
+            } else if (exportFormat === 'json') {
+                exportContent = await generateJSONFromIndexedDB();
+            }
+
+            const blob = new Blob([exportContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `export.${exportFormat}`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error(`Error exporting ${exportFormat.toUpperCase()}:`, error);
+        }
+    });
+}
+
+// Function to handle import button click
+export function importButton(importButtonId) {
+    const importButton = document.getElementById(importButtonId);
+    importButton.addEventListener('click', () => {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = '.csv, .json';
+
+        fileInput.addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const fileName = file.name.toLowerCase();
+            let parsedData;
+
+            try {
+                if (fileName.endsWith('.csv')) {
+                    parsedData = await importCSV(file);
+                } else if (fileName.endsWith('.json')) {
+                    parsedData = await importJSON(file);
+                } else {
+                    throw new Error('Unsupported file type');
+                }
+
+                await clearIndexedDB();
+                const db = await openIndexedDB();
+                const transaction = db.transaction(['cells'], 'readwrite');
+                const objectStore = transaction.objectStore('cells');
+
+                parsedData.forEach((row, rowIndex) => {
+                    row.forEach((cell, colIndex) => {
+                        if (cell !== null && cell !== undefined && cell !== '') {
+                            const key = String.fromCharCode(65 + colIndex) + (rowIndex + 1);
+                            objectStore.put({ id: key, value: cell });
+                        }
+                    });
+                });
+                transaction.oncomplete = () => {
+                    displayDataFromIndexedDB();
+                };
+
+            } catch (error) {
+                console.error('Error importing file:', error);
+            }
+        });
+
+        fileInput.click();
+    });
+}
