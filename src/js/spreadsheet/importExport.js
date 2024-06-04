@@ -9,7 +9,6 @@ export function importCSV(file) {
         reader.onload = (event) => {
             const csvData = event.target.result;
             const parsedData = parseCSV(csvData);
-            console.log(csvData)
             resolve(parsedData);
         };
         reader.onerror = (error) => {
@@ -46,7 +45,12 @@ export function importJSON(file) {
             try {
                 const jsonData = JSON.parse(event.target.result);
                 const parsedData = parseJSON(jsonData);
-                resolve(parsedData);
+                if (parsedData === null) {
+                    reject(new Error('Invalid JSON file format'));
+                    return;
+                } else {
+                    resolve(parsedData);
+                }
             } catch (error) {
                 reject(new Error('Invalid JSON file format'));
             }
@@ -79,7 +83,11 @@ function parseJSON(jsonData) {
         keys.forEach(key => {
             const col = key.charCodeAt(0) - 'A'.charCodeAt(0);
             const row = parseInt(key.substring(1), 10) - 1;
-            data[row][col] = jsonData[key];
+            if (data[row]) {
+                data[row][col] = jsonData[key];
+            } else {
+                throw new Error(`Invalid cell data`);
+            }
         });
 
         return data;
@@ -274,49 +282,93 @@ export function exportButton(exportButtonId) {
  */
 export function importButton(importButtonId) {
     const importButton = document.getElementById(importButtonId);
+    const importModal = document.querySelector('#importModal');
+    const cancelImportBtn = document.querySelector('#cancelImportBtn');
+    const confirmImportBtn = document.querySelector('#confirmImportBtn');
+    const fileInput = document.querySelector('#importFileInput');
+    const importDropArea = document.querySelector('#importDropArea');
+    const fileDisplay = document.querySelector('#importFileDisplay');
+    const fileClickButton = document.querySelector('#fileClickButton');
+
     importButton.addEventListener('click', () => {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = '.csv, .json';
+        importModal.classList.remove('hidden');
+    });
 
-        fileInput.addEventListener('change', async (event) => {
-            const file = event.target.files[0];
-            if (!file) return;
+    cancelImportBtn.addEventListener('click', () => {
+        importModal.classList.add('hidden');
+    });
 
-            const fileName = file.name.toLowerCase();
-            let parsedData;
+    confirmImportBtn.addEventListener('click', async () => {
+        const file = fileInput.files[0];
+        importModal.classList.add('hidden');
+        handleImportedFile(file);
+    });
 
-            try {
-                if (fileName.endsWith('.csv')) {
-                    parsedData = await importCSV(file);
-                } else if (fileName.endsWith('.json')) {
-                    parsedData = await importJSON(file);
-                } else {
-                    throw new Error('Unsupported file type');
-                }
+    function updateFileDisplay(file) {
+        if (file) {
+            fileDisplay.textContent = 'Selected file: ' + file.name;
+        }
+    }
 
-                await clearIndexedDB();
-                const db = await openIndexedDB();
-                const transaction = db.transaction(['cells'], 'readwrite');
-                const objectStore = transaction.objectStore('cells');
+    fileInput.addEventListener('change', () => {
+        const file = fileInput.files[0];
+        updateFileDisplay(file);
+    });
 
-                parsedData.forEach((row, rowIndex) => {
-                    row.forEach((cell, colIndex) => {
-                        if (cell !== null && cell !== undefined && cell !== '') {
-                            const key = String.fromCharCode(65 + colIndex) + (rowIndex + 1);
-                            objectStore.put({ id: key, value: cell });
-                        }
-                    });
-                });
-                transaction.oncomplete = () => {
-                    displayDataFromIndexedDB();
-                };
+    importDropArea.addEventListener('drop', (event) => {
+        event.preventDefault();
+        const file = event.dataTransfer.files[0];
+        updateFileDisplay(file);
+    });
 
-            } catch (error) {
-                console.error('Error importing file:', error);
-            }
-        });
+    importDropArea.addEventListener('dragover', (event) => {
+        event.preventDefault();
+    });
 
+    fileClickButton.addEventListener('click', () => {
         fileInput.click();
     });
+}
+/**
+ * Handles the imported file by parsing it and storing its data in IndexedDB.
+ * 
+ * @param {File} file - The file to import.
+ */
+async function handleImportedFile(file) {
+    if (!file) return;
+
+    const fileName = file.name.toLowerCase();
+    let parsedData;
+
+    try {
+        if (fileName.endsWith('.csv')) {
+            parsedData = await importCSV(file);
+        } else if (fileName.endsWith('.json')) {
+            parsedData = await importJSON(file);
+        } else {
+            throw new Error('Unsupported file type');
+        }
+
+        await clearIndexedDB();
+
+        const db = await openIndexedDB();
+        const transaction = db.transaction(['cells'], 'readwrite');
+        const objectStore = transaction.objectStore('cells');
+
+        parsedData.forEach((row, rowIndex) => {
+            row.forEach((cell, colIndex) => {
+                if (cell !== null && cell !== undefined && cell !== '') {
+                    const key = String.fromCharCode(65 + colIndex) + (rowIndex + 1);
+                    objectStore.put({ id: key, value: cell });
+                }
+            });
+        });
+
+        transaction.oncomplete = () => {
+            displayDataFromIndexedDB();
+        };
+
+    } catch (error) {
+        console.error('Error importing file:', error);
+    }
 }
