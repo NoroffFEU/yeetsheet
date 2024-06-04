@@ -1,10 +1,15 @@
-// Function to import CSV
+/**
+ * Imports data from a CSV file.
+ * 
+ * @param {File} file The CSV file to import.
+ */
 export function importCSV(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = (event) => {
             const csvData = event.target.result;
             const parsedData = parseCSV(csvData);
+            console.log(csvData)
             resolve(parsedData);
         };
         reader.onerror = (error) => {
@@ -14,7 +19,11 @@ export function importCSV(file) {
     });
 }
 
-// Function to parse CSV data
+/**
+ * Parses CSV data.
+ * 
+ * @param {string} csvData The CSV data as a string.
+ */
 function parseCSV(csvData) {
     try {
         const rows = csvData.split('\n');
@@ -25,7 +34,11 @@ function parseCSV(csvData) {
     }
 }
 
-// Function to import JSON
+/**
+ * Imports data from a JSON file.
+ * 
+ * @param {File} file The JSON file to import.
+ */
 export function importJSON(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -45,7 +58,11 @@ export function importJSON(file) {
     });
 }
 
-// Function to parse JSON data
+/**
+ * Parses JSON data.
+ * 
+ * @param {Object} jsonData - The JSON data to parse.
+ */
 function parseJSON(jsonData) {
     try {
         const keys = Object.keys(jsonData);
@@ -72,12 +89,19 @@ function parseJSON(jsonData) {
     }
 }
 
-// Function to generate CSV data from an array
+/**
+ * Generates CSV data.
+ * 
+ * @returns {string} - The CSV data as a string.
+ */
 export function generateCSVFromData(data) {
     return data.map(row => row.map(cell => `${cell}`).join(',')).join('\n');
 }
 
-// Function to open IndexedDB
+/**
+ * Opens the IndexedDB database.
+ * 
+ */
 function openIndexedDB() {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open('SpreadsheetDB');
@@ -86,7 +110,10 @@ function openIndexedDB() {
     });
 }
 
-// Function to generate CSV from IndexedDB
+/**
+ * Generates CSV data from IndexedDB.
+ * 
+ */
 export async function generateCSVFromIndexedDB() {
     const allCells = await getAllCellsFromIndexedDB();
     const rows = [];
@@ -119,7 +146,10 @@ export async function generateCSVFromIndexedDB() {
     return generateCSVFromData(csvData);
 }
 
-// Function to get all cells from IndexedDB
+/**
+ * Retrieves all cells from IndexedDB.
+ * 
+ */
 async function getAllCellsFromIndexedDB() {
     const db = await openIndexedDB();
     const transaction = db.transaction(['cells'], 'readonly');
@@ -131,7 +161,10 @@ async function getAllCellsFromIndexedDB() {
     });
 }
 
-// Function to generate JSON from IndexedDB
+/**
+ * Generates JSON data from IndexedDB.
+ * 
+ */
 export async function generateJSONFromIndexedDB() {
     const allCells = await getAllCellsFromIndexedDB();
     const jsonData = {};
@@ -143,7 +176,10 @@ export async function generateJSONFromIndexedDB() {
     return JSON.stringify(jsonData, null, 2); // Adds indentation for better readability
 }
 
-// Function to display data from IndexedDB
+/**
+ * Displays data from IndexedDB on the spreadsheet.
+ * 
+ */
 export function displayDataFromIndexedDB() {
     getAllCellsFromIndexedDB().then(allCells => {
         clearSpreadsheet();
@@ -151,7 +187,10 @@ export function displayDataFromIndexedDB() {
     });
 }
 
-// Function to update the spreadsheet
+/**
+ * Updates the spreadsheet with the given cells.
+ * 
+ */
 export function updateSpreadsheet(cells) {
     cells.forEach(cell => {
         const match = cell.id.match(/([A-Z]+)(\d+)/);
@@ -166,7 +205,10 @@ export function updateSpreadsheet(cells) {
     });
 }
 
-// Function to clear the existing spreadsheet
+/**
+ * Clears the existing content of the spreadsheet.
+ * 
+ */
 export function clearSpreadsheet() {
     const cells = document.querySelectorAll('#spreadsheetContainer table td');
     cells.forEach(cell => {
@@ -174,7 +216,10 @@ export function clearSpreadsheet() {
     });
 }
 
-// Function to clear IndexedDB before importing new data
+/**
+ * Clears the IndexedDB before importing new data.
+ * 
+ */
 export async function clearIndexedDB() {
     const db = await openIndexedDB();
     const transaction = db.transaction(['cells'], 'readwrite');
@@ -186,7 +231,11 @@ export async function clearIndexedDB() {
     });
 }
 
-// Function to handle export button click
+/**
+ * Initializes the export button functionality.
+ * 
+ * @param {string} exportButtonId - The ID of the export button element.
+ */
 export function exportButton(exportButtonId) {
     const exportButton = document.getElementById(exportButtonId);
     exportButton.addEventListener('click', async () => {
@@ -218,7 +267,11 @@ export function exportButton(exportButtonId) {
     });
 }
 
-// Function to handle import button click
+/**
+ * Initializes the import button functionality.
+ * 
+ * @param {string} importButtonId - The ID of the import button element.
+ */
 export function importButton(importButtonId) {
     const importButton = document.getElementById(importButtonId);
     importButton.addEventListener('click', () => {
