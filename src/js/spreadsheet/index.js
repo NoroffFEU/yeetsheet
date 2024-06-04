@@ -3,9 +3,6 @@ import cellRow from './cellRow';
 import numberToLetter from '../helpers/numberToLetter';
 import ifValidNumber from '../helpers/ifValidNumber';
 
-const number = numberToLetter(0);
-console.log(number);
-
 /**
  * Creates a spreadsheet with the specified number of columns and rows.
  *
@@ -13,7 +10,7 @@ console.log(number);
  * @param {number} rows - The number of rows in the spreadsheet.
  * @returns {HTMLTableElement} The spreadsheet table element.
  */
-export default function spreadsheet(cols, rows) {
+export default function spreadsheet(cols, rows, data) {
   if (!ifValidNumber(cols, rows)) return;
 
   const container = createEle('table', 'spreadsheet-container');
@@ -21,6 +18,7 @@ export default function spreadsheet(cols, rows) {
   const tableHead = createEle('thead');
 
   const columnNumbers = createEle('tr', 'flex bg-ys-overlay-15 w-fit');
+  columnNumbers.setAttribute('id', 'column-placement');
 
   const emptyTh = createEle('th', 'w-28');
 
@@ -46,6 +44,10 @@ export default function spreadsheet(cols, rows) {
   }
 
   container.appendChild(tableBody);
+
+  container.addEventListener('click', (e) => {
+    data.sellect = e.target.id;
+  });
 
   return container;
 }

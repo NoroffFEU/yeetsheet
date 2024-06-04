@@ -5,7 +5,7 @@ import { getCellValue } from './db.js';
 export default function cell(row, col) {
   const cellContainer = createEle(
     'td',
-    'p-0 w-28 border border-ys-overlay-5 relative',
+    'p-0.5 w-28 border border-ys-overlay-5 relative flex items-center justify-center',
   );
   cellContainer.setAttribute('id', numberToLetter(col) + (row + 1));
 
