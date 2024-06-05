@@ -18,11 +18,11 @@ export default function addCol(rows, cols, allCells) {
   }
 
   const columnPlacement = document.getElementById('column-placement');
-
+  console.log(rows);
   columnPlacement.append(
     createEle(
       'div',
-      'w-28 text-center border-x border-gray-300 bg-gray-200 py-2',
+      'w-28 text-center border-x border-ys-backgroundAndText bg-ys-overlay-15 py-2 snap-start',
       numberToLetter(cols),
     ),
   );
