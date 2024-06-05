@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    font-family: "Martel Sans", system-ui, sans-serif;
+    font-family: 'Martel Sans', system-ui, sans-serif;
   }
 
   h1 {
@@ -21,7 +21,7 @@
 }
 
 button {
-  @apply  p-2 rounded-md dark:text-ys-backgroundAndText w-36
+  @apply p-2 rounded-md dark:text-ys-backgroundAndText w-36;
 }
 
 .default-btn {
@@ -37,7 +37,7 @@ button {
 }
 
 .console-btn.active {
-  @apply bg-ys-backgroundAndText
+  @apply bg-ys-backgroundAndText;
 }
 
 .nav-btn {
@@ -62,7 +62,6 @@ table tr td input {
 .table__sticky-left thead th:first-of-type,
 .table__sticky-left tbody th {
   @apply dark:bg-ys-overlay-15 bg-white sticky top-0 z-20
- 
 }
 
 .table__sticky-left thead th:first-of-type,

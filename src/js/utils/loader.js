@@ -1,5 +1,5 @@
 export function showLoader(container = false) {
-container = container ? container : document.body
+  container = container ? container : document.body;
   const loaderContainer = document.createElement('div');
   loaderContainer.id = 'loaderContainer';
   loaderContainer.className =
@@ -19,7 +19,7 @@ container = container ? container : document.body
   whiteCircle.appendChild(innerCircle);
   loader.appendChild(whiteCircle);
   loaderContainer.appendChild(loader);
-container.appendChild(loaderContainer);
+  container.appendChild(loaderContainer);
 }
 
 export function hideLoader() {

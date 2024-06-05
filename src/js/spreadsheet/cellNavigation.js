@@ -1,13 +1,33 @@
 /**
+ * Callback on cell focus. Can be used to set the cell value.
+ *
+ * @callback OnFocusCellCallback
+ * @param {number} col - The column index.
+ * @param {number} row - The row index.
+ * @return {string} value - The cell value content.
+ */
+
+import { setValue } from './codeEditor';
+
+/**
+ * Callback on cell blur. Can be used to save the cell value.
+ *
+ * @callback OnBlurCellCallback
+ * @param {number} col - The column index.
+ * @param {number} row - The row index.
+ * @param {string} value - The cell value content.
+ */
+
+/**
  * @description Add events to handle cell navigation.
  * @param {string} tableSelector
- * @param {LoadCellCallback} loadCellCallback Callback function to handle the load cell content on `focus` event. It sends col, row and expects back the text that should be used.
- * @param {SaveCellCallback} saveCellCallback Callback function to handle the save cell content on `blur`event. It sends col, row and value params.
+ * @param {OnFocusCellCallback} onFocusCellCallback Callback function to handle the load cell content on `focus` event. It sends col, row and expects back the text that should be used.
+ * @param {OnBlurCellCallback} onBlurCellCallback Callback function to handle the save cell content on `blur`event. It sends col, row and value params.
  */
 export function addCellTargetingEvents(
   tableSelector,
-  loadCellCallback,
-  saveCellCallback,
+  onFocusCellCallback,
+  onBlurCellCallback,
 ) {
   const table = document.querySelector(tableSelector);
 
@@ -29,11 +49,13 @@ export function addCellTargetingEvents(
       input.dataset.col = col;
       input.dataset.row = row;
 
-      // Use the loadCellCallback and handle the promise
-      loadCellCallback(col, row).then((value) => {
+      // Use the onFocusCellCallback and handle the promise
+      onFocusCellCallback(col, row).then((value) => {
         input.value = value;
 
-        // Add the FocusEvent
+        setValue(value);
+
+        // Add the `blur` FocusEvent
         input.addEventListener('blur', (ev) => {
           const cell = ev.currentTarget;
 
@@ -42,7 +64,7 @@ export function addCellTargetingEvents(
 
           const value = ev.currentTarget.value;
 
-          saveCellCallback(col, row, value);
+          onBlurCellCallback(col, row, value);
 
           ev.currentTarget?.remove();
           td.textContent = value;

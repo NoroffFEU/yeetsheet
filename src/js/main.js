@@ -3,6 +3,7 @@ import userColsAndRows from './helpers/userColsAndRows';
 import numberToLetter from './helpers/numberToLetter';
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
+import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
 import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
@@ -28,6 +29,14 @@ initDB()
 
     // Create and append the spreadsheet to the container
     spreadsheetContainer.append(spreadsheet(cols, rows));
+
+    mountEditor(() => {
+      // get the code editor current value.
+      const value = getValue();
+
+      // just log to the console to show how to use it.
+      console.log('editor', value);
+    });
 
     addCellTargetingEvents(
       '#spreadsheetContainer table',
