@@ -18,22 +18,14 @@
     <title>YeetSheet</title>
   </head>
   <body
-    class="flex flex-wrap min-h-screen bg-gray-100 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+    class="flex flex-wrap min-h-screen bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
   >
-    <div
-      class="w-full bg-gray-100 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    >
-      <header
-        class="bg-gray-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight py-3"
-      >
+    <div class="w-full">
+      <header class="bg-ys-amethyst-400 dark:bg-ys-backgroundAndText py-3">
         <div class="container flex flex-wrap items-center justify-between">
           <div class="mr-24">
             <a href="#" class="p-3">
-              <span
-                data-icon="logo"
-                data-size="54"
-                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-              ></span>
+              <span data-icon="logo" data-size="54" data-class=""></span>
             </a>
           </div>
           <nav class="flex flex-1 justify-start">
@@ -53,7 +45,7 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="fileMenu"
-                  class="hidden absolute z-50 top-full left-0 w-56 bg-white dark:bg-ys-overlay-10 focus:outline-none p-3"
+                  class="hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none p-3 shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="fileBtn"
@@ -153,7 +145,7 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="zoomMenu"
-                  class="hidden absolute z-50 top-13 left-100 w-56 bg-white dark:bg-ys-overlay-10 focus:outline-none p-3"
+                  class="hidden absolute z-50 top-13 left-100 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none p-3 shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="zoomBtn"
@@ -208,14 +200,14 @@
           <div class="flex gap-7 items-center flex-1 justify-end p-5">
             <input
               type="search"
-              class="w-[20rem] p-2 ps-4 rounded-md bg-ys-overlay-5 text-ys-textAndIconsLight outline-none"
+              class="w-[20rem] p-2 ps-4 rounded-md dark:bg-ys-overlay-5 bg-white text-ys-textAndIconsLight outline-none"
               placeholder="Search..."
               aria-label="search-input"
               id="searchInput"
             />
             <button
               id="darkModeToggleBtn"
-              class="text-xs p-1 h-8 w-10 bg-ys-backgroundAndText dark:bg-ys-textAndIconsLight dark:text-ys-backgroundAndText text-ys-textAndIconsLight"
+              class="text-xs rounded-full p-1 h-8 w-10 bg-ys-backgroundAndText dark:bg-ys-textAndIconsLight dark:text-ys-backgroundAndText text-ys-textAndIconsLight"
             >
               LHT
             </button>
@@ -289,18 +281,22 @@
             Name of the file
           </h1>
 
-          <main class="flex flex-col bg-gray-200 dark:bg-ys-overlay-5 p-4">
+          <main class="flex flex-col bg-white dark:bg-ys-overlay-5 p-4">
             <section class="p-5">
               <div
                 id="spreadsheetContainer"
-                class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
+                class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-ys-amethyst-200 dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
               >
                 <!-- Spreadsheet content goes here -->
               </div>
             </section>
             <section class="p-5">
-              <div class="dark:bg-ys-overlay-15">
-                <div class="flex">
+              <div
+                class="dark:bg-ys-overlay-15 dark:border-ys-backgroundAndText bg-ys-amethyst-200 border border-ys-amethyst-400"
+              >
+                <div
+                  class="flex dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
+                >
                   <button class="console-btn">Code editor</button>
                   <button class="console-btn">Console</button>
                   <button class="console-btn">Errors</button>
@@ -309,7 +305,7 @@
                 <div class="p-8 dark:bg-ys-backgroundAndText">
                   <div>
                     <textarea
-                      class="dark:bg-ys-backgroundAndText text-ys-logoLoader-purple p-5 outline-none"
+                      class="dark:bg-ys-backgroundAndText bg-ys-amethyst-200 p-5 outline-none"
                       name=""
                       id=""
                       aria-label=""

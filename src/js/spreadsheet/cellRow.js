@@ -14,7 +14,7 @@ export default function cellRow(cols, row) {
   // Displaying the row number
   const rowNumber = createEle(
     'th',
-    'w-28 text-center border-y border-ys-backgroundAndText bg-ys-overlay-15 py-2 flex-none snap-start',
+    'w-28 text-center border-y dark:border-ys-overlay-5 border-ys-amethyst-400 dark:bg-ys-overlay-15 bg-white py-2 flex-none snap-start',
     rowIndex,
   );
 
