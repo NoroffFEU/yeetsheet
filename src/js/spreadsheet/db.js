@@ -57,3 +57,88 @@ export function getCellValue(id) {
     };
   });
 }
+export function getFromDB(key) {
+  return new Promise((resolve, reject) => {
+    const openRequest = indexedDB.open('spreadsheetDB', 1);
+
+    openRequest.onsuccess = function () {
+      const db = openRequest.result;
+      const transaction = db.transaction('spreadsheet', 'readonly');
+      const spreadsheet = transaction.objectStore('spreadsheet');
+      const request = spreadsheet.get(key);
+
+      request.onsuccess = function () {
+        resolve(request.result);
+      };
+
+      request.onerror = function () {
+        reject(request.error);
+      };
+    };
+
+    openRequest.onerror = function () {
+      reject(openRequest.error);
+    };
+  });
+}
+
+export function saveToDB(key, value) {
+  return new Promise((resolve, reject) => {
+    const openRequest = indexedDB.open('spreadsheetDB', 1);
+
+    openRequest.onupgradeneeded = function () {
+      const db = openRequest.result;
+      if (!db.objectStoreNames.contains('spreadsheet')) {
+        db.createObjectStore('spreadsheet');
+      }
+    };
+
+    openRequest.onsuccess = function () {
+      const db = openRequest.result;
+      const transaction = db.transaction('spreadsheet', 'readwrite');
+      const spreadsheet = transaction.objectStore('spreadsheet');
+      const request = spreadsheet.put(value, key);
+
+      request.onsuccess = function () {
+        resolve(request.result);
+      };
+
+      request.onerror = function () {
+        reject(request.error);
+      };
+    };
+
+    openRequest.onerror = function () {
+      reject(openRequest.error);
+    };
+  });
+}
+export function deleteFromDB(key) {
+  const openRequest = indexedDB.open('spreadsheetDB', 1);
+
+  openRequest.onupgradeneeded = function () {
+    const db = openRequest.result;
+    if (!db.objectStoreNames.contains('spreadsheet')) {
+      db.createObjectStore('spreadsheet');
+    }
+  };
+
+  openRequest.onsuccess = function () {
+    const db = openRequest.result;
+    const transaction = db.transaction(['spreadsheet'], 'readwrite');
+    const store = transaction.objectStore('spreadsheet');
+    const request = store.delete(key);
+
+    request.onsuccess = function () {
+      console.log(`Data with key ${key} deleted successfully`);
+    };
+
+    request.onerror = function (event) {
+      console.error(`Error deleting data with key ${key}:`, event.target.error);
+    };
+  };
+
+  openRequest.onerror = function () {
+    console.error('Failed to open database:', openRequest.error);
+  };
+}
