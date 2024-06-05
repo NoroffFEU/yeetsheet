@@ -23,3 +23,52 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import 'cypress-file-upload';
+import 'cypress-downloadfile/lib/downloadFileCommand';
+
+Cypress.Commands.add('locateImport', () => {
+  cy.get('#fileBtn').click();
+  cy.get('#file-item-2').click();
+});
+
+Cypress.Commands.add('saveChanges', () => {
+  cy.get('aside button').click();
+});
+
+Cypress.Commands.add('changePage', (index) => {
+  cy.get('[data-cy="sidebar"] ul li').eq(index).click();
+  cy.get('[data-cy="spreadsheet"]').should('be.visible');
+});
+
+Cypress.Commands.add('checkIndexedDBValues', (dbName, storeName, keyValues) => {
+  const getIndexedDBData = (key) => {
+    return new Cypress.Promise((resolve, reject) => {
+      const request = indexedDB.open(dbName);
+
+      request.onsuccess = function (event) {
+        const db = event.target.result;
+        const transaction = db.transaction([storeName], 'readonly');
+        const objectStore = transaction.objectStore(storeName);
+        const getRequest = objectStore.get(key);
+
+        getRequest.onsuccess = function (event) {
+          resolve(event.target.result.value);
+        };
+
+        getRequest.onerror = function () {
+          reject(`Failed to retrieve data from IndexedDB for key ${key}`);
+        };
+      };
+    });
+  };
+
+  // Iterate over keyValues and check each key-value pair
+  Cypress.Promise.all(
+    Object.entries(keyValues).map(([key, expectedValue]) => {
+      return getIndexedDBData(key).then((value) => {
+        expect(value).to.equal(expectedValue);
+      });
+    }),
+  );
+});

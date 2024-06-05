@@ -1,9 +1,13 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
+import pluginCypress from 'eslint-plugin-cypress/flat';
 
 export default [
+  pluginCypress.configs.recommended,
   {
-    languageOptions: { globals: globals.browser },
+    languageOptions: {
+      globals: globals.browser,
+    },
     ignores: [
       './node_modules',
       './package-lock.json',

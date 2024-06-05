@@ -17,6 +17,8 @@
     "autoprefixer": "^10.4.19",
     "babel-jest": "^29.7.0",
     "cypress": "^13.10.0",
+    "cypress-downloadfile": "^1.2.3",
+    "cypress-file-upload": "^5.0.8",
     "dotenv": "^16.4.5",
     "eslint": "^9.3.0",
     "eslint-config-prettier": "^9.1.0",
