@@ -29,19 +29,17 @@ export function initDB() {
 export function saveCellValue(id, value) {
   const transaction = db.transaction([STORE_NAME], 'readwrite');
   const store = transaction.objectStore(STORE_NAME);
-  if (value.length > 0) {
-    const cell = { id, value };
+  const cell = { id, value };
 
-    const request = store.put(cell);
+  const request = store.put(cell);
 
-    request.onsuccess = function () {
-      console.log(`Cell ${id} saved successfully`);
-    };
+  request.onsuccess = function () {
+    console.log(`Cell ${id} saved successfully`);
+  };
 
-    request.onerror = function (event) {
-      console.error(`Error saving cell ${id}:`, event.target.error);
-    };
-  }
+  request.onerror = function (event) {
+    console.error(`Error saving cell ${id}:`, event.target.error);
+  };
 }
 
 export function getCellValue(id) {
