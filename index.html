@@ -17,14 +17,17 @@
     />
     <title>YeetSheet</title>
   </head>
+
   <body
     class="flex flex-wrap min-h-screen bg-gray-100 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
   >
     <div
       class="w-full bg-gray-100 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+      data-cy="app-container"
     >
       <header
         class="bg-gray-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight py-3"
+        data-cy="top-nav"
       >
         <div class="container flex flex-wrap items-center justify-between">
           <div class="mr-24">
@@ -217,7 +220,10 @@
         </div>
       </header>
       <div class="container flex">
-        <aside class="max-w-44 w-full items-start flex-none mt-16 p-3">
+        <aside
+          class="max-w-44 w-full items-start flex-none mt-16 p-3"
+          data-cy="sidebar"
+        >
           <ul class="flex flex-col gap-3 mb-8">
             <li>Sheet1</li>
             <li>Sheet2</li>
@@ -231,7 +237,7 @@
           </h1>
 
           <main class="flex flex-col bg-gray-200 dark:bg-ys-overlay-5 p-4">
-            <section class="p-5">
+            <section class="p-5" data-cy="spreadsheet">
               <div
                 id="spreadsheetContainer"
                 class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
@@ -239,16 +245,24 @@
                 <!-- Spreadsheet content goes here -->
               </div>
             </section>
-            <section class="p-5">
+            <section class="p-5" data-cy="app-utilities">
               <div class="dark:bg-ys-overlay-15">
-                <div class="flex">
-                  <button class="console-btn">Code editor</button>
-                  <button class="console-btn">Console</button>
-                  <button class="console-btn">Errors</button>
-                  <button class="console-btn">Terminal</button>
+                <div class="flex" data-cy="utilities-buttons">
+                  <button class="console-btn" data-cy="code-editor-btn">
+                    Code editor
+                  </button>
+                  <button class="console-btn" data-cy="console-btn">
+                    Console
+                  </button>
+                  <button class="console-btn" data-cy="errors-btn">
+                    Errors
+                  </button>
+                  <button class="console-btn" data-cy="terminal-btn">
+                    Terminal
+                  </button>
                 </div>
                 <div class="p-8 dark:bg-ys-backgroundAndText">
-                  <div>
+                  <div data-cy="util:code-editor">
                     <textarea
                       class="dark:bg-ys-backgroundAndText text-ys-logoLoader-purple p-5 outline-none"
                       name=""
