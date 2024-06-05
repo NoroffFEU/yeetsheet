@@ -262,25 +262,13 @@
                   </button>
                 </div>
                 <div class="p-8 dark:bg-ys-backgroundAndText">
-                  <div data-cy="util:code-editor">
-                    <textarea
-                      class="dark:bg-ys-backgroundAndText text-ys-logoLoader-purple p-5 outline-none"
-                      name=""
-                      id=""
-                      aria-label=""
-                      rows="6"
-                    >
-                  function laugh() {
-                    let laughter = '';
-                    for (let i = 0; i < 10; i++) {
-                        laughter += 'ha';
-                    }
-                    return laughter + '!';
-                  }
+                  <div id="code-wrapper" data-cy="util:code-editor">
+                    <div
+                      id="code-editor"
+                      class="code-editor"
+                      aria-label="Code editor"
+                    ></div>
 
-                  console.log(laugh()); // Output: hahahahahahahaha!
-       
-                    </textarea>
                     <div class="flex gap-1 pt-5">
                       <input
                         type="text"
