@@ -36,6 +36,11 @@ Cypress.Commands.add('saveChanges', () => {
   cy.get('aside button').click();
 });
 
+Cypress.Commands.add('changePage', (index) => {
+  cy.get('[data-cy="sidebar"] ul li').eq(index).click();
+  cy.get('[data-cy="spreadsheet"]').should('be.visible');
+});
+
 Cypress.Commands.add('checkIndexedDBValues', (dbName, storeName, keyValues) => {
   const getIndexedDBData = (key) => {
     return new Cypress.Promise((resolve, reject) => {
