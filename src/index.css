@@ -28,9 +28,12 @@ button {
   @apply bg-ys-buttonPrimary 
 }
 
-.console-btn,
+.console-btn {
+  @apply border-r rounded-none border-ys-backgroundAndText dark:text-ys-textAndIconsLight text-ys-backgroundAndText
+}
+
 .sideBarBtn {
-  @apply border-r rounded-none border-ys-backgroundAndText text-ys-textAndIconsLight
+  @apply rounded-none dark:text-ys-textAndIconsLight text-ys-backgroundAndText
 }
 
 .console-btn.active {
@@ -38,7 +41,7 @@ button {
 }
 
 .nav-btn {
-  @apply text-ys-textAndIconsLight w-20
+  @apply dark:text-ys-textAndIconsLight text-ys-backgroundAndText w-20
 }
 
 textarea {
@@ -65,4 +68,8 @@ table tr td input {
 .table__sticky-left thead th:first-of-type,
 .table__sticky-left tbody th {
   @apply left-0 z-10
+}
+
+svg {
+  fill: currentColor;
 }
