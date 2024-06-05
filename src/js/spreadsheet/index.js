@@ -40,7 +40,7 @@ export default function spreadsheet(cols, rows, data) {
   const tableBody = createEle('tbody');
 
   for (let i = 0; i < rows; i++) {
-    tableBody.appendChild(cellRow(cols, i));
+    tableBody.appendChild(cellRow(cols, i, data.allCells[i]));
   }
 
   container.appendChild(tableBody);
