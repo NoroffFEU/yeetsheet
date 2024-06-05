@@ -21,19 +21,11 @@
   <body
     class="flex flex-wrap min-h-screen bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
   >
-<<<<<<< header-navbar-layout
-    <div class="w-full">
-      <header class="bg-ys-amethyst-400 dark:bg-ys-backgroundAndText py-3">
-=======
-    <div
-      class="w-full bg-gray-100 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-      data-cy="app-container"
-    >
+    <div class="w-full" data-cy="app-container">
       <header
-        class="bg-gray-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight py-3"
+        class="bg-ys-amethyst-400 dark:bg-ys-backgroundAndText py-3"
         data-cy="top-nav"
       >
->>>>>>> workflow
         <div class="container flex flex-wrap items-center justify-between">
           <div class="mr-24">
             <a href="#" class="p-3">
@@ -226,9 +218,11 @@
           </div>
         </div>
       </header>
-<<<<<<< header-navbar-layout
       <div class="container flex justify-start">
-        <aside class="max-w-44 w-full items-start flex-none mt-16 p-3">
+        <aside
+          class="max-w-44 w-full items-start flex-none mt-16 p-3"
+          data-cy="sidebar"
+        >
           <button class="sideBarBtn mb-12">
             <span
               data-icon="hamburgerMenu"
@@ -287,17 +281,6 @@
                 </ul>
               </div>
             </li>
-=======
-      <div class="container flex">
-        <aside
-          class="max-w-44 w-full items-start flex-none mt-16 p-3"
-          data-cy="sidebar"
-        >
-          <ul class="flex flex-col gap-3 mb-8">
-            <li>Sheet1</li>
-            <li>Sheet2</li>
-            <li>Sheet3</li>
->>>>>>> workflow
           </ul>
         </aside>
         <div class="flex flex-col overflow-hidden p-5">
@@ -305,13 +288,8 @@
             Name of the file
           </h1>
 
-<<<<<<< header-navbar-layout
           <main class="flex flex-col bg-white dark:bg-ys-overlay-5 p-4">
-            <section class="p-5">
-=======
-          <main class="flex flex-col bg-gray-200 dark:bg-ys-overlay-5 p-4">
             <section class="p-5" data-cy="spreadsheet">
->>>>>>> workflow
               <div
                 id="spreadsheetContainer"
                 class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-ys-amethyst-200 dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
@@ -319,33 +297,14 @@
                 <!-- Spreadsheet content goes here -->
               </div>
             </section>
-<<<<<<< header-navbar-layout
-            <section class="p-5">
+            <section class="p-5" data-cy="app-utilities">
               <div
                 class="dark:bg-ys-overlay-15 dark:border-ys-backgroundAndText bg-ys-amethyst-200 border border-ys-amethyst-400"
               >
                 <div
                   class="flex dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
+                  data-cy="utilities-buttons"
                 >
-                  <button class="console-btn">Code editor</button>
-                  <button class="console-btn">Console</button>
-                  <button class="console-btn">Errors</button>
-                  <button class="console-btn">Terminal</button>
-                </div>
-                <div class="p-8 dark:bg-ys-backgroundAndText">
-                  <div>
-                    <textarea
-                      class="dark:bg-ys-backgroundAndText bg-ys-amethyst-200 p-5 outline-none"
-                      name=""
-                      id=""
-                      aria-label=""
-                      rows="6"
-                    >
-                    </textarea>
-=======
-            <section class="p-5" data-cy="app-utilities">
-              <div class="dark:bg-ys-overlay-15">
-                <div class="flex" data-cy="utilities-buttons">
                   <button class="console-btn" data-cy="code-editor-btn">
                     Code editor
                   </button>
@@ -361,13 +320,14 @@
                 </div>
                 <div class="p-8 dark:bg-ys-backgroundAndText">
                   <div id="code-wrapper" data-cy="util:code-editor">
-                    <div
-                      id="code-editor"
-                      class="code-editor"
-                      aria-label="Code editor"
-                    ></div>
-
->>>>>>> workflow
+                    <textarea
+                      class="dark:bg-ys-backgroundAndText bg-ys-amethyst-200 p-5 outline-none"
+                      name=""
+                      id=""
+                      aria-label=""
+                      rows="6"
+                    >
+                    </textarea>
                     <div class="flex gap-1 pt-5">
                       <input
                         type="text"
