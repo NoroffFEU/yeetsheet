@@ -1,7 +1,7 @@
 // import numberToLetter from './helpers/numberToLetter';
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
 // import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
-import { initDB } from './spreadsheet/db.js';
+import { initDB, getFromDB } from './spreadsheet/db.js';
 import showFileMenu from './header/file.mjs';
 import showZoomMenu from './header/zoom.mjs';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
@@ -9,8 +9,6 @@ import Spreadsheet from './spreadsheet/Class/index.js';
 import codeEditor from './codeEditor/index.js';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
-
-const sheet = new Spreadsheet();
 
 // indexedDB
 initDB()
@@ -30,17 +28,17 @@ initDB()
     toggleDarkMode();
 
     // Create and append the spreadsheet to the container
-    const spreadSheet = sheet.displaySheet();
-    spreadsheetContainer.append(spreadSheet);
+    getFromDB('spreadsheetData').then((data) => {
+      console.log(data);
+      const sheet = new Spreadsheet(data);
+      const spreadSheet = sheet.displaySheet();
+      spreadsheetContainer.append(spreadSheet);
+      codeEditor(sheet);
+    });
 
-    document
-      .querySelector('#add-row-btn')
-      .addEventListener('click', sheet.addRow);
-    document
-      .querySelector('#add-col-btn')
-      .addEventListener('click', sheet.addCol);
-    codeEditor(sheet);
-    console.log(sheet);
+    // const spreadSheet = sheet.displaySheet();
+    // spreadsheetContainer.append(spreadSheet);
+    // codeEditor(sheet);
 
     // addCellTargetingEvents(
     //   '#spreadsheetContainer table',
