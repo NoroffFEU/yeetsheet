@@ -3,8 +3,9 @@ import cell from './cell';
 import ifValidNumber from '../helpers/ifValidNumber';
 
 // creates a cell row container with cols number of cells
-export default function cellRow(cols, row) {
+export default function cellRow(cols, row, cellRowData = null) {
   // adds a row number to the row (since it starts at 0)
+
   const rowIndex = row + 1;
 
   if (!ifValidNumber(cols, rowIndex)) return;
@@ -21,7 +22,7 @@ export default function cellRow(cols, row) {
   rowContainer.appendChild(rowNumber);
 
   for (let i = 0; i < cols; i++) {
-    rowContainer.appendChild(cell(row, i));
+    rowContainer.appendChild(cell(row, i, cellRowData?.[i]));
   }
 
   return rowContainer;
