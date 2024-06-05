@@ -9,8 +9,6 @@ import getIcon from './icons/index.js';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
-const sheet = new Spreadsheet();
-
 // indexedDB
 initDB()
   .then(() => {
