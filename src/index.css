@@ -28,7 +28,8 @@ button {
   @apply bg-ys-buttonPrimary 
 }
 
-.console-btn {
+.console-btn,
+.sideBarBtn {
   @apply border-r rounded-none border-ys-backgroundAndText text-ys-textAndIconsLight
 }
 
