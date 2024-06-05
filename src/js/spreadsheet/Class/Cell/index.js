@@ -1,12 +1,13 @@
+// What will show up in the code editor if you have never defined any code for the specific cell
+const functionString = `function test() {
+  // add code here
+  return ""
+  }`;
+
 /**
  * Represents a single cell from a spreadsheet.
  * @class
  */
-
-let functionString = `function test() {
-    // add code here
-    return ""
-    }`;
 
 export default class Cell {
   /**
@@ -24,8 +25,6 @@ export default class Cell {
     this.parent = data?.parent || null;
     this._value = data?.value || '';
     this.type = data?.type || null;
-    this.dependencies = data?.dependencies || [];
-    this.dependents = data?.dependents || [];
     this.code = data?.code || functionString;
     this.callInput = data?.callInput || 'test()';
     this.row = data.row;
@@ -41,10 +40,8 @@ export default class Cell {
     } else {
       this.type = typeof value;
     }
-    console.log(Number(value));
-    this._value = value;
 
-    console.log(this);
+    this._value = value;
 
     // if there is a parent container, update the cell's textContent
     this.parent.display &&
