@@ -73,12 +73,17 @@ export function getFromDB(key) {
 
     openRequest.onsuccess = function () {
       const db = openRequest.result;
+      if (!db.objectStoreNames.contains('spreadsheet')) {
+        resolve({});
+        return;
+      }
+
       const transaction = db.transaction('spreadsheet', 'readonly');
       const spreadsheet = transaction.objectStore('spreadsheet');
       const request = spreadsheet.get(key);
 
       request.onsuccess = function () {
-        resolve(request.result);
+        resolve(request.result || {});
       };
 
       request.onerror = function () {
