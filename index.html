@@ -49,17 +49,19 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="fileMenu"
-                  class="hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none p-3 shadow-md"
+                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="fileBtn"
                   tabindex="-1"
                 >
-                  <ul>
+                  <ul
+                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
+                  >
                     <li>
                       <button
                         id="file-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         New file...
                       </button>
@@ -67,7 +69,7 @@
                     <li>
                       <button
                         id="file-item-2"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Import existing file
                       </button>
@@ -75,7 +77,7 @@
                     <li>
                       <button
                         id="file-item-3"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Edit
                       </button>
@@ -83,7 +85,7 @@
                     <li>
                       <button
                         id="file-item-4"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Save
                       </button>
@@ -91,7 +93,7 @@
                     <li>
                       <button
                         id="file-item-5"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Save as...
                       </button>
@@ -99,7 +101,7 @@
                     <li>
                       <button
                         id="file-item-6"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Save copy
                       </button>
@@ -107,7 +109,7 @@
                     <li>
                       <button
                         id="file-item-7"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Export
                       </button>
@@ -149,17 +151,19 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="zoomMenu"
-                  class="hidden absolute z-50 top-13 left-100 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none p-3 shadow-md"
+                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-13 left-100 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="zoomBtn"
                   tabindex="-1"
                 >
-                  <ul>
+                  <ul
+                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
+                  >
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         125%
                       </button>
@@ -167,7 +171,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         150%
                       </button>
@@ -175,7 +179,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         75%
                       </button>
@@ -183,7 +187,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         50%
                       </button>
@@ -191,7 +195,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Custom...
                       </button>
@@ -241,11 +245,13 @@
               <span
                 data-icon="editPencil"
                 data-size="12"
-                data-class="text-ys-overlay-30"
+                data-class="text-ys-textAndIconsLight"
               ></span>
             </button>
           </div>
-          <button class="sideBarBtn text-sm dark:text-ys-overlay-30 w-auto p-0">
+          <button
+            class="sideBarBtn text-sm dark:text-ys-buttonPrimary w-auto p-0"
+          >
             &plus; New sheet
           </button>
           <ul class="flex flex-col justify-start mt-8">
@@ -438,35 +444,6 @@
         </aside>
       </div>
     </div>
-
-    <span
-      data-icon="close"
-      data-size="20"
-      data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    ></span>
-    <span
-      data-icon="delete"
-      data-size="20"
-      data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    ></span>
-
-    <span
-      data-icon="file"
-      data-size="20"
-      data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    ></span>
-
-    <span
-      data-icon="plus"
-      data-size="20"
-      data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    ></span>
-
-    <span
-      data-icon="search"
-      data-size="20"
-      data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    ></span>
 
     <footer>
       <!-- If there´s going to be a footer -->
