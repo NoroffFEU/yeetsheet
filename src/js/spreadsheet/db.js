@@ -21,6 +21,9 @@ export function initDB() {
     request.onupgradeneeded = function (event) {
       const db = event.target.result;
       db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+      if (!db.objectStoreNames.contains('spreadsheet')) {
+        db.createObjectStore('spreadsheet');
+      }
       console.log('Setup complete');
     };
 
@@ -35,7 +38,6 @@ export function initDB() {
     };
   });
 }
-
 export function saveCellValue(id, value) {
   const transaction = db.transaction([STORE_NAME], 'readwrite');
   const store = transaction.objectStore(STORE_NAME);
@@ -69,7 +71,7 @@ export function getCellValue(id) {
 }
 export function getFromDB(key) {
   return new Promise((resolve, reject) => {
-    const openRequest = indexedDB.open('spreadsheetDB', 1);
+    const openRequest = indexedDB.open('spreadsheetDB', 2);
 
     openRequest.onsuccess = function () {
       const db = openRequest.result;
@@ -99,7 +101,7 @@ export function getFromDB(key) {
 
 export function saveToDB(key, value) {
   return new Promise((resolve, reject) => {
-    const openRequest = indexedDB.open('spreadsheetDB', 1);
+    const openRequest = indexedDB.open('spreadsheetDB', 2);
 
     openRequest.onupgradeneeded = function () {
       const db = openRequest.result;
