@@ -1,3 +1,17 @@
+import closeOnOutsideClick from '../helpers/closeOnOutsideClick.mjs';
+
+/**
+ * Shows a dropdown menu when a button with a data-menu attribute is clicked.
+ *
+ * This function attaches click event listeners to all elements with the data-menu attribute.
+ * When a button is clicked, it toggles the visibility of the corresponding dropdown menu by
+ * toggling the "hidden" class on the menu element. It also ensures the dropdown menu closes
+ * when clicking outside of it by utilizing the closeOnOutsideClick helper function :).
+ *
+ * @function showDropdownMenu
+ * @returns {void}
+ */
+
 import closeOnOutsideClick from "../helpers/closeOnOutsideClick.mjs";
 
 export function showDropdownMenu() {
