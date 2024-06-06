@@ -12,14 +12,15 @@ export function updateSelect(id, { allCells, display, selectedCell }) {
   selectedCell = allCells.flat().find((cell) => cell.id === id);
 
   if (prevId) {
-    display
-      .querySelector('#' + prevId)
-      .classList.remove('dark:border-ys-buttonPrimary');
+    const prevCell = display.querySelector('#' + prevId);
+    prevCell.classList.remove('dark:border-ys-buttonPrimary');
+    prevCell.classList.add('dark:border-ys-overlay-5');
   }
-  display &&
-    display
-      .querySelector('#' + id)
-      .classList.add('dark:border-ys-buttonPrimary');
+  const displayCell = display.querySelector('#' + id);
+  if (displayCell) {
+    displayCell.classList.add('dark:border-ys-buttonPrimary');
+    displayCell.classList.remove('dark:border-ys-overlay-5');
+  }
   setValue(selectedCell.code);
   caller.value = selectedCell.callInput;
   displaySelectId.textContent = selectedCell.id;
