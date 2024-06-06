@@ -209,12 +209,16 @@
               aria-label="search-input"
               id="searchInput"
             />
-            <button
-              id="darkModeToggleBtn"
-              class="text-xs rounded-full p-1 h-8 w-10 bg-ys-backgroundAndText dark:bg-ys-textAndIconsLight dark:text-ys-backgroundAndText text-ys-textAndIconsLight"
-            >
-              LHT
-            </button>
+            <div class="flex flex-col items-center gap-2">
+              <button
+                id="darkModeToggleBtn"
+                class="toggle-btn"
+                aria-label="toggle dark mode"
+              >
+                <span class="toggle-switch"></span>
+              </button>
+              <span class="toggle-text text-xs">Dark on</span>
+            </div>
           </div>
         </div>
       </header>

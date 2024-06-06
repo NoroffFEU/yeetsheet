@@ -93,3 +93,15 @@ svg {
 .code-editor {
   @apply w-full h-full min-h-[10rem]
 }
+
+.toggle-btn {
+  @apply text-xs rounded-full p-1 h-6 w-10 bg-ys-textAndIconsLight text-ys-backgroundAndText dark:text-ys-textAndIconsLight relative
+}
+
+.toggle-btn .toggle-switch {
+  @apply size-4 bg-ys-backgroundAndText absolute right-1 rounded-full top-1/2 -translate-y-1/2 pointer-events-none
+}
+
+.toggle-btn.light .toggle-switch {
+  @apply right-auto left-1
+}
