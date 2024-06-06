@@ -2,6 +2,16 @@ const DB_NAME = 'SpreadsheetDB';
 const DB_VERSION = 1;
 const STORE_NAME = 'cells';
 
+/**
+ * Initializes the IndexedDB database.
+ *
+ * This function sets up the IndexedDB database, creating an object store if necessary.
+ * It returns a Promise that resolves with the database instance when the setup is complete.
+ *
+ * @function initDB
+ * @returns {Promise<IDBDatabase>} - A promise that resolves with the database instance.
+ */
+
 let db;
 
 export function initDB() {
