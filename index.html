@@ -138,7 +138,7 @@
               <li>
                 <button
                   type="button"
-                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500"
+                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500 dropdownArrowDown"
                   id="zoomBtn"
                   data-menu="zoomMenu"
                   aria-label=""
@@ -246,7 +246,10 @@
           </button>
           <ul class="flex flex-col justify-start mt-8">
             <li>
-              <button class="sideBarBtn w-auto" data-menu="sheet1">
+              <button
+                class="sideBarBtn w-auto dropdownArrow"
+                data-menu="sheet1"
+              >
                 Sheet1
               </button>
               <div id="sheet1" class="hidden">
@@ -258,7 +261,10 @@
               </div>
             </li>
             <li>
-              <button class="sideBarBtn w-auto" data-menu="sheet2">
+              <button
+                class="sideBarBtn w-auto dropdownArrow"
+                data-menu="sheet2"
+              >
                 Sheet2
               </button>
               <div id="sheet2" class="hidden">
@@ -270,7 +276,10 @@
               </div>
             </li>
             <li>
-              <button class="sideBarBtn w-auto" data-menu="sheet3">
+              <button
+                class="sideBarBtn w-auto dropdownArrow"
+                data-menu="sheet3"
+              >
                 Sheet3
               </button>
               <div id="sheet3" class="hidden">
@@ -336,14 +345,14 @@
                     <div class="flex gap-1 pt-5">
                       <input
                         type="text"
-                        class="w-20 text-center dark:bg-ys-overlay-15"
+                        class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                         placeholder="cell"
                         aria-label=""
                         id=""
                       />
                       <input
                         type="text"
-                        class="w-full text-start pl-5 dark:bg-ys-overlay-15"
+                        class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                         placeholder="function"
                         value=""
                         aria-label=""
@@ -359,7 +368,7 @@
             </section>
           </main>
         </div>
-        <aside class="max-w-20 w-full items-start flex-none mt-16 p-3">
+        <aside class="max-w-24 w-full items-start flex-none mt-16 p-3">
           <ul class="flex flex-col gap-3 mb-8 text-xs text-center">
             <li>
               <button
