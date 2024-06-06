@@ -1,31 +1,32 @@
 import createEle from '../helpers/createEle';
 import numberToLetter from '../helpers/numberToLetter';
+// import { getCellValue } from './db.js';
 
-const editor = document.querySelector('#code-editor');
-const cellIndex = editor.parentElement.querySelector('h2');
-
-export default function cell(row, col) {
+export default function cell(row, col, cellData = null) {
   const cellContainer = createEle(
     'td',
-    'p-0  w-28  border relative text-center px-2',
+    'p-0 w-28 border relative flex items-center justify-center dark:border-ys-overlay-5 border-ys-amethyst-400 ',
   );
   cellContainer.setAttribute('id', numberToLetter(col) + (row + 1));
 
   cellContainer.dataset.col = col;
   cellContainer.dataset.row = row;
-  // const cellInput = createEle('div', '  focus:bg-red-100');
 
-  // cellContainer.append(cellInput);
-  cellContainer.addEventListener('click', (e) => {
-    editor.focus();
-    cellIndex.textContent = e.target.id;
-  });
+  // data[row][col]?.value && (cellContainer.textContent = data[row][col].value);
+  if (row === 0 && col === 0) {
+    console.log(cellData);
+  }
+
+  if (cellData) {
+    cellContainer.textContent = cellData.value ? cellData.value : '';
+  }
+
+  // const cellId = numberToLetter(col) + (row + 1);
+  // getCellValue(cellId).then((value) => {
+  //   if (value !== null) {
+  //     cellContainer.textContent = value;
+  //   }
+  // });
 
   return cellContainer;
 }
-
-function add(a, b) {
-  return a + b;
-}
-
-add(3, 5);
