@@ -12,6 +12,11 @@ export default {
         'ys-backgroundAndText': '#0B0821',
         'ys-textAndIconsLight': '#DDDDDD',
         'ys-black': '#09071C',
+        // Light mode
+        'ys-amethyst-200': '#F8F4FF',
+        'ys-amethyst-300': '#E0DFF1',
+        'ys-amethyst-400': '#9E9AC8',
+        'ys-amethyst-500': '#7A75AF',
         // Different shades of backgroundcolor(#0B0821)
         'ys-overlay-5': '#17142C',
         'ys-overlay-10': '#232137',
