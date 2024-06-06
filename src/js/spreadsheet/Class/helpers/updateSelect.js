@@ -4,7 +4,7 @@ const displaySelectId = document.getElementById('selected-cell');
 const caller = document.getElementById('function-call-input');
 
 export function updateSelect(id, { allCells, display, selectedCell }) {
-  const prevId = selectedCell.id ? selectedCell.id : false;
+  const prevId = selectedCell ? selectedCell.id : false;
 
   // allCells, display, selectedCell
   if (!id) return selectedCell;
