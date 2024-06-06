@@ -21,14 +21,16 @@ export default class Cell {
    * @param {Array} [data.dependents=[]] - The list of cells dependent on this cell.
    */
   constructor(data) {
-    this.id = data?.id || null;
-    this.parent = data?.parent || null;
-    this._value = data?.value || '';
-    this.type = data?.type || null;
-    this.code = data?.code || functionString;
-    this.callInput = data?.callInput || 'test()';
+    this.id = data.id ? data.id : null;
+    this.parent = data.parent ? data.parent : null;
+    this._value = data.value ? data.value : '';
+    this.type = data.type ? data.type : null;
+    this.code = data.code ? data.code : functionString;
+    this.callInput = data.callInput ? data.callInput : 'test()';
     this.row = data.row;
     this.col = data.col;
+
+    // setValue(this.code);
   }
 
   set value(value) {

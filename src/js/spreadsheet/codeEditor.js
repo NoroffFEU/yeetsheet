@@ -65,7 +65,7 @@ export function mountEditor(onBlurCallback) {
  * @param {string} value The editor value.
  */
 export function setValue(value) {
-  editor.value = value;
+  editor.setValue(value);
 }
 
 /**

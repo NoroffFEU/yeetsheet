@@ -1,12 +1,13 @@
+import { getValue } from '../spreadsheet/codeEditor.js';
+
 const runBtn = document.getElementById('runFunctionBtn');
-// const selectedCell = document.getElementById('selected-cell');
-const editor = document.getElementById('code-editor-input');
 const caller = document.getElementById('function-call-input');
 
-export default function codeEditor(sheet) {
+export default function runCodeEdit(sheet) {
   runBtn.addEventListener('click', () => {
-    const value = editor.value;
+    const value = getValue();
     console.log(value);
+
     sheet.runCode(value, caller.value);
   });
 }
