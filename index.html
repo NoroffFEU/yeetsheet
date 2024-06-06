@@ -218,83 +218,24 @@
           </div>
         </div>
       </header>
-      <div class="container flex justify-start">
-        <aside
-          class="max-w-44 w-full items-start flex-none mt-16 p-3"
-          data-cy="sidebar"
-        >
-          <button class="sideBarBtn mb-12">
-            <span
-              data-icon="hamburgerMenu"
-              data-size="20"
-              data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-            ></span>
-          </button>
-          <div class="flex justify-between items-center w-full">
-            <p class="text-sm uppercase">Project name</p>
-            <input type="text" class="hidden" id="projectName" />
-            <button class="sideBarBtn w-auto">
-              <span
-                data-icon="editPencil"
-                data-size="12"
-                data-class="text-ys-overlay-30"
-              ></span>
-            </button>
-          </div>
-          <button class="sideBarBtn text-sm dark:text-ys-overlay-30 w-auto p-0">
-            &plus; New sheet
-          </button>
-          <ul class="flex flex-col justify-start mt-8">
-            <li>
-              <button class="sideBarBtn w-auto" data-menu="sheet1">
-                Sheet1
+      <div class="container flex">
+        <aside class="max-w-44 w-full items-start flex-none mt-16 p-3">
+          <ul class="flex flex-col gap-3 mb-8">
+            <div>
+              <li>Sheet1</li>
+              <button
+                class="text-gray-400 text-left text-sm py-1 hover:text-white duration-200"
+                id="add-col-btn"
+              >
+                Add col
               </button>
-              <div id="sheet1" class="hidden">
-                <ul class="dark:text-ys-logoLoader-yellow text-start pl-5">
-                  <li>
-                    <button
-                      class="text-gray-400 text-left text-sm py-1 hover:text-white duration-200"
-                      id="add-col-btn"
-                    >
-                      Add col
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      class="text-gray-400 text-left text-sm py-1 hover:text-white duration-200"
-                      id="add-row-btn"
-                    >
-                      Add row
-                    </button>
-                  </li>
-                  <li>#</li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <button class="sideBarBtn w-auto" data-menu="sheet2">
-                Sheet2
+              <button
+                class="text-gray-400 text-left text-sm py-1 hover:text-white duration-200"
+                id="add-row-btn"
+              >
+                Add row
               </button>
-              <div id="sheet2" class="hidden">
-                <ul class="dark:text-ys-logoLoader-yellow text-start pl-5">
-                  <li>#</li>
-                  <li>#</li>
-                  <li>#</li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <button class="sideBarBtn w-auto" data-menu="sheet3">
-                Sheet3
-              </button>
-              <div id="sheet3" class="hidden">
-                <ul class="dark:text-ys-logoLoader-yellow text-start pl-5">
-                  <li>#</li>
-                  <li>#</li>
-                  <li>#</li>
-                </ul>
-              </div>
-            </li>
+            </div>
           </ul>
           <button class="default-btn" id="save-changes-btn">
             Save changes
@@ -336,22 +277,19 @@
                   </button>
                 </div>
                 <div class="p-8 dark:bg-ys-backgroundAndText">
-                  <div id="code-wrapper" data-cy="util:code-editor">
+                  <div>
                     <div
                       class="code-editor"
                       id="code-editor"
                       aria-label="Code editor"
                     ></div>
-
                     <div class="flex gap-1 pt-5">
                       <div>
                         <button
                           type="text"
                           class="w-20 text-center dark:bg-ys-overlay-15 text-white"
                           id="selected-cell"
-                        >
-                          A1
-                        </button>
+                        ></button>
                       </div>
                       <input
                         type="text"

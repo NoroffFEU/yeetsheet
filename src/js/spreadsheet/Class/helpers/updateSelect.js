@@ -1,9 +1,10 @@
+import { setValue } from '../../codeEditor';
+
 const displaySelectId = document.getElementById('selected-cell');
-const editor = document.getElementById('code-editor-input');
 const caller = document.getElementById('function-call-input');
 
 export function updateSelect(id, { allCells, display, selectedCell }) {
-  const prevId = selectedCell?.id;
+  const prevId = selectedCell.id ? selectedCell.id : false;
 
   // allCells, display, selectedCell
   if (!id) return selectedCell;
@@ -13,11 +14,13 @@ export function updateSelect(id, { allCells, display, selectedCell }) {
   if (prevId) {
     display
       .querySelector('#' + prevId)
-      .classList.remove('border-ys-buttonPrimary');
+      .classList.remove('dark:border-ys-buttonPrimary');
   }
   display &&
-    display.querySelector('#' + id).classList.add('border-ys-buttonPrimary');
-  editor.value = selectedCell.code;
+    display
+      .querySelector('#' + id)
+      .classList.add('dark:border-ys-buttonPrimary');
+  setValue(selectedCell.code);
   caller.value = selectedCell.callInput;
   displaySelectId.textContent = selectedCell.id;
 

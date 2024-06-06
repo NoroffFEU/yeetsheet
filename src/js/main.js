@@ -1,13 +1,8 @@
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
-import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
-import {
-  initDB,
-  /* saveCellValue,
-   getCellValue, */
-  getFromDB,
-} from './spreadsheet/db.js';
+import { initDB, getFromDB } from './spreadsheet/db.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
+import { mountEditor, getValue } from './spreadsheet/codeEditor.js';
 import getIcon from './icons/index.js';
 import codeEditor from './codeEditor/index.js';
 import Spreadsheet from './spreadsheet/Class/index.js';
@@ -26,7 +21,6 @@ initDB()
       mountEditor(() => {
         // get the code editor current value.
         const value = getValue();
-
         // just log to the console to show how to use it.
         console.log(value);
       });

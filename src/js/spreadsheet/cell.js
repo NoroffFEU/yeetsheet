@@ -12,9 +12,21 @@ export default function cell(row, col, cellData = null) {
   cellContainer.dataset.col = col;
   cellContainer.dataset.row = row;
 
-  if (cellData) {
-    cellContainer.textContent = cellData.value;
+  // data[row][col]?.value && (cellContainer.textContent = data[row][col].value);
+  if (row === 0 && col === 0) {
+    console.log(cellData);
   }
+
+  if (cellData) {
+    cellContainer.textContent = cellData.value ? cellData.value : '';
+  }
+
+  // const cellId = numberToLetter(col) + (row + 1);
+  // getCellValue(cellId).then((value) => {
+  //   if (value !== null) {
+  //     cellContainer.textContent = value;
+  //   }
+  // });
 
   return cellContainer;
 }
