@@ -25,15 +25,15 @@ button {
 }
 
 .default-btn {
-  @apply dark:bg-ys-buttonPrimary dark:hover:bg-ys-buttonTertiary dark:text-ys-backgroundAndText hover:text-ys-backgroundAndText bg-ys-backgroundAndText text-ys-textAndIconsLight hover:bg-ys-buttonPrimary
+  @apply dark:bg-ys-buttonPrimary dark:hover:bg-ys-buttonTertiary dark:text-ys-backgroundAndText hover:text-ys-backgroundAndText bg-ys-backgroundAndText text-ys-textAndIconsLight hover:bg-ys-buttonPrimary;
 }
 
 .console-btn {
-  @apply border-r rounded-none hover:bg-ys-amethyst-400 dark:border-ys-backgroundAndText border-ys-amethyst-400 dark:text-ys-textAndIconsLight text-ys-backgroundAndText
+  @apply border-r rounded-none hover:bg-ys-amethyst-400 dark:border-ys-backgroundAndText border-ys-amethyst-400 dark:text-ys-textAndIconsLight text-ys-backgroundAndText;
 }
 
 .sideBarBtn {
-  @apply rounded-none dark:text-ys-textAndIconsLight text-ys-backgroundAndText
+  @apply rounded-none dark:text-ys-textAndIconsLight text-ys-backgroundAndText;
 }
 
 .console-btn.active {
@@ -41,7 +41,7 @@ button {
 }
 
 .nav-btn {
-  @apply dark:text-ys-textAndIconsLight text-ys-backgroundAndText w-20
+  @apply dark:text-ys-textAndIconsLight text-ys-backgroundAndText w-20;
 }
 
 textarea {
@@ -61,14 +61,21 @@ table tr td input {
 .table__sticky-top thead,
 .table__sticky-left thead th:first-of-type,
 .table__sticky-left tbody th {
-  @apply dark:bg-ys-overlay-15 bg-white sticky top-0 z-20
+  @apply dark:bg-ys-overlay-15 bg-white sticky top-0 z-20;
 }
 
 .table__sticky-left thead th:first-of-type,
 .table__sticky-left tbody th {
-  @apply left-0 z-10
+  @apply left-0 z-10;
 }
 
 svg {
   fill: currentColor;
+}
+
+/* It handles the code aria container */
+.code-editor {
+  width: 100%;
+  height: 100%;
+  min-height: 5em;
 }
