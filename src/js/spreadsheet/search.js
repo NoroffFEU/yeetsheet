@@ -35,15 +35,21 @@ export function searchCellValue(db, query) {
 /**
  * Attaches an input event listener to the search input element to perform searches on input.
  *
- * When the user types in the search input, this function searches the IndexedDB for matching cell values. It then highlights the cells that contain the matching      values by adding specific CSS classes.
+ * When the user types in the search input, this function searches the IndexedDB for matching cell values.
+ * It then highlights the cells that contain the matching values by adding specific CSS classes.
  *
- * If the search input is cleared, all previous highlights are removed.
+ * If the search input is cleared, all previous highlights are removed, and a message indicating no results is displayed.
+ * After the search is completed, an indicator showing the total number of results found is displayed, and a list of results is updated below the count.
  *
  * @param {IDBDatabase} db - The IndexedDB database instance.
  */
 export function attachSearchEventListener(db) {
   const searchInput = document.getElementById('searchInput');
   const searchResultsCount = document.getElementById('searchResultsCount');
+  const searchResultsContainer = document.getElementById(
+    'searchResultsContainer',
+  );
+  const searchResultsList = document.getElementById('searchResultsList');
 
   searchInput.addEventListener('input', function () {
     const query = this.value.trim();
@@ -54,6 +60,12 @@ export function attachSearchEventListener(db) {
       });
       if (searchResultsCount) {
         searchResultsCount.textContent = 'No results found.';
+      }
+      if (searchResultsList) {
+        searchResultsList.innerHTML = '';
+      }
+      if (searchResultsContainer) {
+        searchResultsContainer.classList.add('hidden');
       }
       return;
     }
@@ -76,9 +88,29 @@ export function attachSearchEventListener(db) {
         if (searchResultsCount) {
           searchResultsCount.textContent = `${results.length} result(s) found.`;
         }
+        if (searchResultsList) {
+          searchResultsList.innerHTML = '';
+          results.forEach((result) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `Cell ${result.id}: ${result.value}`;
+            searchResultsList.appendChild(listItem);
+          });
+        }
+        if (searchResultsContainer) {
+          searchResultsContainer.classList.remove('hidden');
+        }
       })
       .catch((error) => {
         console.error('Search error:', error);
+        if (searchResultsCount) {
+          searchResultsCount.textContent = 'Error performing search.';
+        }
+        if (searchResultsList) {
+          searchResultsList.innerHTML = '';
+        }
+        if (searchResultsContainer) {
+          searchResultsContainer.classList.add('hidden');
+        }
       });
   });
 }
