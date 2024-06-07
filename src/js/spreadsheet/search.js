@@ -43,6 +43,7 @@ export function searchCellValue(db, query) {
  */
 export function attachSearchEventListener(db) {
   const searchInput = document.getElementById('searchInput');
+  const searchResultsCount = document.getElementById('searchResultsCount');
 
   searchInput.addEventListener('input', function () {
     const query = this.value.trim();
@@ -51,6 +52,9 @@ export function attachSearchEventListener(db) {
       document.querySelectorAll('.bg-red-400').forEach((cell) => {
         cell.classList.remove('bg-red-400', 'text-black');
       });
+      if (searchResultsCount) {
+        searchResultsCount.textContent = 'No results found.';
+      }
       return;
     }
 
@@ -69,6 +73,9 @@ export function attachSearchEventListener(db) {
             cellElement.classList.add('bg-red-400', 'text-black');
           }
         });
+        if (searchResultsCount) {
+          searchResultsCount.textContent = `${results.length} result(s) found.`;
+        }
       })
       .catch((error) => {
         console.error('Search error:', error);
