@@ -16,9 +16,3 @@ export function toggleSidebar() {
     });
   }
 }
-/**
- * Sets up the event listener for the sidebar toggle button when the DOM content is loaded.
- */
-document.addEventListener('DOMContentLoaded', () => {
-  toggleSidebar();
-});
