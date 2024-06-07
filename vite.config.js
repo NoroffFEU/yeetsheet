@@ -7,7 +7,8 @@ export default defineConfig({
     hot: true, // enables hot module replacement (HMR)
   },
   test: {
-    // ...
+    globals: true,
+    environment: 'jsdom',
   },
   build: {
     outDir: 'dist',
