@@ -11,7 +11,6 @@ import closeOnOutsideClick from '../helpers/closeOnOutsideClick.mjs';
  * @function showDropdownMenu
  * @returns {void}
  */
-
 export function showDropdownMenu() {
   const menuBtn = document.querySelectorAll('[data-menu]');
   if (menuBtn) {
