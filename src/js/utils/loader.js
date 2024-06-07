@@ -1,5 +1,16 @@
+/**
+ * Displays a loading spinner on the specified container or the entire body by default.
+ *
+ * This function creates and displays a loading spinner. If a container element is specified,
+ * the spinner is appended to that container. Otherwise, it is appended to the document body.
+ *
+ * @function showLoader
+ * @param {HTMLElement} [container=document.body] - The container element to which the loader will be appended.
+ * @returns {void}
+ */
+
 export function showLoader(container = false) {
-container = container ? container : document.body
+  container = container ? container : document.body;
   const loaderContainer = document.createElement('div');
   loaderContainer.id = 'loaderContainer';
   loaderContainer.className =
@@ -19,7 +30,7 @@ container = container ? container : document.body
   whiteCircle.appendChild(innerCircle);
   loader.appendChild(whiteCircle);
   loaderContainer.appendChild(loader);
-container.appendChild(loaderContainer);
+  container.appendChild(loaderContainer);
 }
 
 export function hideLoader() {

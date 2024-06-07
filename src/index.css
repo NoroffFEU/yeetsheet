@@ -2,16 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: 'Martel Sans', system-ui, sans-serif;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+}
+
 button {
-  @apply  p-2 rounded-sm dark:text-ys-black w-40
+  @apply p-2 rounded-md dark:text-ys-backgroundAndText w-36;
 }
 
 .default-btn {
-  @apply bg-ys-purple uppercase
+  @apply dark:bg-ys-buttonPrimary dark:hover:bg-ys-buttonTertiary dark:text-ys-backgroundAndText hover:text-ys-backgroundAndText bg-ys-backgroundAndText text-ys-textAndIconsLight hover:bg-ys-buttonPrimary
 }
 
 .console-btn {
-  @apply rounded-none border-none bg-transparent text-ys-whiteGrey
+  @apply border-r rounded-none hover:bg-ys-amethyst-400 dark:border-ys-backgroundAndText border-ys-amethyst-400 dark:text-ys-textAndIconsLight text-ys-backgroundAndText
+}
+
+.sideBarBtn {
+  @apply rounded-none dark:text-ys-textAndIconsLight text-ys-backgroundAndText
+}
+
+.console-btn.active {
+  @apply bg-ys-backgroundAndText;
+}
+
+.nav-btn {
+  @apply dark:text-ys-textAndIconsLight text-ys-backgroundAndText w-20
 }
 
 textarea {
@@ -19,10 +49,26 @@ textarea {
 }
 
 .spreadsheet-container div {
-  @apply dark:text-black;
+  @apply dark:text-ys-textAndIconsLight dark:bg-ys-overlay-15;
 }
 
 /* It handles online cell editing */
 table tr td input {
   @apply size-full p-4;
+}
+
+/* It keeps the first row and column header sticky */
+.table__sticky-top thead,
+.table__sticky-left thead th:first-of-type,
+.table__sticky-left tbody th {
+  @apply dark:bg-ys-overlay-15 bg-white sticky top-0 z-20
+}
+
+.table__sticky-left thead th:first-of-type,
+.table__sticky-left tbody th {
+  @apply left-0 z-10
+}
+
+svg {
+  fill: currentColor;
 }
