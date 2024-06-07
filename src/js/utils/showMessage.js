@@ -1,3 +1,15 @@
+/**
+ * Displays a message to the user in a modal dialog.
+ *
+ * This function shows a modal dialog with a specified message and message type (e.g., success, error, warning, info).
+ * Only one message can be displayed at a time. The modal automatically closes after 3 seconds.
+ *
+ * @function showMessage
+ * @param {string|Error} message - The message to display. If an Error object is provided, its message property is used.
+ * @param {string} type - The type of message to display. Can be 'success', 'error', 'warning', or 'info'.
+ * @returns {void}
+ */
+
 export function showMessage(message, type) {
   if (!showMessage.errorMessageDisplayed) {
     showMessage.errorMessageDisplayed = true;

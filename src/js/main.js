@@ -3,10 +3,11 @@ import userColsAndRows from './helpers/userColsAndRows';
 import numberToLetter from './helpers/numberToLetter';
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
+import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
 import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
-import showFileMenu from './header/file.mjs';
-import showZoomMenu from './header/zoom.mjs';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
+import { showDropdownMenu } from './header/menu.mjs';
+import getIcon from './icons/index.js';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
@@ -15,11 +16,8 @@ initDB()
   .then(() => {
     console.log('IndexedDB initialized');
 
-    // FileBtn
-    showFileMenu();
-
-    // ZoomBtn
-    showZoomMenu();
+    // Header menu
+    showDropdownMenu();
 
     // Active state of buttons in the console
     consoleBtnsActiveState();
@@ -31,6 +29,14 @@ initDB()
 
     // Create and append the spreadsheet to the container
     spreadsheetContainer.append(spreadsheet(cols, rows));
+
+    mountEditor(() => {
+      // get the code editor current value.
+      const value = getValue();
+
+      // just log to the console to show how to use it.
+      console.log('editor', value);
+    });
 
     addCellTargetingEvents(
       '#spreadsheetContainer table',
@@ -49,3 +55,13 @@ initDB()
   .catch((error) => {
     console.error('Failed to initialize IndexedDB:', error);
   });
+
+const iconSpans = document.querySelectorAll('[data-icon]');
+if (iconSpans) {
+  iconSpans.forEach((i) => {
+    const icon = getIcon(i.dataset.icon, i.dataset.size, i.dataset.class);
+    const parser = new DOMParser();
+    const svg = parser.parseFromString(icon, 'image/svg+xml');
+    i.replaceWith(svg.children[0]);
+  });
+}

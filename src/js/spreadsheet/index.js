@@ -20,7 +20,7 @@ export default function spreadsheet(cols, rows) {
 
   const tableHead = createEle('thead');
 
-  const columnNumbers = createEle('tr', 'flex bg-ys-overlay-15 w-fit');
+  const columnNumbers = createEle('tr', 'flex w-fit');
 
   const emptyTh = createEle('th', 'w-28');
 
@@ -33,7 +33,7 @@ export default function spreadsheet(cols, rows) {
   for (let i = 0; i < cols; i++) {
     const colNumber = createEle(
       'th',
-      'w-28 text-center border-x border-ys-backgroundAndText bg-ys-overlay-15 py-2 snap-start',
+      'w-28 text-center border-x dark:border-ys-overlay-5 border-ys-amethyst-400 dark:bg-ys-overlay-15 bg-white py-2 snap-start',
       numberToLetter(i),
     );
     columnNumbers.appendChild(colNumber);
