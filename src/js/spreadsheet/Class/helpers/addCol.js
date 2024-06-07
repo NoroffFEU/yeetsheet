@@ -22,7 +22,7 @@ export default function addCol(rows, cols, allCells) {
   columnPlacement.append(
     createEle(
       'div',
-      'w-28 text-center border-x border-ys-backgroundAndText bg-ys-overlay-15 py-2 snap-start',
+      'w-28 text-center border-x dark:border-ys-overlay-5 border-ys-amethyst-400 dark:bg-ys-overlay-15 bg-white py-2 snap-start',
       numberToLetter(cols),
     ),
   );

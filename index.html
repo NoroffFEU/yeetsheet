@@ -49,17 +49,19 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="fileMenu"
-                  class="hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none p-3 shadow-md"
+                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="fileBtn"
                   tabindex="-1"
                 >
-                  <ul>
+                  <ul
+                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
+                  >
                     <li>
                       <button
                         id="file-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         New file...
                       </button>
@@ -67,7 +69,7 @@
                     <li>
                       <button
                         id="file-item-2"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Import existing file
                       </button>
@@ -75,7 +77,7 @@
                     <li>
                       <button
                         id="file-item-3"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Edit
                       </button>
@@ -83,7 +85,7 @@
                     <li>
                       <button
                         id="file-item-4"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Save
                       </button>
@@ -91,7 +93,7 @@
                     <li>
                       <button
                         id="file-item-5"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Save as...
                       </button>
@@ -99,7 +101,7 @@
                     <li>
                       <button
                         id="file-item-6"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Save copy
                       </button>
@@ -107,7 +109,7 @@
                     <li>
                       <button
                         id="file-item-7"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Export
                       </button>
@@ -138,7 +140,7 @@
               <li>
                 <button
                   type="button"
-                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500"
+                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500 dropdownArrowDown"
                   id="zoomBtn"
                   data-menu="zoomMenu"
                   aria-label=""
@@ -149,17 +151,19 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="zoomMenu"
-                  class="hidden absolute z-50 top-13 left-100 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none p-3 shadow-md"
+                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-13 left-100 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="zoomBtn"
                   tabindex="-1"
                 >
-                  <ul>
+                  <ul
+                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
+                  >
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         125%
                       </button>
@@ -167,7 +171,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         150%
                       </button>
@@ -175,7 +179,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         75%
                       </button>
@@ -183,7 +187,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         50%
                       </button>
@@ -191,7 +195,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Custom...
                       </button>
@@ -209,37 +213,104 @@
               aria-label="search-input"
               id="searchInput"
             />
-            <button
-              id="darkModeToggleBtn"
-              class="text-xs rounded-full p-1 h-8 w-10 bg-ys-backgroundAndText dark:bg-ys-textAndIconsLight dark:text-ys-backgroundAndText text-ys-textAndIconsLight"
-            >
-              LHT
-            </button>
+            <div class="flex flex-col items-center gap-2">
+              <button
+                id="darkModeToggleBtn"
+                class="toggle-btn"
+                aria-labelledby="toggleText"
+              >
+                <span class="toggle-switch"></span>
+              </button>
+              <span class="toggle-text text-xs" id="toggleText">Dark on</span>
+            </div>
           </div>
         </div>
       </header>
-      <div class="container flex">
-        <aside class="max-w-44 w-full items-start flex-none mt-16 p-3">
-          <ul class="flex flex-col gap-3 mb-8">
-            <div>
-              <li>Sheet1</li>
-              <button
-                class="text-gray-400 text-left text-sm py-1 hover:text-white duration-200"
-                id="add-col-btn"
-              >
-                Add col
-              </button>
-              <button
-                class="text-gray-400 text-left text-sm py-1 hover:text-white duration-200"
-                id="add-row-btn"
-              >
-                Add row
-              </button>
-            </div>
-          </ul>
-          <button class="default-btn" id="save-changes-btn">
-            Save changes
+      <div class="container flex justify-start">
+        <aside
+          class="max-w-44 w-full items-start flex-none mt-16 p-3"
+          data-cy="sidebar"
+        >
+          <button class="sideBarBtn mb-12">
+            <span
+              data-icon="hamburgerMenu"
+              data-size="20"
+              data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+            ></span>
           </button>
+          <div class="flex justify-between items-center w-full">
+            <p class="text-sm uppercase">Project name</p>
+            <input type="text" class="hidden" id="projectName" />
+            <button class="sideBarBtn w-auto">
+              <span
+                data-icon="editPencil"
+                data-size="12"
+                data-class="text-ys-textAndIconsLight"
+              ></span>
+            </button>
+          </div>
+          <button
+            class="sideBarBtn text-sm dark:text-ys-buttonPrimary w-auto p-0"
+          >
+            &plus; New sheet
+          </button>
+          <button class="text-left text-white text-sm py-1" id="add-col-btn ">
+            &plus; Add col
+          </button>
+          <button
+            class="text-left dark:text-white text-sm py-1"
+            id="add-row-btn"
+          >
+            &plus; Add row
+          </button>
+          <ul class="flex flex-col justify-start mt-8">
+            <li>
+              <button
+                class="sideBarBtn w-auto dropdownArrow"
+                data-menu="sheet1"
+              >
+                Sheet1
+              </button>
+              <div id="sheet1" class="hidden">
+                <ul class="dark:text-ys-logoLoader-yellow text-start pl-5">
+                  <button class="text-left text-white" id="add-col-btn">
+                    Add col
+                  </button>
+                  <li>#</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <button
+                class="sideBarBtn w-auto dropdownArrow"
+                data-menu="sheet2"
+              >
+                Sheet2
+              </button>
+              <div id="sheet2" class="hidden">
+                <ul class="dark:text-ys-logoLoader-yellow text-start pl-5">
+                  <li>#</li>
+                  <li>#</li>
+                  <li>#</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <button
+                class="sideBarBtn w-auto dropdownArrow"
+                data-menu="sheet3"
+              >
+                Sheet3
+              </button>
+              <div id="sheet3" class="hidden">
+                <ul class="dark:text-ys-logoLoader-yellow text-start pl-5">
+                  <li>#</li>
+                  <li>#</li>
+                  <li>#</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
         </aside>
         <div class="flex flex-col overflow-hidden p-5">
           <h1 class="text-sm flex justify-center p-5 dark:bg-ys-black">
@@ -283,17 +354,24 @@
                       id="code-editor"
                       aria-label="Code editor"
                     ></div>
+                    <!-- <textarea
+                      class="dark:bg-ys-backgroundAndText bg-ys-amethyst-200 p-5 outline-none"
+                      name=""
+                      id=""
+                      aria-label=""
+                      rows="6"
+                    >
+                    </textarea> -->
                     <div class="flex gap-1 pt-5">
-                      <div>
-                        <button
-                          type="text"
-                          class="w-20 text-center dark:bg-ys-overlay-15 text-white"
-                          id="selected-cell"
-                        ></button>
+                      <div
+                        class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400 text-white flex items-center justify-center"
+                        id="selected-cell"
+                      >
+                        none
                       </div>
                       <input
                         type="text"
-                        class="w-full text-start pl-5 dark:bg-ys-overlay-15"
+                        class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                         placeholder="function"
                         value=""
                         aria-label=""
@@ -309,7 +387,7 @@
             </section>
           </main>
         </div>
-        <aside class="max-w-20 w-full items-start flex-none mt-16 p-3">
+        <aside class="max-w-24 w-full items-start flex-none mt-16 p-3">
           <ul class="flex flex-col gap-3 mb-8 text-xs text-center">
             <li>
               <button
@@ -375,35 +453,6 @@
         </aside>
       </div>
     </div>
-
-    <span
-      data-icon="close"
-      data-size="20"
-      data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    ></span>
-    <span
-      data-icon="delete"
-      data-size="20"
-      data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    ></span>
-
-    <span
-      data-icon="file"
-      data-size="20"
-      data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    ></span>
-
-    <span
-      data-icon="plus"
-      data-size="20"
-      data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    ></span>
-
-    <span
-      data-icon="search"
-      data-size="20"
-      data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    ></span>
 
     <footer>
       <!-- If there´s going to be a footer -->
