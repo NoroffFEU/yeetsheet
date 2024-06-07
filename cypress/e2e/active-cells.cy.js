@@ -3,6 +3,7 @@ describe('Clear indicators for Active Cells and Selections', () => {
     cy.visit('http://localhost:5173/');
   });
 
+  // click on a cell
   it('should click on a cell in the spreadsheet', () => {
     cy.get('#spreadsheetContainer').scrollTo('topLeft');
 
@@ -11,6 +12,7 @@ describe('Clear indicators for Active Cells and Selections', () => {
     cy.get('#A1').should('exist');
   });
 
+  // drag cells
   it('should drag to select a range of cells', () => {
     cy.get('#spreadsheetContainer').scrollTo('topLeft');
 
@@ -29,6 +31,7 @@ describe('Clear indicators for Active Cells and Selections', () => {
     cy.get('#B2').should('exist');
   });
 
+  // reset after refresh
   it('should reset active cell and selection indicators after refresh', () => {
     cy.get('#spreadsheetContainer').scrollTo('topLeft');
 
