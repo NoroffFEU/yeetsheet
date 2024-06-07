@@ -8,6 +8,7 @@ import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
 import getIcon from './icons/index.js';
+import { toggleSidebar } from './utils/toggleSidebar.js';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
@@ -51,6 +52,8 @@ initDB()
         saveCellValue(cellId, value);
       },
     );
+    // Call toggleSidebar to set up the event listener
+    toggleSidebar();
   })
   .catch((error) => {
     console.error('Failed to initialize IndexedDB:', error);

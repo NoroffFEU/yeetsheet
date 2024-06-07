@@ -72,3 +72,8 @@ table tr td input {
 svg {
   fill: currentColor;
 }
+
+/* styling for collapsed sidebar */
+.sidebar-narrow {
+  width: 3rem;
+}
