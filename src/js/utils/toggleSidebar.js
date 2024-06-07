@@ -1,3 +1,7 @@
+/**
+ * Toggles the visibility of the sidebar and the sidebar icons, and adjusts the sidebar width.
+ * Adds an event listener to the toggle button to handle the toggle action.
+ */
 export function toggleSidebar() {
   const toggleButton = document.getElementById('toggleSidebarBtn');
   const sidebarContent = document.getElementById('sidebarContent');
@@ -12,8 +16,9 @@ export function toggleSidebar() {
     });
   }
 }
-
-// Call the function to set up the event listener
+/**
+ * Sets up the event listener for the sidebar toggle button when the DOM content is loaded.
+ */
 document.addEventListener('DOMContentLoaded', () => {
   toggleSidebar();
 });
