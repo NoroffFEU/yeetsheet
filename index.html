@@ -208,6 +208,7 @@
               placeholder="Search..."
               aria-label="search-input"
               id="searchInput"
+              data-cy="search-input"
             />
             <button
               id="darkModeToggleBtn"
@@ -286,7 +287,6 @@
           <button class="default-btn" data-cy="save-changes-button">
             Save changes
           </button>
-
         </aside>
         <div class="flex flex-col overflow-hidden p-5">
           <h1 class="text-sm flex justify-center p-5 dark:bg-ys-black">
@@ -297,10 +297,8 @@
             <section class="p-5" data-cy="spreadsheet">
               <div
                 id="spreadsheetContainer"
-
                 data-cy="spreadsheetContainer"
                 class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
-
                 class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-ys-amethyst-200 dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
               >
                 <!-- Spreadsheet content goes here -->
