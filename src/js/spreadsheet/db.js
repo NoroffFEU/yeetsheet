@@ -73,7 +73,9 @@ export function getCellValue(id) {
 
 export function initFullDB() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open('SpreadsheetDB', 1);
+    let request;
+
+    request = indexedDB.open('SpreadsheetDB', 1);
 
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
@@ -88,15 +90,14 @@ export function initFullDB() {
     };
 
     request.onerror = (event) => {
-      reject(`Database error: ${event.target.errorCode}`);
+      reject(`Database error: ${event.target.error}`);
     };
   });
 }
 
-// Function to save data to the database
 export function saveToDB(key, value) {
   console.log('Saving data:', value);
-  return initDB().then((db) => {
+  return initFullDB().then((db) => {
     return new Promise((resolve, reject) => {
       const transaction = db.transaction(['sheets'], 'readwrite');
       const store = transaction.objectStore('sheets');
@@ -114,7 +115,7 @@ export function saveToDB(key, value) {
 }
 
 export function getFromDB(key) {
-  return initDB().then((db) => {
+  return initFullDB().then((db) => {
     return new Promise((resolve, reject) => {
       const transaction = db.transaction(['sheets'], 'readonly');
       const store = transaction.objectStore('sheets');
