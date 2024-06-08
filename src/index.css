@@ -25,23 +25,39 @@ button {
 }
 
 .default-btn {
-  @apply dark:bg-ys-buttonPrimary dark:hover:bg-ys-buttonTertiary dark:text-ys-backgroundAndText hover:text-ys-backgroundAndText bg-ys-backgroundAndText text-ys-textAndIconsLight hover:bg-ys-buttonPrimary;
+  @apply dark:bg-ys-buttonPrimary dark:hover:bg-ys-hoverPrimary dark:text-ys-backgroundAndText hover:text-ys-backgroundAndText bg-ys-backgroundAndText text-ys-textAndIconsLight hover:bg-ys-buttonPrimary;
 }
 
 .console-btn {
-  @apply border-r rounded-none hover:bg-ys-amethyst-400 dark:border-ys-backgroundAndText border-ys-amethyst-400 dark:text-ys-textAndIconsLight text-ys-backgroundAndText;
+  @apply border-r rounded-none dark:border-ys-backgroundAndText border-ys-amethyst-400 dark:text-ys-textAndIconsLight text-ys-backgroundAndText;
 }
 
 .sideBarBtn {
   @apply rounded-none dark:text-ys-textAndIconsLight text-ys-backgroundAndText;
 }
 
+.sideBarBtn.dropdownArrow {
+  @apply flex items-center gap-3;
+}
+
+.dropdownArrow::before {
+  @apply mb-1 content-[''] w-0 h-0 dark:border-l-ys-textAndIconsLight border-l-ys-overlay-30 border-l-[10px] border-b-[5px] border-t-[5px] border-b-transparent border-t-transparent;
+}
+
 .console-btn.active {
-  @apply bg-ys-backgroundAndText;
+  @apply dark:bg-ys-backgroundAndText bg-ys-amethyst-400;
 }
 
 .nav-btn {
   @apply dark:text-ys-textAndIconsLight text-ys-backgroundAndText w-20;
+}
+
+.dropdownArrowDown::after {
+  @apply mb-1 content-[''] w-0 h-0 dark:border-t-ys-textAndIconsLight border-t-ys-overlay-15 border-t-[10px] border-l-[5px] border-r-[5px] border-l-transparent border-r-transparent;
+}
+
+.nav-btn.dropdownArrowDown {
+  @apply flex items-center gap-3;
 }
 
 textarea {
@@ -70,7 +86,24 @@ table tr td input {
 }
 
 svg {
-  fill: currentColor;
+  @apply fill-current
+}
+
+/* It handles the code aria container */
+.code-editor {
+  @apply w-full h-full min-h-[10rem]
+}
+
+.toggle-btn {
+  @apply text-xs rounded-full p-1 h-6 w-10 bg-ys-textAndIconsLight text-ys-backgroundAndText dark:text-ys-textAndIconsLight relative
+}
+
+.toggle-btn .toggle-switch {
+  @apply size-4 bg-ys-backgroundAndText absolute right-1 rounded-full top-1/2 -translate-y-1/2 pointer-events-none
+}
+
+.toggle-btn.light .toggle-switch {
+  @apply right-auto left-1
 }
 
 /* It handles the code aria container */
