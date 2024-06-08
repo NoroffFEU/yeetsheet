@@ -21,6 +21,9 @@ export function initDB() {
     request.onupgradeneeded = function (event) {
       const db = event.target.result;
       db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+      if (!db.objectStoreNames.contains('spreadsheet')) {
+        db.createObjectStore('spreadsheet');
+      }
       console.log('Setup complete');
     };
 
@@ -35,7 +38,6 @@ export function initDB() {
     };
   });
 }
-
 export function saveCellValue(id, value) {
   const transaction = db.transaction([STORE_NAME], 'readwrite');
   const store = transaction.objectStore(STORE_NAME);
@@ -67,71 +69,93 @@ export function getCellValue(id) {
     };
   });
 }
-
-// All under this line is a temporary solution for storing the whole spreadsheet data
-// but would be nice if someone with more experience with indexedDB could look over it and change it (if needed)
-
-export function initFullDB() {
+export function getFromDB(key) {
   return new Promise((resolve, reject) => {
-    let request;
+    const openRequest = indexedDB.open('spreadsheetDB', 2);
 
-    request = indexedDB.open('SpreadsheetDB', 1);
-
-    request.onupgradeneeded = (event) => {
-      const db = event.target.result;
-
-      if (!db.objectStoreNames.contains('sheets')) {
-        db.createObjectStore('sheets', { keyPath: 'key' });
+    openRequest.onsuccess = function () {
+      const db = openRequest.result;
+      if (!db.objectStoreNames.contains('spreadsheet')) {
+        resolve({});
+        return;
       }
+
+      const transaction = db.transaction('spreadsheet', 'readonly');
+      const spreadsheet = transaction.objectStore('spreadsheet');
+      const request = spreadsheet.get(key);
+
+      request.onsuccess = function () {
+        resolve(request.result || {});
+      };
+
+      request.onerror = function () {
+        reject(request.error);
+      };
     };
 
-    request.onsuccess = (event) => {
-      resolve(event.target.result);
-    };
-
-    request.onerror = (event) => {
-      reject(`Database error: ${event.target.error}`);
+    openRequest.onerror = function () {
+      reject(openRequest.error);
     };
   });
 }
 
 export function saveToDB(key, value) {
-  console.log('Saving data:', value);
-  return initFullDB().then((db) => {
-    return new Promise((resolve, reject) => {
-      const transaction = db.transaction(['sheets'], 'readwrite');
-      const store = transaction.objectStore('sheets');
-      const request = store.put({ key, value });
+  return new Promise((resolve, reject) => {
+    const openRequest = indexedDB.open('spreadsheetDB', 2);
 
-      request.onsuccess = () => {
-        resolve();
+    openRequest.onupgradeneeded = function () {
+      const db = openRequest.result;
+      if (!db.objectStoreNames.contains('spreadsheet')) {
+        db.createObjectStore('spreadsheet');
+      }
+    };
+
+    openRequest.onsuccess = function () {
+      const db = openRequest.result;
+      const transaction = db.transaction('spreadsheet', 'readwrite');
+      const spreadsheet = transaction.objectStore('spreadsheet');
+      const request = spreadsheet.put(value, key);
+
+      request.onsuccess = function () {
+        resolve(request.result);
       };
 
-      request.onerror = (event) => {
-        reject(`Save error: ${event.target.errorCode}`);
+      request.onerror = function () {
+        reject(request.error);
       };
-    });
+    };
+
+    openRequest.onerror = function () {
+      reject(openRequest.error);
+    };
   });
 }
+export function deleteFromDB(key) {
+  const openRequest = indexedDB.open('spreadsheetDB', 1);
 
-export function getFromDB(key) {
-  return initFullDB().then((db) => {
-    return new Promise((resolve, reject) => {
-      const transaction = db.transaction(['sheets'], 'readonly');
-      const store = transaction.objectStore('sheets');
-      const request = store.get(key);
+  openRequest.onupgradeneeded = function () {
+    const db = openRequest.result;
+    if (!db.objectStoreNames.contains('spreadsheet')) {
+      db.createObjectStore('spreadsheet');
+    }
+  };
 
-      request.onsuccess = (event) => {
-        if (event.target.result) {
-          resolve(event.target.result.value);
-        } else {
-          resolve(null);
-        }
-      };
+  openRequest.onsuccess = function () {
+    const db = openRequest.result;
+    const transaction = db.transaction(['spreadsheet'], 'readwrite');
+    const store = transaction.objectStore('spreadsheet');
+    const request = store.delete(key);
 
-      request.onerror = (event) => {
-        reject(`Get error: ${event.target.errorCode}`);
-      };
-    });
-  });
+    request.onsuccess = function () {
+      console.log(`Data with key ${key} deleted successfully`);
+    };
+
+    request.onerror = function (event) {
+      console.error(`Error deleting data with key ${key}:`, event.target.error);
+    };
+  };
+
+  openRequest.onerror = function () {
+    console.error('Failed to open database:', openRequest.error);
+  };
 }

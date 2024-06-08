@@ -1,5 +1,5 @@
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
-import { initFullDB, getFromDB } from './spreadsheet/db.js';
+import { initDB, getFromDB } from './spreadsheet/db.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
 import { mountEditor, getValue } from './spreadsheet/codeEditor.js';
@@ -10,7 +10,7 @@ import Spreadsheet from './spreadsheet/Class/index.js';
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
 // indexedDB
-initFullDB()
+initDB()
   .then(() => {
     console.log('IndexedDB initialized');
 

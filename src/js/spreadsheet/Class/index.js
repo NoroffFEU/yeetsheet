@@ -119,7 +119,7 @@ export default class Spreadsheet {
       console.log(exeCode);
       console.log(this.selectedCell);
       exeCode && (this.selectedCell.value = exeCode);
-      this.save();
+      // this.save();
     } catch (error) {
       console.error('Error executing code: ', error);
     }
