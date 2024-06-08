@@ -25,15 +25,21 @@ export default class Spreadsheet {
   constructor(data = {}) {
     // display will be the HTML element that will be appended to the DOM after displaySheet is called
     this.display = false;
-    this.title = data?.title || 'Untitled Spreadsheet';
-    this.rows = data?.rows || 40;
-    this.cols = data?.cols || 26;
+    this.title = data.title ? data.title : 'Untitled Spreadsheet';
+    this.rows = data.rows ? data.rows : 40;
+    this.cols = data.cols ? data.cols : 26;
+
     this._selectedCell = null;
     this.recentlySelected = [];
     // to find a specific cell, you can use this.allCells[row][col]
     console.log(this.allCells);
 
-    this.allCells = createCells(this.rows, this.cols, data?.allCells, this);
+    this.allCells = createCells(
+      this.rows,
+      this.cols,
+      data.allCells ? data.allCells : [],
+      this,
+    );
 
     // adds eventlisteners to the addCol and addRow buttons (if they exist)
     addColBtn && addColBtn.addEventListener('click', () => this.addCol());
@@ -105,14 +111,15 @@ export default class Spreadsheet {
 
     this.selectedCell.callInput = callInput;
     this.selectedCell.code = code;
+
     try {
       const grid = this.allCells;
       if (!grid) return console.error('No grid found');
-
       const exeCode = eval(`${code} ${callInput}`);
       console.log(exeCode);
       console.log(this.selectedCell);
       exeCode && (this.selectedCell.value = exeCode);
+      this.save();
     } catch (error) {
       console.error('Error executing code: ', error);
     }
