@@ -69,6 +69,7 @@ export function showMessage(message, type) {
       'rounded-lg',
       'shadow-lg',
     );
+    modalContent.setAttribute('data-cy', 'confirmation-message');
 
     const modalHeader = document.createElement('div');
     modalHeader.classList.add(
