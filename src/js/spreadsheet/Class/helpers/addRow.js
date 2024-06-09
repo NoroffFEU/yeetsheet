@@ -17,7 +17,7 @@ export default function addRow(cols, row) {
       }),
     );
   }
-  const spreadSheetContainer = document.querySelector('.spreadsheet-container');
+  const spreadSheetContainer = document.querySelector('.spreadsheet-container tbody');
 
   // checks first if there is a spreadsheet container to append to (incase of readOnlyMode in future)
   spreadSheetContainer && spreadSheetContainer.appendChild(cellRow(cols, row));
