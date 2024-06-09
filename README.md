@@ -102,3 +102,22 @@ To use these custom colors in your CSS classes, simply refer to them by their na
 <button class="bg-ys-buttonPrimary text-ys-backgroundAndText">Primary Button</button>
 <button class="border-ys-buttonSecondary p-4">Secondary Border</div>
 <button class="bg-ys-buttonTertiary text-ys-backgroundAndText">Tertiary Button</button>
+```
+
+## Icons 
+
+The icon system works by selecting all elements in the document that have the `data-icon` attribute. For each of these elements, it retrieves the icon name, size, and optional class from the data attributes. It then returns the corresponding SVG icon, parses it into an HTML element, and replaces the original element with this new SVG element.
+
+### Adding new icons
+
+If you need to add a new icon go to `js/icons/index.js`, and place the SVG code and a descriptive key in the object. This key has to match the value of the data-icon attribute.
+- Add `height="${size}" class="${classes}"`
+- Remove width, fill and stroke attributes ( you may need to test which strokes and fills need to be removed or replaced by `currentColor` )
+
+### Usage Examples
+
+```html
+<span data-icon="home" data-size="24" data-class="icon-home"></span>
+<span data-icon="settings" data-size="32" data-class="icon-settings"></span>
+<span data-icon="user" data-size="16" data-class="icon-user"></span>
+```

@@ -212,6 +212,7 @@
               placeholder="Search..."
               aria-label="search-input"
               id="searchInput"
+              data-cy="search-input"
             />
             <div class="flex flex-col items-center gap-2">
               <button
@@ -273,9 +274,8 @@
               </button>
               <div id="sheet1" class="hidden">
                 <ul class="dark:text-ys-logoLoader-yellow text-start pl-5">
-                  <button class="text-left text-white" id="add-col-btn">
-                    Add col
-                  </button>
+                  <li>#</li>
+                  <li>#</li>
                   <li>#</li>
                 </ul>
               </div>
@@ -321,6 +321,8 @@
             <section class="p-5" data-cy="spreadsheet">
               <div
                 id="spreadsheetContainer"
+                data-cy="spreadsheetContainer"
+                class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
                 class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-ys-amethyst-200 dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
               >
                 <!-- Spreadsheet content goes here -->
@@ -369,6 +371,13 @@
                       >
                         none
                       </div>
+                      <input
+                        type="text"
+                        class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                        placeholder="cell"
+                        aria-label=""
+                        id=""
+                      />
                       <input
                         type="text"
                         class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"

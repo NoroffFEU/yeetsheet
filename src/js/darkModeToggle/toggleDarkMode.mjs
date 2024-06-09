@@ -9,21 +9,25 @@
  * @returns {void}
  */
 export default function toggleDarkMode() {
-  const darkModeToggleBtn = document.querySelector('#darkModeToggleBtn');
+  const darkModeToggleBtn = document.querySelector("#darkModeToggleBtn");
+  const darkModeToggleText = document.querySelector(".toggle-text");
   if (darkModeToggleBtn) {
-    const theme = localStorage.getItem('theme');
-    if (theme === 'light') {
-      document.documentElement.classList.remove('dark');
-      darkModeToggleBtn.innerText = 'DRK';
+    const theme = localStorage.getItem("theme");
+    if (theme === "light") {
+      document.documentElement.classList.remove("dark");
+      darkModeToggleText.innerText = "Dark off"
+      darkModeToggleBtn.classList.add("light");
     }
-    darkModeToggleBtn.addEventListener('click', (e) => {
-      document.documentElement.classList.toggle('dark');
-      if (!document.documentElement.classList.contains('dark')) {
-        e.target.innerText = 'DRK';
-        localStorage.setItem('theme', 'light');
+    darkModeToggleBtn.addEventListener("click", (e) => {
+      document.documentElement.classList.toggle("dark");
+      if (!document.documentElement.classList.contains("dark")) {
+        e.target.classList.add("light");
+        darkModeToggleText.innerText = "Dark off"
+        localStorage.setItem("theme", "light")
       } else {
-        e.target.innerText = 'LHT';
-        localStorage.removeItem('theme');
+        e.target.classList.remove("light");
+        darkModeToggleText.innerText = "Dark on"
+        localStorage.removeItem("theme")
       }
     });
   }
