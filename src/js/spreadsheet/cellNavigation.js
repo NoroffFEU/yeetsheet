@@ -7,7 +7,7 @@
  * @return {string} value - The cell value content.
  */
 
-import { setValue } from './codeEditor';
+// import { setValue } from './codeEditor';
 
 /**
  * Callback on cell blur. Can be used to save the cell value.
@@ -15,7 +15,6 @@ import { setValue } from './codeEditor';
  * @callback OnBlurCellCallback
  * @param {number} col - The column index.
  * @param {number} row - The row index.
- * @param {string} value - The cell value content.
  */
 
 /**
@@ -43,74 +42,75 @@ export function addCellTargetingEvents(
         return;
       }
 
-      let input = document.createElement('input');
-      input.type = 'text';
-
-      input.dataset.col = col;
-      input.dataset.row = row;
+      td.focus();
+      ev.preventDefault();
 
       // Use the onFocusCellCallback and handle the promise
-      onFocusCellCallback(col, row).then((value) => {
-        input.value = value;
+      const focusResult = onFocusCellCallback && onFocusCellCallback(col, row);
+      if (focusResult !== undefined) {
+        // console.log({ focusResult });
+        // focusResult.then((value) => {
+        //   setValue(value);
+        // });
+      }
+    },
+    false,
+  );
 
-        setValue(value);
+  table.addEventListener(
+    'blur',
+    (ev) => {
+      ev.preventDefault();
 
-        // Add the `blur` FocusEvent
-        input.addEventListener('blur', (ev) => {
-          const cell = ev.currentTarget;
+      console.log('keydown', ev);
+      const td = ev.target;
 
-          const col = parseInt(cell.dataset.col, 10);
-          const row = parseInt(cell.dataset.row, 10);
+      const col = parseInt(td.dataset.col, 10);
+      const row = parseInt(td.dataset.row, 10);
 
-          const value = ev.currentTarget.value;
+      onBlurCellCallback && onBlurCellCallback(col, row);
+    },
+    false,
+  );
 
-          onBlurCellCallback(col, row, value);
+  table.addEventListener(
+    'keydown',
+    (ev) => {
+      console.log('keydown', ev);
+      const td = ev.target;
+      const col = parseInt(td.dataset.col, 10);
+      const row = parseInt(td.dataset.row, 10);
 
-          ev.currentTarget?.remove();
-          td.textContent = value;
-        });
+      let handled = false;
 
-        input.addEventListener('keydown', (ev) => {
-          const input = ev.target;
-          const col = parseInt(input.dataset.col, 10);
-          const row = parseInt(input.dataset.row, 10);
+      if (ev.key === 'ArrowRight') {
+        handled = true;
+        selectNextCell(col + 1, row);
+      } else if (ev.key === 'ArrowLeft') {
+        handled = true;
+        selectNextCell(col - 1, row);
+      } else if (ev.key === 'ArrowDown') {
+        handled = true;
+        selectNextCell(col, row + 1);
+      } else if (ev.key === 'ArrowUp') {
+        handled = true;
+        selectNextCell(col, row - 1);
+      } else if (ev.key === 'Tab' && ev.shiftKey === true) {
+        // left
+        handled = true;
+        selectNextCell(col - 1, row);
+      } else if (ev.key === 'Tab' && ev.shiftKey === false) {
+        // right
+        handled = true;
+        selectNextCell(col + 1, row);
+      } else if (ev.key === 'Enter') {
+        handled = true;
+        selectNextCell(col, row + 1);
+      }
 
-          let handled = false;
-
-          if (ev.key === 'ArrowRight') {
-            handled = true;
-            selectNextCell(col + 1, row);
-          } else if (ev.key === 'ArrowLeft') {
-            handled = true;
-            selectNextCell(col - 1, row);
-          } else if (ev.key === 'ArrowDown') {
-            handled = true;
-            selectNextCell(col, row + 1);
-          } else if (ev.key === 'ArrowUp') {
-            handled = true;
-            selectNextCell(col, row - 1);
-          } else if (ev.key === 'Tab' && ev.shiftKey === true) {
-            // left
-            handled = true;
-            selectNextCell(col - 1, row);
-          } else if (ev.key === 'Tab' && ev.shiftKey === false) {
-            // right
-            handled = true;
-            selectNextCell(col + 1, row);
-          } else if (ev.key === 'Enter') {
-            handled = true;
-            selectNextCell(col, row + 1);
-          }
-
-          if (handled) {
-            ev.preventDefault();
-          }
-        });
-
-        td.textContent = '';
-        td.appendChild(input);
-        input.focus();
-      });
+      if (handled) {
+        ev.preventDefault();
+      }
     },
     false,
   );

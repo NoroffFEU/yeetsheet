@@ -69,8 +69,9 @@ textarea {
 }
 
 /* It handles online cell editing */
-table tr td input {
-  @apply size-full p-4;
+table tr td:focus {
+  @apply outline outline-2 -outline-offset-2 outline-ys-amethyst-500;
+  @apply border border-0;
 }
 
 /* It keeps the first row and column header sticky */
