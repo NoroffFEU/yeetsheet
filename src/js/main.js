@@ -8,52 +8,62 @@ import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
+import { setupZoomMenu } from './header/zoomMenu.js';
 
-const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
+document.addEventListener('DOMContentLoaded', () => {
+  const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
+  console.log(spreadsheetContainer); // Debug to ensure it's found
 
-// indexedDB
-initDB()
-  .then(() => {
-    console.log('IndexedDB initialized');
+  if (!spreadsheetContainer) {
+    console.error('Spreadsheet container not found');
+    return;
+  }
 
-    // Header menu
-    showDropdownMenu();
+  // Initialize the zoom menu
+  setupZoomMenu();
 
-    // Active state of buttons in the console
-    consoleBtnsActiveState();
+  // Initialize IndexedDB
+  initDB()
+    .then(() => {
+      console.log('IndexedDB initialized');
 
-    // DarkMode
-    toggleDarkMode();
+      // Header menu
+      showDropdownMenu();
 
-    const [cols, rows] = userColsAndRows();
+      // Active state of buttons in the console
+      consoleBtnsActiveState();
 
-    // Create and append the spreadsheet to the container
-    spreadsheetContainer.append(spreadsheet(cols, rows));
+      // DarkMode
+      toggleDarkMode();
 
-    mountEditor(() => {
-      // get the code editor current value.
-      const value = getValue();
+      const [cols, rows] = userColsAndRows();
 
-      // just log to the console to show how to use it.
-      console.log('editor', value);
+      // Create and append the spreadsheet to the container
+      spreadsheetContainer.append(spreadsheet(cols, rows));
+
+      mountEditor(() => {
+        // get the code editor current value.
+        const value = getValue();
+        console.log('editor', value);
+      });
+
+      addCellTargetingEvents(
+        '#spreadsheetContainer table',
+        (col, row) => {
+          const cellId = numberToLetter(col) + (row + 1);
+          // read cell value from IndexedDB
+          return getCellValue(cellId).then((value) => value || '');
+        },
+        (col, row, value) => {
+          const cellId = numberToLetter(col) + (row + 1);
+          // save cell value to IndexedDB
+          saveCellValue(cellId, value);
+        },
+      );
+    })
+    .catch((error) => {
+      console.error('Failed to initialize IndexedDB:', error);
     });
 
-    addCellTargetingEvents(
-      '#spreadsheetContainer table',
-      (col, row) => {
-        const cellId = numberToLetter(col) + (row + 1);
-        // read cell value from IndexedDB
-        return getCellValue(cellId).then((value) => value || '');
-      },
-      (col, row, value) => {
-        const cellId = numberToLetter(col) + (row + 1);
-        // save cell value to IndexedDB
-        saveCellValue(cellId, value);
-      },
-    );
-  })
-  .catch((error) => {
-    console.error('Failed to initialize IndexedDB:', error);
-  });
-
-replaceIconsWithSVGs();
+  replaceIconsWithSVGs();
+});
