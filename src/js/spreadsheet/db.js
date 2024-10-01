@@ -40,7 +40,6 @@ export function saveCellValue(id, value) {
   const transaction = db.transaction([STORE_NAME], 'readwrite');
   const store = transaction.objectStore(STORE_NAME);
   const cell = { id, value };
-
   const request = store.put(cell);
 
   request.onsuccess = function () {

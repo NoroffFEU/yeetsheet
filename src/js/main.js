@@ -2,6 +2,7 @@ import spreadsheet from './spreadsheet';
 import userColsAndRows from './helpers/userColsAndRows';
 import numberToLetter from './helpers/numberToLetter';
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
+import { sheetNavigation } from './spreadsheet/sheetNavigation.js';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
 import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
 import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
@@ -9,7 +10,10 @@ import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
 
-const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
+const spreadsheet1 = document.querySelector('#spreadsheet1');
+const spreadsheet2 = document.querySelector('#spreadsheet2');
+const spreadsheet3 = document.querySelector('#spreadsheet3');
+const spreadsheet4 = document.querySelector('#spreadsheet4');
 
 // indexedDB
 initDB()
@@ -27,8 +31,13 @@ initDB()
 
     const [cols, rows] = userColsAndRows();
 
-    // Create and append the spreadsheet to the container
-    spreadsheetContainer.append(spreadsheet(cols, rows));
+    // Create and append the spreadsheets to the container
+    spreadsheet1.append(spreadsheet(cols, rows));
+    spreadsheet2.append(spreadsheet(cols, rows));
+    spreadsheet3.append(spreadsheet(cols, rows));
+    spreadsheet4.append(spreadsheet(cols, rows));
+
+    sheetNavigation();
 
     mountEditor(() => {
       // get the code editor current value.
@@ -41,13 +50,19 @@ initDB()
     addCellTargetingEvents(
       '#spreadsheetContainer table',
       (col, row) => {
-        const cellId = numberToLetter(col) + (row + 1);
-        // read cell value from IndexedDB
+        const activeSheetId = document.querySelector(
+          '.spreadsheet-content:not(.hidden)',
+        ).id;
+        const cellId = `${activeSheetId}-${numberToLetter(col)}${row + 1}`;
+        // Retrieve cell value from IndexedDB using the new unique cell ID
         return getCellValue(cellId).then((value) => value || '');
       },
       (col, row, value) => {
-        const cellId = numberToLetter(col) + (row + 1);
-        // save cell value to IndexedDB
+        const activeSheetId = document.querySelector(
+          '.spreadsheet-content:not(.hidden)',
+        ).id;
+        const cellId = `${activeSheetId}-${numberToLetter(col)}${row + 1}`;
+        // Save cell value to IndexedDB using the new unique cell ID
         saveCellValue(cellId, value);
       },
     );
