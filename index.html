@@ -248,21 +248,41 @@
             <section class="p-5" data-cy="app-utilities">
               <div class="dark:bg-ys-overlay-15">
                 <div class="flex" data-cy="utilities-buttons">
-                  <button class="console-btn" data-cy="code-editor-btn">
+                  <button
+                    class="console-btn"
+                    data-cy="code-editor-btn"
+                    onclick="showTab('code-wrapper')"
+                  >
                     Code editor
                   </button>
-                  <button class="console-btn" data-cy="console-btn">
+                  <button
+                    class="console-btn"
+                    data-cy="console-btn"
+                    onclick="showTab('code-console')"
+                  >
                     Console
                   </button>
-                  <button class="console-btn" data-cy="errors-btn">
+                  <button
+                    class="console-btn"
+                    data-cy="errors-btn"
+                    onclick="showTab('errors-tab')"
+                  >
                     Errors
                   </button>
-                  <button class="console-btn" data-cy="terminal-btn">
+                  <button
+                    class="console-btn"
+                    data-cy="terminal-btn"
+                    onclick="showTab('terminal-tab')"
+                  >
                     Terminal
                   </button>
                 </div>
-                <div class="p-8 dark:bg-ys-backgroundAndText">
-                  <div id="code-wrapper" data-cy="util:code-editor">
+                <div class="p-8 dark:bg-ys-backgroundAndText tab-content">
+                  <div
+                    id="code-wrapper"
+                    data-cy="util:code-editor"
+                    class="tab-pane active"
+                  >
                     <div
                       id="code-editor"
                       class="code-editor"
@@ -288,6 +308,51 @@
                       <button id="runFunctionBtn" class="default-btn ml-2">
                         Run
                       </button>
+                    </div>
+                  </div>
+                  <div
+                    id="code-console"
+                    data-cy="util:code-console"
+                    class="tab-pane"
+                  >
+                    <div
+                      id="code-console"
+                      class="code-console"
+                      aria-label="Code console"
+                    >
+                      <div class="code-console-output" contenteditable>
+                        Some output
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    id="errors-tab"
+                    class="tab-pane"
+                    data-cy="util:errors-tab"
+                  >
+                    <div
+                      id="errors-console"
+                      class="errors-console"
+                      aria-label="Errors console"
+                    >
+                      <div class="errors-console-output" contenteditable>
+                        Errors will be displayed here
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    id="terminal-tab"
+                    class="tab-pane"
+                    data-cy="util:terminal-tab"
+                  >
+                    <div
+                      id="terminal-console"
+                      class="terminal-console"
+                      aria-label="Terminal console"
+                    >
+                      <div class="terminal-console-output" contenteditable>
+                        Terminal output
+                      </div>
                     </div>
                   </div>
                 </div>

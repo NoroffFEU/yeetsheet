@@ -7,6 +7,8 @@ import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
 import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
+import { showTab, initTabs } from './utils/tabs.mjs';
+import { displayConsoleOutput } from './console/consoleOutPut.mjs';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
@@ -32,7 +34,7 @@ initDB()
     mountEditor(() => {
       // get the code editor current value.
       const value = getValue();
-
+      displayConsoleOutput();
       // just log to the console to show how to use it.
       console.log('editor', value);
     });
@@ -54,3 +56,11 @@ initDB()
   .catch((error) => {
     console.error('Failed to initialize IndexedDB:', error);
   });
+
+//Add the show tab to global scope
+window.showTab = showTab;
+//Adding and initializing tabs of the code editor, console, and terminal
+document.addEventListener('DOMContentLoaded', function () {
+  // Initialize the tabs by showing the first tab and hiding the others
+  initTabs();
+});
