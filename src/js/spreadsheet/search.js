@@ -43,6 +43,7 @@ export function searchCellValue(db, query) {
  *
  * @param {IDBDatabase} db - The IndexedDB database instance.
  */
+
 export function attachSearchEventListener(db) {
   const searchInput = document.getElementById('searchInput');
   const searchResultsCount = document.getElementById('searchResultsCount');
@@ -59,7 +60,12 @@ export function attachSearchEventListener(db) {
         cell.classList.remove('bg-red-400', 'text-black');
       });
       if (searchResultsCount) {
-        searchResultsCount.textContent = 'No results found.';
+        searchResultsCount.textContent = ''; // Removes the search results count text
+        searchResultsCount.classList.remove(
+          'text-red-400',
+          'text-green-500',
+          'font-bold',
+        ); // Removes all text colors and bold when search field is empty
       }
       if (searchResultsList) {
         searchResultsList.innerHTML = '';
@@ -78,28 +84,55 @@ export function attachSearchEventListener(db) {
           cell.classList.remove('bg-red-400', 'text-black');
         });
 
-        results.forEach((result) => {
-          const cellId = result.id;
-          const cellElement = document.getElementById(cellId);
-          if (cellElement) {
-            cellElement.classList.add('bg-red-400', 'text-black');
-          }
-        });
-        if (searchResultsCount) {
-          searchResultsCount.textContent = `${results.length} result(s) found.`;
-        }
-        if (searchResultsList) {
-          searchResultsList.innerHTML = '';
+        if (results.length > 0) {
+          // If results are found, highlight the cells and scroll to the first result
           results.forEach((result) => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `Cell ${result.id}: ${result.value}`;
-            searchResultsList.appendChild(listItem);
+            const cellId = result.id;
+            const cellElement = document.getElementById(cellId);
+            if (cellElement) {
+              cellElement.classList.add('bg-red-400', 'text-black');
+              cellElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+              });
+              cellElement.setAttribute(
+                'aria-label',
+                `Match found: ${result.value}`,
+              );
+            }
           });
-        }
-        if (searchResultsContainer) {
-          searchResultsContainer.classList.remove('hidden');
+
+          // Update search results count with success message and green color
+          if (searchResultsCount) {
+            searchResultsCount.textContent = `${results.length} result(s) found.`;
+            searchResultsCount.classList.remove('text-red-500');
+            searchResultsCount.classList.add('text-green-500', 'font-bold');
+          }
+          // Update search results list with the matching cell values
+          if (searchResultsList) {
+            searchResultsList.innerHTML = '';
+            results.forEach((result) => {
+              const listItem = document.createElement('li');
+              listItem.textContent = `Cell ${result.id}: ${result.value}`;
+              searchResultsList.appendChild(listItem);
+            });
+          }
+          if (searchResultsContainer) {
+            searchResultsContainer.classList.remove('hidden'); // Vis container når resultater finnes
+          }
+        } else {
+          // No results found, shows error message and red color
+          if (searchResultsCount) {
+            searchResultsCount.textContent = 'No results found.';
+            searchResultsCount.classList.remove('text-green-500');
+            searchResultsCount.classList.add('text-red-500', 'font-bold');
+          }
+          if (searchResultsContainer) {
+            searchResultsContainer.classList.add('hidden'); // Skjul containeren hvis ingen treff
+          }
         }
       })
+      // Catch any errors that occur during the search process
       .catch((error) => {
         console.error('Search error:', error);
         if (searchResultsCount) {
