@@ -15,19 +15,16 @@ import { getCellValue } from './db.js';
  */
 
 export default function cell(row, col) {
-  const activeSheetId = document.querySelector(
-    '.spreadsheet-content:not(.hidden)',
-  ).id;
-
-  // Create unique cell ID by combining the sheet ID with the column and row (e.g., 'spreadsheet1-A1')
-  const cellId = `${activeSheetId}-${numberToLetter(col)}${row + 1}`;
-
-  const cellContainer = createEle('td', 'p-0 w-28 border relative');
-  cellContainer.setAttribute('id', cellId);
+  const cellContainer = createEle(
+    'td',
+    'p-0 w-28 border dark:border-ys-overlay-5 border-ys-amethyst-400 relative',
+  );
+  cellContainer.setAttribute('id', numberToLetter(col) + (row + 1));
 
   cellContainer.dataset.col = col;
   cellContainer.dataset.row = row;
 
+  const cellId = numberToLetter(col) + (row + 1);
   getCellValue(cellId).then((value) => {
     if (value !== null) {
       cellContainer.textContent = value;
