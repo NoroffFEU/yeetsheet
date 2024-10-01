@@ -32,8 +32,22 @@
               <span data-icon="logo" data-size="54" data-class=""></span>
             </a>
           </div>
-          <nav class="flex flex-1 justify-start">
-            <ul class="flex gap-8">
+          <!-- Mobile hamburger icon -->
+          <div class="md:hidden">
+            <button id="nav-hamburger-btn" class="flex justify-end pr-5">
+              <span
+                data-icon="hamburgerMenu"
+                data-size="20"
+                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+              ></span>
+            </button>
+          </div>
+          <nav
+            class="hidden md:flex md:flex-1 md:justify-start z-10 absolute right-0 md:static"
+          >
+            <ul
+              class="md:flex gap-8 md:bg-transparent absolute right-5 md:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-8 md:p-0 border border-white md:border-0"
+            >
               <li class="relative">
                 <button
                   type="button"
@@ -49,7 +63,7 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="fileMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
+                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="fileBtn"
@@ -151,7 +165,7 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="zoomMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-13 left-100 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
+                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-13 left-100 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="zoomBtn"
