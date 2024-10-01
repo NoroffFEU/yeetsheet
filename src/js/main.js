@@ -8,6 +8,7 @@ import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
+import { toggleHamburgerMenu } from './header/hamburgerMenu';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
@@ -17,6 +18,7 @@ initDB()
     console.log('IndexedDB initialized');
 
     // Header menu
+    toggleHamburgerMenu();
     showDropdownMenu();
 
     // Active state of buttons in the console
