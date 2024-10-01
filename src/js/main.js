@@ -32,13 +32,19 @@ initDB()
     addCellTargetingEvents(
       '#spreadsheetContainer table',
       (col, row) => {
-        const cellId = numberToLetter(col) + (row + 1);
-        // read cell value from IndexedDB
+        const activeSheetId = document.querySelector(
+          '.spreadsheet-content:not(.hidden)',
+        ).id;
+        const cellId = `${activeSheetId}-${numberToLetter(col)}${row + 1}`;
+        // Retrieve cell value from IndexedDB using the new unique cell ID
         return getCellValue(cellId).then((value) => value || '');
       },
       (col, row, value) => {
-        const cellId = numberToLetter(col) + (row + 1);
-        // save cell value to IndexedDB
+        const activeSheetId = document.querySelector(
+          '.spreadsheet-content:not(.hidden)',
+        ).id;
+        const cellId = `${activeSheetId}-${numberToLetter(col)}${row + 1}`;
+        // Save cell value to IndexedDB using the new unique cell ID
         saveCellValue(cellId, value);
       },
     );
