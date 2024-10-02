@@ -8,6 +8,7 @@ import runCodeEdit from './codeEditor/index.js';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation.js';
 import Spreadsheet from './spreadsheet/Class/index.js';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
+import { toggleHamburgerMenu } from './header/hamburgerMenu';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
@@ -17,6 +18,7 @@ initDB()
     console.log('IndexedDB initialized');
 
     // Header menu
+    toggleHamburgerMenu();
     showDropdownMenu();
 
     // Active state of buttons in the console
