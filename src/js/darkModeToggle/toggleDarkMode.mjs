@@ -11,7 +11,14 @@
 export default function toggleDarkMode() {
   const darkModeToggleBtn = document.querySelector("#darkModeToggleBtn");
   const darkModeToggleText = document.querySelector(".toggle-text");
-  if (darkModeToggleBtn) {
+
+  // Error handling if elements are missing
+  if (!darkModeToggleText) throw new Error('Toggle Text (.toggle-text) not found.');
+  if (!darkModeToggleBtn ) {   
+    throw new Error('Dark Mode Toggle Button (#darkModeToggleBtn) not found.')
+  }
+  else {
+    // if elements are available, then use this code
     const theme = localStorage.getItem("theme");
     if (theme === "light") {
       document.documentElement.classList.remove("dark");
