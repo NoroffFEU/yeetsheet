@@ -40,13 +40,10 @@
                   class="nav-btn"
                   id="fileBtn"
                   data-menu="fileMenu"
-                  aria-label=""
-                  aria-haspopup=""
                 >
                   File
                 </button>
                 <!-- Dropdown-menu -->
-                <!-- could also be made with JS instead -->
                 <div
                   id="fileMenu"
                   class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
@@ -118,37 +115,22 @@
                 </div>
               </li>
               <li>
-                <button
-                  type="button"
-                  class="nav-btn"
-                  id="fileBtn"
-                  aria-label=""
-                >
-                  Help
-                </button>
+                <button type="button" class="nav-btn" id="helpBtn">Help</button>
               </li>
               <li>
-                <button
-                  type="button"
-                  class="nav-btn"
-                  id="fileBtn"
-                  aria-label=""
-                >
+                <button type="button" class="nav-btn" id="settingsBtn">
                   Settings
                 </button>
               </li>
               <li>
                 <button
                   type="button"
-                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500 dropdownArrowDown"
+                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500"
                   id="zoomBtn"
-                  data-menu="zoomMenu"
-                  aria-label=""
                 >
                   100%
                 </button>
                 <!-- Dropdown-menu -->
-                <!-- could also be made with JS instead -->
                 <div
                   id="zoomMenu"
                   class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-13 left-100 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
@@ -170,7 +152,7 @@
                     </li>
                     <li>
                       <button
-                        id="zoom-item-1"
+                        id="zoom-item-2"
                         class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         150%
@@ -178,7 +160,7 @@
                     </li>
                     <li>
                       <button
-                        id="zoom-item-1"
+                        id="zoom-item-3"
                         class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         75%
@@ -186,7 +168,7 @@
                     </li>
                     <li>
                       <button
-                        id="zoom-item-1"
+                        id="zoom-item-4"
                         class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         50%
@@ -194,7 +176,7 @@
                     </li>
                     <li>
                       <button
-                        id="zoom-item-1"
+                        id="zoom-item-custom"
                         class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Custom...
@@ -344,7 +326,6 @@
                 id="spreadsheetContainer"
                 data-cy="spreadsheetContainer"
                 class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
-                class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-ys-amethyst-200 dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
               >
                 <!-- Spreadsheet content goes here -->
               </div>
@@ -377,29 +358,19 @@
                       id="code-editor"
                       aria-label="Code editor"
                     ></div>
-                    <!-- <textarea
-                      class="dark:bg-ys-backgroundAndText bg-ys-amethyst-200 p-5 outline-none"
-                      name=""
-                      id=""
-                      aria-label=""
-                      rows="6"
-                    >
-                    </textarea> -->
                     <div class="flex gap-1 pt-5">
-                      <input
-                        type="text"
-                        class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
-                        placeholder="cell"
-                        aria-label=""
-                        id="cellIdentifierDisplay"
-                      />
+                      <div
+                        class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400 text-white flex items-center justify-center"
+                        id="selected-cell"
+                      >
+                        none
+                      </div>
                       <input
                         type="text"
                         class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                         placeholder="function"
-                        value=""
                         aria-label=""
-                        id=""
+                        id="function-call-input"
                       />
                       <button id="runFunctionBtn" class="default-btn ml-2">
                         Run
@@ -479,7 +450,7 @@
     </div>
 
     <footer>
-      <!-- If there´s going to be a footer -->
+      <!-- If there's going to be a footer -->
     </footer>
     <script>
       document.addEventListener('DOMContentLoaded', function () {
@@ -491,22 +462,22 @@
         const saveProjectNameBtn =
           document.getElementById('saveProjectNameBtn');
 
-        // "Edit" simgesine tıklandığında proje adı düzenlenebilir hale gelir
+        // "Edit" button functionality to edit project name
         editProjectNameBtn.addEventListener('click', function () {
-          projectNameInput.value = projectNameDisplay.textContent; // Mevcut proje adını input'a yükle
-          projectNameDisplay.classList.add('hidden'); // Proje adını gizle
-          projectNameInput.classList.remove('hidden'); // Input alanını göster
-          saveProjectNameBtn.classList.remove('hidden'); // Save butonunu göster
-          editProjectNameBtn.classList.add('hidden'); // Edit butonunu gizle
+          projectNameInput.value = projectNameDisplay.textContent;
+          projectNameDisplay.classList.add('hidden');
+          projectNameInput.classList.remove('hidden');
+          saveProjectNameBtn.classList.remove('hidden');
+          editProjectNameBtn.classList.add('hidden');
         });
 
-        // "Save" butonuna tıklandığında proje adını kaydet
+        // "Save" button functionality to save project name
         saveProjectNameBtn.addEventListener('click', function () {
-          projectNameDisplay.textContent = projectNameInput.value; // Yeni proje adını kaydet
-          projectNameDisplay.classList.remove('hidden'); // Proje adını tekrar göster
-          projectNameInput.classList.add('hidden'); // Input alanını gizle
-          saveProjectNameBtn.classList.add('hidden'); // Save butonunu gizle
-          editProjectNameBtn.classList.remove('hidden'); // Edit butonunu tekrar göster
+          projectNameDisplay.textContent = projectNameInput.value;
+          projectNameDisplay.classList.remove('hidden');
+          projectNameInput.classList.add('hidden');
+          saveProjectNameBtn.classList.add('hidden');
+          editProjectNameBtn.classList.remove('hidden');
         });
       });
     </script>
