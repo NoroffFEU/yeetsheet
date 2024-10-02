@@ -1,5 +1,4 @@
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
-import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
 import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
