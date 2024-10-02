@@ -21,6 +21,9 @@ export function initDB() {
     request.onupgradeneeded = function (event) {
       const db = event.target.result;
       db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+      if (!db.objectStoreNames.contains('spreadsheet')) {
+        db.createObjectStore('spreadsheet');
+      }
       console.log('Setup complete');
     };
 
@@ -35,7 +38,6 @@ export function initDB() {
     };
   });
 }
-
 export function saveCellValue(id, value) {
   const transaction = db.transaction([STORE_NAME], 'readwrite');
   const store = transaction.objectStore(STORE_NAME);
@@ -66,4 +68,94 @@ export function getCellValue(id) {
       reject(event.target.error);
     };
   });
+}
+export function getFromDB(key) {
+  return new Promise((resolve, reject) => {
+    const openRequest = indexedDB.open('spreadsheetDB', 2);
+
+    openRequest.onsuccess = function () {
+      const db = openRequest.result;
+      if (!db.objectStoreNames.contains('spreadsheet')) {
+        resolve({});
+        return;
+      }
+
+      const transaction = db.transaction('spreadsheet', 'readonly');
+      const spreadsheet = transaction.objectStore('spreadsheet');
+      const request = spreadsheet.get(key);
+
+      request.onsuccess = function () {
+        resolve(request.result || {});
+      };
+
+      request.onerror = function () {
+        reject(request.error);
+      };
+    };
+
+    openRequest.onerror = function () {
+      reject(openRequest.error);
+    };
+  });
+}
+
+export function saveToDB(key, value) {
+  return new Promise((resolve, reject) => {
+    const openRequest = indexedDB.open('spreadsheetDB', 2);
+
+    openRequest.onupgradeneeded = function () {
+      const db = openRequest.result;
+      if (!db.objectStoreNames.contains('spreadsheet')) {
+        db.createObjectStore('spreadsheet');
+      }
+    };
+
+    openRequest.onsuccess = function () {
+      const db = openRequest.result;
+      const transaction = db.transaction('spreadsheet', 'readwrite');
+      const spreadsheet = transaction.objectStore('spreadsheet');
+      const request = spreadsheet.put(value, key);
+
+      request.onsuccess = function () {
+        resolve(request.result);
+      };
+
+      request.onerror = function () {
+        reject(request.error);
+      };
+    };
+
+    openRequest.onerror = function () {
+      reject(openRequest.error);
+    };
+  });
+}
+export function deleteFromDB(key) {
+  const openRequest = indexedDB.open('spreadsheetDB', 1);
+
+  openRequest.onupgradeneeded = function () {
+    const db = openRequest.result;
+    if (!db.objectStoreNames.contains('spreadsheet')) {
+      db.createObjectStore('spreadsheet');
+    }
+  };
+
+  openRequest.onsuccess = function () {
+    const db = openRequest.result;
+    const transaction = db.transaction(['spreadsheet'], 'readwrite');
+    const store = transaction.objectStore('spreadsheet');
+    const request = store.delete(key);
+
+    request.onsuccess = function () {
+      console.log(`Data with key ${key} deleted successfully`);
+    };
+
+    request.onerror = function (event) {
+      console.error(`Error deleting data with key ${key}:`, event.target.error);
+    };
+  };
+
+  openRequest.onerror = function () {
+    console.error('Failed to open database:', openRequest.error);
+  };
 }

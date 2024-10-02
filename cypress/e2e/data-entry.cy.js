@@ -7,18 +7,16 @@ describe('Data Entry Using Keyboard Input and Save Changes', () => {
   it('should enter data and verify it is displayed', () => {
     cy.get('#spreadsheetContainer').scrollTo('topLeft');
 
-    cy.get('#A1').should('be.visible');
-    cy.get('#A1').click();
-    cy.get('#A1').type('Test Data{enter}');
+    cy.get('#A1').should('be.visible').click();
+    cy.focused().type('Test Data{enter}');
     cy.get('#A1').should('contain.text', 'Test Data');
   });
 
   it('should enter a JavaScript function and verify it is displayed as text', () => {
     cy.get('#spreadsheetContainer').scrollTo('topLeft');
 
-    cy.get('#B1').should('be.visible');
-    cy.get('#B1').click();
-    cy.get('#B1').type('{selectall}() => 2 + 2{enter}');
+    cy.get('#B1').should('be.visible').click();
+    cy.focused().type('{selectall}() => 2 + 2{enter}');
 
     // Log the cell content for debugging
     cy.get('#B1')
@@ -32,9 +30,11 @@ describe('Data Entry Using Keyboard Input and Save Changes', () => {
 
   // Click the "Save Changes" button
   it('should save changes and verify confirmation message', () => {
-    cy.get('[data-cy="save-changes-button"]').should('be.visible');
-    cy.get('[data-cy="save-changes-button"]').click();
-    cy.get('[data-cy="confirmation-message"]').should('be.visible');
+    cy.get('[data-cy="save-changes-button"]').should('be.visible').click();
+
+    cy.get('[data-cy="confirmation-message"]', { timeout: 5000 })
+      .should('be.visible')
+      .and('contain.text', 'Changes saved successfully');
   });
 
   // Open IndexedDB and verify data

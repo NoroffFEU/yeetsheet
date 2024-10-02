@@ -1,4 +1,5 @@
 /**
+
  * Callback on cell focus. Can be used to set the cell value.
  *
  * @callback OnFocusCellCallback
@@ -7,7 +8,7 @@
  * @return {string} value - The cell value content.
  */
 
-import { setValue } from './codeEditor';
+// import { setValue } from './codeEditor';
 
 /**
  * Callback on cell blur. Can be used to save the cell value.
@@ -15,19 +16,18 @@ import { setValue } from './codeEditor';
  * @callback OnBlurCellCallback
  * @param {number} col - The column index.
  * @param {number} row - The row index.
- * @param {string} value - The cell value content.
  */
 
 /**
  * @description Add events to handle cell navigation.
  * @param {string} tableSelector
- * @param {OnFocusCellCallback} onFocusCellCallback Callback function to handle the load cell content on `focus` event. It sends col, row and expects back the text that should be used.
- * @param {OnBlurCellCallback} onBlurCellCallback Callback function to handle the save cell content on `blur`event. It sends col, row and value params.
+ * @param {LoadCellCallback} loadCellCallback Callback function to handle the load cell content on `focus` event. It sends col, row and expects back the text that should be used.
+ * @param {SaveCellCallback} saveCellCallback Callback function to handle the save cell content on `blur`event. It sends col, row and value params.
  */
 export function addCellTargetingEvents(
   tableSelector,
-  onFocusCellCallback,
-  onBlurCellCallback,
+  loadCellCallback,
+  saveCellCallback,
 ) {
   const table = document.querySelector(tableSelector);
 
@@ -43,19 +43,89 @@ export function addCellTargetingEvents(
         return;
       }
 
+
+      td.focus();
+      ev.preventDefault();
+
+      // Use the onFocusCellCallback and handle the promise
+      const focusResult = onFocusCellCallback && onFocusCellCallback(col, row);
+      if (focusResult !== undefined) {
+        // console.log({ focusResult });
+        // focusResult.then((value) => {
+        //   setValue(value);
+        // });
+      }
+    },
+    false,
+  );
+
+  table.addEventListener(
+    'blur',
+    (ev) => {
+      ev.preventDefault();
+
+      console.log('keydown', ev);
+      const td = ev.target;
+
+      const col = parseInt(td.dataset.col, 10);
+      const row = parseInt(td.dataset.row, 10);
+
+      onBlurCellCallback && onBlurCellCallback(col, row);
+    },
+    false,
+  );
+
+  table.addEventListener(
+    'keydown',
+    (ev) => {
+      console.log('keydown', ev);
+      const td = ev.target;
+      const col = parseInt(td.dataset.col, 10);
+      const row = parseInt(td.dataset.row, 10);
+
+      let handled = false;
+
+      if (ev.key === 'ArrowRight') {
+        handled = true;
+        selectNextCell(col + 1, row);
+      } else if (ev.key === 'ArrowLeft') {
+        handled = true;
+        selectNextCell(col - 1, row);
+      } else if (ev.key === 'ArrowDown') {
+        handled = true;
+        selectNextCell(col, row + 1);
+      } else if (ev.key === 'ArrowUp') {
+        handled = true;
+        selectNextCell(col, row - 1);
+      } else if (ev.key === 'Tab' && ev.shiftKey === true) {
+        // left
+        handled = true;
+        selectNextCell(col - 1, row);
+      } else if (ev.key === 'Tab' && ev.shiftKey === false) {
+        // right
+        handled = true;
+        selectNextCell(col + 1, row);
+      } else if (ev.key === 'Enter') {
+        handled = true;
+        selectNextCell(col, row + 1);
+      }
+
+      if (handled) {
+        ev.preventDefault();
+      }
+      
       let input = document.createElement('input');
       input.type = 'text';
+      input.classList.add('p-0', 'text-black', 'px-1');
 
       input.dataset.col = col;
       input.dataset.row = row;
 
-      // Use the onFocusCellCallback and handle the promise
-      onFocusCellCallback(col, row).then((value) => {
+      // Use the loadCellCallback and handle the promise
+      loadCellCallback(col, row).then((value) => {
         input.value = value;
 
-        setValue(value);
-
-        // Add the `blur` FocusEvent
+        // Add the FocusEvent
         input.addEventListener('blur', (ev) => {
           const cell = ev.currentTarget;
 
@@ -64,7 +134,7 @@ export function addCellTargetingEvents(
 
           const value = ev.currentTarget.value;
 
-          onBlurCellCallback(col, row, value);
+          saveCellCallback(col, row, value);
 
           ev.currentTarget?.remove();
           td.textContent = value;
