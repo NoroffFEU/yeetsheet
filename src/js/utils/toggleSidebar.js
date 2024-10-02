@@ -26,5 +26,8 @@ export function toggleSidebar() {
     sidebarContent.classList.toggle('hidden');
     sidePanel.classList.toggle('sidebar-narrow');
     sidebarIcons.classList.toggle('hidden');
+    const ariaExpanded =
+      toggleButton.getAttribute('aria-expanded') === 'true' ? 'false' : 'true';
+    toggleButton.setAttribute('aria-expanded', ariaExpanded);
   });
 }
