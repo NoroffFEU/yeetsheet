@@ -1,5 +1,8 @@
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
-import { initDB, getFromDB } from './spreadsheet/db.js';
+import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
+import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
+import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
+import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
 import { mountEditor, getValue } from './spreadsheet/codeEditor.js';
@@ -12,55 +15,8 @@ const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
 // indexedDB
 initDB()
-  .then(() => {
+  .then((db) => {
     console.log('IndexedDB initialized');
-
-    getFromDB('spreadsheetData').then((data) => {
-      console.log(data);
-      // Create and append the spreadsheet to the container
-      const sheet = new Spreadsheet(data);
-
-      mountEditor(() => {
-        // get the code editor current value.
-        const value = getValue();
-        // just log to the console to show how to use it.
-        console.log(value);
-      });
-
-      runCodeEdit(sheet);
-
-      spreadsheetContainer.append(sheet.displaySheet());
-
-      // cell navigation
-      addCellTargetingEvents(
-        'table.spreadsheet-container',
-        (col, row) => {
-          console.log('focus', { col, row });
-          /*
-           * onFocusCellCallback => here the cell focus can be handled, for example to set the editor content
-           * NB. Just remove the lambda if not needed
-           */
-
-          // previous code...
-          // const cellId = numberToLetter(col) + (row + 1);
-          // // read cell value from IndexedDB
-          // return getCellValue(cellId).then((value) => value || '');
-        },
-        (col, row) => {
-          console.log('blur', { col, row });
-          /*
-           * onBlurCellCallback => here the cell blur can be handled, for example to save the cell value using the editor content
-           * It's "similar" to mountEditor => onBlurCallback
-           * NB. Just remove the lambda if not needed
-           */
-
-          // previous code...
-          // const cellId = numberToLetter(col) + (row + 1);
-          // // save cell value to IndexedDB
-          // saveCellValue(cellId, value);
-        },
-      );
-    });
 
     // Header menu
     showDropdownMenu();
@@ -70,6 +26,34 @@ initDB()
 
     // DarkMode
     toggleDarkMode();
+
+    const [cols, rows] = userColsAndRows();
+
+    // Create and append the spreadsheet to the container
+    spreadsheetContainer.append(spreadsheet(cols, rows));
+
+    mountEditor(() => {
+      // get the code editor current value.
+      const value = getValue();
+
+      // just log to the console to show how to use it.
+      console.log('editor', value);
+    });
+
+    addCellTargetingEvents(
+      '#spreadsheetContainer table',
+      (col, row) => {
+        const cellId = numberToLetter(col) + (row + 1);
+        // read cell value from IndexedDB
+        return getCellValue(cellId).then((value) => value || '');
+      },
+      (col, row, value) => {
+        const cellId = numberToLetter(col) + (row + 1);
+        // save cell value to IndexedDB
+        saveCellValue(cellId, value);
+      },
+    );
+    attachSearchEventListener(db);
   })
   .catch((error) => {
     console.error('Failed to initialize IndexedDB:', error);

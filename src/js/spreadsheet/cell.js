@@ -24,6 +24,7 @@ export default function cell(row, col, cellData = null) {
   cellContainer.dataset.col = col;
   cellContainer.dataset.row = row;
 
+
   // data[row][col]?.value && (cellContainer.textContent = data[row][col].value);
   if (row === 0 && col === 0) {
     console.log(cellData);
@@ -39,6 +40,21 @@ export default function cell(row, col, cellData = null) {
   //     cellContainer.textContent = value;
   //   }
   // });
+
+  const cellId = numberToLetter(col) + (row + 1);
+  getCellValue(cellId).then((value) => {
+    if (value !== null) {
+      cellContainer.textContent = value;
+    }
+  });
+  cellContainer.addEventListener('click', () => {
+    const cellIdentifierDisplay = document.getElementById(
+      'cellIdentifierDisplay',
+    );
+    if (cellIdentifierDisplay) {
+      cellIdentifierDisplay.value = cellId;
+    }
+  });
 
   return cellContainer;
 }

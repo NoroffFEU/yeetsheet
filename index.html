@@ -27,8 +27,10 @@
         data-cy="top-nav"
       >
         <div class="container flex flex-wrap items-center justify-between">
-          <div class="mr-24">
-            <a href="#" class="p-3">
+
+          <div class="m-3">
+            <a href="index.html" class="">
+
               <span data-icon="logo" data-size="54" data-class=""></span>
             </a>
           </div>
@@ -206,24 +208,38 @@
             </ul>
           </nav>
           <div class="flex gap-7 items-center flex-1 justify-end p-5">
-            <input
-              type="search"
-              class="w-[20rem] p-2 ps-4 rounded-md dark:bg-ys-overlay-5 bg-white text-ys-textAndIconsLight outline-none"
-              placeholder="Search..."
-              aria-label="search-input"
-              id="searchInput"
-              data-cy="search-input"
-            />
-            <div class="flex flex-col items-center gap-2">
-              <button
-                id="darkModeToggleBtn"
-                class="toggle-btn"
-                aria-labelledby="toggleText"
-              >
-                <span class="toggle-switch"></span>
-              </button>
-              <span class="toggle-text text-xs" id="toggleText">Dark on</span>
-            </div>
+<div class="relative">
+  <label for="searchInput" class="sr-only">Search</label>
+  <input
+    type="search"
+    class="w-[20rem] p-2 ps-4 rounded-md dark:bg-ys-overlay-5 bg-white text-ys-textAndIconsLight outline-none"
+    placeholder="Search cell values..."
+    aria-label="search-input"
+    id="searchInput"
+    data-cy="search-input"
+  />
+  <div class="absolute">
+    <div id="searchResultsCount" class="" aria-live="polite"></div>
+    <div
+      id="searchResultsContainer"
+      class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-300 shadow-lg p-4 z-50 text-black dark:text-white"
+    >
+      <ul id="searchResultsList" class="space-y-2"></ul>
+    </div>
+  </div>
+</div>
+
+<div class="flex flex-col items-center gap-2">
+  <button
+    id="darkModeToggleBtn"
+    class="toggle-btn"
+    aria-labelledby="toggleText"
+  >
+    <span class="toggle-switch"></span>
+  </button>
+  <span class="toggle-text text-xs" id="toggleText">Dark on</span>
+</div>
+
           </div>
         </div>
       </header>
@@ -237,6 +253,7 @@
               data-icon="hamburgerMenu"
               data-size="20"
               data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+              alt="Open Menu"
             ></span>
           </button>
           <div class="flex justify-between items-center w-full">
@@ -247,6 +264,7 @@
                 data-icon="editPencil"
                 data-size="12"
                 data-class="text-ys-textAndIconsLight"
+                alt="Edit Project Name"
               ></span>
             </button>
           </div>
@@ -319,8 +337,7 @@
               <div
                 id="spreadsheetContainer"
                 data-cy="spreadsheetContainer"
-                class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
-                class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-ys-amethyst-200 dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
+                class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left"
               >
                 <!-- Spreadsheet content goes here -->
               </div>
@@ -373,7 +390,7 @@
                         class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                         placeholder="cell"
                         aria-label=""
-                        id=""
+                        id="cellIdentifierDisplay"
                       />
                       <input
                         type="text"
@@ -397,7 +414,7 @@
           <ul class="flex flex-col gap-3 mb-8 text-xs text-center">
             <li>
               <button
-                class="sideBarBtn w-20 p-2 flex flex-col justify-center gap-3"
+                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
               >
                 <span
                   data-icon="share"
@@ -409,7 +426,7 @@
             </li>
             <li>
               <button
-                class="sideBarBtn w-20 p-2 flex flex-col justify-center gap-3"
+                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
               >
                 <span
                   data-icon="fitToWindow"
@@ -421,7 +438,7 @@
             </li>
             <li>
               <button
-                class="sideBarBtn w-20 p-2 flex flex-col justify-center gap-3"
+                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
               >
                 <span
                   data-icon="hand"
@@ -433,7 +450,7 @@
             </li>
             <li>
               <button
-                class="sideBarBtn w-20 p-2 flex flex-col justify-center gap-3"
+                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
               >
                 <span
                   data-icon="import"
@@ -445,7 +462,7 @@
             </li>
             <li>
               <button
-                class="sideBarBtn w-20 p-2 flex flex-col justify-center gap-3"
+                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
               >
                 <span
                   data-icon="save"
