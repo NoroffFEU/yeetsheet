@@ -1,23 +1,10 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import ifValidNumber from '../../helpers/ifValidNumber.js';
 
 describe('ifValidNumber function', () => {
-  it('should error if columns or rows are not numbers', () => {
-    const spy = vi.spyOn(console, 'error');
-    const result = ifValidNumber('a', 5);
-    expect(spy).toHaveBeenCalledWith('Invalid cols or rows');
-    expect(result).toBeUndefined();
-    spy.mockRestore();
-  });
-
-  it('should error if columns or rows are greater than the limit', () => {
-    const spy = vi.spyOn(console, 'error');
-    const result = ifValidNumber(101, 5);
-    expect(spy).toHaveBeenCalledWith(
-      'Cols and/or rows cannot be greater than 100',
-    );
-    expect(result).toBeUndefined();
-    spy.mockRestore();
+  it('should return valid columns and rows if they are within limits and are integers', () => {
+    const result = ifValidNumber(10, 20);
+    expect(result).toEqual([10, 20]);
   });
 
   it('should round down non-integer values if they are valid', () => {
@@ -25,16 +12,30 @@ describe('ifValidNumber function', () => {
     expect(result).toEqual([5, 9]);
   });
 
-  it('should error if columns or rows are less than 1', () => {
-    const spy = vi.spyOn(console, 'error');
-    const result = ifValidNumber(0, 0);
-    expect(spy).toHaveBeenCalledWith('Invalid cols or rows');
-    expect(result).toBeUndefined();
-    spy.mockRestore();
+  it('should throw an error if columns or rows are not numbers', () => {
+    expect(() => ifValidNumber('a', 5)).toThrow(
+      'Invalid input: cols and rows must be numbers',
+    );
+    expect(() => ifValidNumber(5, 'b')).toThrow(
+      'Invalid input: cols and rows must be numbers',
+    );
   });
 
-  it('should return valid columns and rows if they are within limits and are integers', () => {
-    const result = ifValidNumber(10, 20);
-    expect(result).toEqual([10, 20]);
+  it('should throw an error if columns or rows are greater than the limit', () => {
+    expect(() => ifValidNumber(101, 5)).toThrow(
+      'Cols and rows cannot be greater than 100',
+    );
+    expect(() => ifValidNumber(5, 101)).toThrow(
+      'Cols and rows cannot be greater than 100',
+    );
+  });
+
+  it('should throw an error if columns or rows are less than 1', () => {
+    expect(() => ifValidNumber(0, 5)).toThrow(
+      'Cols and rows must be greater than 0',
+    );
+    expect(() => ifValidNumber(5, 0)).toThrow(
+      'Cols and rows must be greater than 0',
+    );
   });
 });
