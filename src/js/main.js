@@ -7,6 +7,7 @@ import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
 import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
+import { setupFileMenu } from './header/fileMenu.js';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
 
@@ -18,6 +19,7 @@ initDB()
     console.log('IndexedDB initialized');
 
     // Header menu
+    setupFileMenu();
     showDropdownMenu();
 
     // Active state of buttons in the console
