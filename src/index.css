@@ -69,8 +69,9 @@ textarea {
 }
 
 /* It handles online cell editing */
-table tr td input {
-  @apply size-full p-4;
+table tr td:focus {
+  @apply outline outline-2 -outline-offset-2 outline-ys-amethyst-500;
+  @apply border border-0;
 }
 
 /* It keeps the first row and column header sticky */
@@ -86,31 +87,33 @@ table tr td input {
 }
 
 svg {
-  @apply fill-current
+  @apply fill-current;
 }
 
 /* It handles the code aria container */
 .code-editor {
-  @apply w-full h-full min-h-[10rem]
+  @apply w-full h-full min-h-[10rem];
 }
 
 .toggle-btn {
-  @apply text-xs rounded-full p-1 h-6 w-10 bg-ys-textAndIconsLight text-ys-backgroundAndText dark:text-ys-textAndIconsLight relative
+  @apply text-xs rounded-full p-1 h-6 w-10 bg-ys-textAndIconsLight text-ys-backgroundAndText dark:text-ys-textAndIconsLight relative;
 }
 
 .toggle-btn .toggle-switch {
-  @apply size-4 bg-ys-backgroundAndText absolute right-1 rounded-full top-1/2 -translate-y-1/2 pointer-events-none
+  @apply size-4 bg-ys-backgroundAndText absolute right-1 rounded-full top-1/2 -translate-y-1/2 pointer-events-none;
 }
 
 .toggle-btn.light .toggle-switch {
-  @apply right-auto left-1
+  @apply right-auto left-1;
 }
+
+/* It handles the code aria container */
 
 /* It handles the code aria container */
 .code-editor {
   width: 100%;
   height: 100%;
-  min-height: 5em;
+  min-height: 10rem;
 }
 
 .hidden {

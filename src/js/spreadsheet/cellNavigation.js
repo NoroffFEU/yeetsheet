@@ -1,4 +1,24 @@
 /**
+
+ * Callback on cell focus. Can be used to set the cell value.
+ *
+ * @callback OnFocusCellCallback
+ * @param {number} col - The column index.
+ * @param {number} row - The row index.
+ * @return {string} value - The cell value content.
+ */
+
+// import { setValue } from './codeEditor';
+
+/**
+ * Callback on cell blur. Can be used to save the cell value.
+ *
+ * @callback OnBlurCellCallback
+ * @param {number} col - The column index.
+ * @param {number} row - The row index.
+ */
+
+/**
  * @description Add events to handle cell navigation.
  * @param {string} tableSelector
  * @param {LoadCellCallback} loadCellCallback Callback function to handle the load cell content on `focus` event. It sends col, row and expects back the text that should be used.
@@ -23,6 +43,77 @@ export function addCellTargetingEvents(
         return;
       }
 
+
+      td.focus();
+      ev.preventDefault();
+
+      // Use the onFocusCellCallback and handle the promise
+      const focusResult = onFocusCellCallback && onFocusCellCallback(col, row);
+      if (focusResult !== undefined) {
+        // console.log({ focusResult });
+        // focusResult.then((value) => {
+        //   setValue(value);
+        // });
+      }
+    },
+    false,
+  );
+
+  table.addEventListener(
+    'blur',
+    (ev) => {
+      ev.preventDefault();
+
+      console.log('keydown', ev);
+      const td = ev.target;
+
+      const col = parseInt(td.dataset.col, 10);
+      const row = parseInt(td.dataset.row, 10);
+
+      onBlurCellCallback && onBlurCellCallback(col, row);
+    },
+    false,
+  );
+
+  table.addEventListener(
+    'keydown',
+    (ev) => {
+      console.log('keydown', ev);
+      const td = ev.target;
+      const col = parseInt(td.dataset.col, 10);
+      const row = parseInt(td.dataset.row, 10);
+
+      let handled = false;
+
+      if (ev.key === 'ArrowRight') {
+        handled = true;
+        selectNextCell(col + 1, row);
+      } else if (ev.key === 'ArrowLeft') {
+        handled = true;
+        selectNextCell(col - 1, row);
+      } else if (ev.key === 'ArrowDown') {
+        handled = true;
+        selectNextCell(col, row + 1);
+      } else if (ev.key === 'ArrowUp') {
+        handled = true;
+        selectNextCell(col, row - 1);
+      } else if (ev.key === 'Tab' && ev.shiftKey === true) {
+        // left
+        handled = true;
+        selectNextCell(col - 1, row);
+      } else if (ev.key === 'Tab' && ev.shiftKey === false) {
+        // right
+        handled = true;
+        selectNextCell(col + 1, row);
+      } else if (ev.key === 'Enter') {
+        handled = true;
+        selectNextCell(col, row + 1);
+      }
+
+      if (handled) {
+        ev.preventDefault();
+      }
+      
       let input = document.createElement('input');
       input.type = 'text';
       input.classList.add('p-0', 'text-black', 'px-1');
