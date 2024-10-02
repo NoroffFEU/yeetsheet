@@ -7,24 +7,30 @@
  * @param {number} cols - The number of columns.
  * @param {number} rows - The number of rows.
  * @param {number} [limit=100] - The limit for the number of columns or rows (default to 100).
- * @returns {void}
+ * @returns {number[] | undefined} - An array with the validated [cols, rows] or undefined if invalid
  */
 export default function ifValidNumber(cols, rows, limit = 100) {
-  // Console.errors if cols or rows is not a number
-  if (typeof cols !== 'number' || typeof rows !== 'number')
-    return console.error('Invalid cols or rows');
-
-  // Console.errors if cols or rows is greater than the limit
-  if (cols > limit || rows > limit) {
-    return console.error(`Cols and/or rows cannot be greater than ${limit}`);
+  // Check if cols or rows is not a number
+  if (typeof cols !== 'number' || typeof rows !== 'number') {
+    console.error('Invalid cols or rows');
+    return undefined;
   }
 
-  // If cols or rows is not an integer, round it down to the nearest whole number
-  if (!Number.isInteger(cols) || !Number.isInteger(rows))
-    return console.error('cols and rows needs to be whole numbers (integers)');
+  // Round down to nearest integer
+  cols = Math.floor(cols);
+  rows = Math.floor(rows);
 
-  // Console.errors if there is no columns or rows
-  if (cols < 1 || rows < 1) return console.error('Invalid cols or rows');
+  // Check if cols or rows is greater than the limit
+  if (cols > limit || rows > limit) {
+    console.error(`Cols and/or rows cannot be greater than ${limit}`);
+    return undefined;
+  }
+
+  // Check if there are no columns or rows
+  if (cols < 1 || rows < 1) {
+    console.error('Invalid cols or rows');
+    return undefined;
+  }
 
   return [cols, rows];
 }
