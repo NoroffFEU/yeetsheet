@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
       rel="stylesheet"
     />
     <title>YeetSheet</title>
@@ -27,10 +27,8 @@
         data-cy="top-nav"
       >
         <div class="container flex flex-wrap items-center justify-between">
-
           <div class="m-3">
             <a href="index.html" class="">
-
               <span data-icon="logo" data-size="54" data-class=""></span>
             </a>
           </div>
@@ -208,38 +206,37 @@
             </ul>
           </nav>
           <div class="flex gap-7 items-center flex-1 justify-end p-5">
-<div class="relative">
-  <label for="searchInput" class="sr-only">Search</label>
-  <input
-    type="search"
-    class="w-[20rem] p-2 ps-4 rounded-md dark:bg-ys-overlay-5 bg-white text-ys-textAndIconsLight outline-none"
-    placeholder="Search cell values..."
-    aria-label="search-input"
-    id="searchInput"
-    data-cy="search-input"
-  />
-  <div class="absolute">
-    <div id="searchResultsCount" class="" aria-live="polite"></div>
-    <div
-      id="searchResultsContainer"
-      class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-300 shadow-lg p-4 z-50 text-black dark:text-white"
-    >
-      <ul id="searchResultsList" class="space-y-2"></ul>
-    </div>
-  </div>
-</div>
+            <div class="relative">
+              <label for="searchInput" class="sr-only">Search</label>
+              <input
+                type="search"
+                class="w-[20rem] p-2 ps-4 rounded-md dark:bg-ys-overlay-5 bg-white text-ys-textAndIconsLight outline-none"
+                placeholder="Search cell values..."
+                aria-label="search-input"
+                id="searchInput"
+                data-cy="search-input"
+              />
+              <div class="absolute">
+                <div id="searchResultsCount" class="" aria-live="polite"></div>
+                <div
+                  id="searchResultsContainer"
+                  class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-300 shadow-lg p-4 z-50 text-black dark:text-white"
+                >
+                  <ul id="searchResultsList" class="space-y-2"></ul>
+                </div>
+              </div>
+            </div>
 
-<div class="flex flex-col items-center gap-2">
-  <button
-    id="darkModeToggleBtn"
-    class="toggle-btn"
-    aria-labelledby="toggleText"
-  >
-    <span class="toggle-switch"></span>
-  </button>
-  <span class="toggle-text text-xs" id="toggleText">Dark on</span>
-</div>
-
+            <div class="flex flex-col items-center gap-2">
+              <button
+                id="darkModeToggleBtn"
+                class="toggle-btn"
+                aria-labelledby="toggleText"
+              >
+                <span class="toggle-switch"></span>
+              </button>
+              <span class="toggle-text text-xs" id="toggleText">Dark on</span>
+            </div>
           </div>
         </div>
       </header>
