@@ -260,23 +260,8 @@
         class="container flex flex-wrap justify-start items-center p-5"
         data-cy="sidebar"
       >
-        <button class="sideBarBtn">
-          <span
-            data-icon="hamburgerMenu"
-            data-size="20"
-            data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-          ></span>
-        </button>
         <div class="flex items-center gap-4 pr-5">
-          <p class="text-sm uppercase">Project name</p>
-          <input type="text" class="hidden" id="projectName" />
-          <button class="sideBarBtn w-auto">
-            <span
-              data-icon="editPencil"
-              data-size="12"
-              data-class="dark:text-ys-textAndIconsLight"
-            ></span>
-          </button>
+          <p id="proName" class="text-sm uppercase">Project name</p>
           <button
             class="sideBarBtn text-sm dark:text-ys-buttonPrimary w-auto p-0"
           >
@@ -458,5 +443,9 @@
     <footer>
       <!-- If there´s going to be a footer -->
     </footer>
+    <script
+      type="module"
+      src="../src/js/spreadsheet/sidebar/projectName.js"
+    ></script>
   </body>
 </html>
