@@ -1,19 +1,23 @@
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-console.log(alphabet);
 
 /**
  * Converts a number to letters in the alphabet (A-Z).
- * @param {number} number - The number to be converted.
- * @returns {string} The letter(s) representation of the number.
+ * @param {number} number - The number to be converted (0-based index).
+ * @returns {string|undefined} The letter(s) representation of the number, or undefined for invalid inputs.
  */
 export default function numberToLetter(number) {
-  if (number < 26) {
-    return alphabet[number];
-  } else {
-    // if number is greater than 26 it will return as 2 letters (starting with AA, AB, AC, etc.)
-    // if needed in future with more than 2 letters, then code needs to be modified (currently not needed)
-    const firstLetter = alphabet[Math.floor(number / 26) - 1];
-    const secondLetter = alphabet[number % 26];
-    return firstLetter + secondLetter;
+  if (typeof number !== 'number' || number < 0 || !Number.isInteger(number)) {
+    return undefined;
   }
+
+  let result = '';
+  let n = number + 1; // Adjust for 1-based indexing
+
+  while (n > 0) {
+    n--; // Decrement first to handle the case of multiples of 26 correctly
+    result = alphabet[n % 26] + result;
+    n = Math.floor(n / 26);
+  }
+
+  return result;
 }
