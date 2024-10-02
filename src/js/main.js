@@ -8,7 +8,7 @@ import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
-import getIcon from './icons/index.js';
+import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
@@ -58,12 +58,4 @@ initDB()
     console.error('Failed to initialize IndexedDB:', error);
   });
 
-const iconSpans = document.querySelectorAll('[data-icon]');
-if (iconSpans) {
-  iconSpans.forEach((i) => {
-    const icon = getIcon(i.dataset.icon, i.dataset.size, i.dataset.class);
-    const parser = new DOMParser();
-    const svg = parser.parseFromString(icon, 'image/svg+xml');
-    i.replaceWith(svg.children[0]);
-  });
-}
+replaceIconsWithSVGs();

@@ -7,6 +7,10 @@ export default [
   {
     languageOptions: {
       globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 2020,
+        sourceType: 'module',
+      },
     },
     ignores: [
       './node_modules',

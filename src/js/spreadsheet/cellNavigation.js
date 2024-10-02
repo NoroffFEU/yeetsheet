@@ -25,6 +25,7 @@ export function addCellTargetingEvents(
 
       let input = document.createElement('input');
       input.type = 'text';
+      input.classList.add('p-0', 'text-black', 'px-1');
 
       input.dataset.col = col;
       input.dataset.row = row;
