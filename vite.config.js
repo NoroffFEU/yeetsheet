@@ -14,7 +14,7 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
     },
-    
+  }, // <--- Closing the test config here
   build: {
     outDir: 'dist',
   },
