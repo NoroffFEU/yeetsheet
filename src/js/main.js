@@ -5,6 +5,7 @@ import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
 import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
 import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
+import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
@@ -13,7 +14,7 @@ const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
 // indexedDB
 initDB()
-  .then(() => {
+  .then((db) => {
     console.log('IndexedDB initialized');
 
     // Header menu
@@ -51,6 +52,7 @@ initDB()
         saveCellValue(cellId, value);
       },
     );
+    attachSearchEventListener(db);
   })
   .catch((error) => {
     console.error('Failed to initialize IndexedDB:', error);
