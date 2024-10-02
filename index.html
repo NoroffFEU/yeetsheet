@@ -241,16 +241,41 @@
             ></span>
           </button>
           <div class="flex justify-between items-center w-full">
-            <p class="text-sm uppercase">Project name</p>
-            <input type="text" class="hidden" id="projectName" />
-            <button class="sideBarBtn w-auto">
-              <span
-                data-icon="editPencil"
-                data-size="12"
-                data-class="text-ys-textAndIconsLight"
-              ></span>
+            <p id="projectNameDisplay" class="text-sm uppercase">
+              Project name
+            </p>
+            <input
+              type="text"
+              class="hidden"
+              id="projectNameInput"
+              value="Project name"
+            />
+            <button id="editProjectNameBtn" class="sideBarBtn w-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="12"
+                class="text-ys-textAndIconsLight"
+                viewBox="0 0 11 10"
+              >
+                <path
+                  d="M7.77909 0.33487C7.98415 0.149926 8.30032 0.166236 8.48526 0.371298L9.72703 1.74815C9.91197 1.95321 9.89566 2.26937 9.6906 2.45432L8.82599 3.2341L6.91448 1.11465L7.77909 0.33487Z"
+                ></path>
+                <path
+                  d="M6.48828 1.51318L8.39278 3.62486L3.76286 7.80053C3.68104 7.87433 3.58786 7.93411 3.48561 7.97517C2.96828 8.18293 1.30282 8.80992 0.952012 8.42095C0.601203 8.03197 1.39624 6.43988 1.65612 5.94667C1.70749 5.84919 1.77654 5.76265 1.85837 5.68885L6.48828 1.51318Z"
+                ></path>
+                <path
+                  d="M1.53125 9H9.53125"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                ></path>
+              </svg>
+            </button>
+            <button id="saveProjectNameBtn" class="hidden sideBarBtn w-auto">
+              <span>Save</span>
             </button>
           </div>
+
           <button
             class="sideBarBtn text-sm dark:text-ys-buttonPrimary w-auto p-0"
           >
@@ -456,5 +481,34 @@
     <footer>
       <!-- If there´s going to be a footer -->
     </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const projectNameDisplay =
+          document.getElementById('projectNameDisplay');
+        const projectNameInput = document.getElementById('projectNameInput');
+        const editProjectNameBtn =
+          document.getElementById('editProjectNameBtn');
+        const saveProjectNameBtn =
+          document.getElementById('saveProjectNameBtn');
+
+        // "Edit" simgesine tıklandığında proje adı düzenlenebilir hale gelir
+        editProjectNameBtn.addEventListener('click', function () {
+          projectNameInput.value = projectNameDisplay.textContent; // Mevcut proje adını input'a yükle
+          projectNameDisplay.classList.add('hidden'); // Proje adını gizle
+          projectNameInput.classList.remove('hidden'); // Input alanını göster
+          saveProjectNameBtn.classList.remove('hidden'); // Save butonunu göster
+          editProjectNameBtn.classList.add('hidden'); // Edit butonunu gizle
+        });
+
+        // "Save" butonuna tıklandığında proje adını kaydet
+        saveProjectNameBtn.addEventListener('click', function () {
+          projectNameDisplay.textContent = projectNameInput.value; // Yeni proje adını kaydet
+          projectNameDisplay.classList.remove('hidden'); // Proje adını tekrar göster
+          projectNameInput.classList.add('hidden'); // Input alanını gizle
+          saveProjectNameBtn.classList.add('hidden'); // Save butonunu gizle
+          editProjectNameBtn.classList.remove('hidden'); // Edit butonunu tekrar göster
+        });
+      });
+    </script>
   </body>
 </html>
