@@ -27,13 +27,28 @@
         data-cy="top-nav"
       >
         <div class="container flex flex-wrap items-center justify-between">
-          <div class="mr-24">
-            <a href="#" class="p-3">
+          <div class="m-3">
+            <a href="index.html" class="">
               <span data-icon="logo" data-size="54" data-class=""></span>
             </a>
           </div>
-          <nav class="flex flex-1 justify-start">
-            <ul class="flex gap-8">
+          <!-- Mobile hamburger icon -->
+          <div class="md:hidden">
+            <button id="nav-hamburger-btn" class="flex justify-end pr-5">
+              <span
+                data-icon="hamburgerMenu"
+                data-size="20"
+                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+              ></span>
+              <span class="sr-only">Hamburger Icon</span>
+            </button>
+          </div>
+          <nav
+            class="hidden md:flex md:flex-1 md:justify-start z-50 absolute right-0 md:static"
+          >
+            <ul
+              class="md:flex gap-8 md:bg-transparent absolute right-5 md:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-8 md:p-0 border border-white md:border-0"
+            >
               <li class="relative">
                 <button
                   type="button"
@@ -49,7 +64,7 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="fileMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
+                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="fileBtn"
@@ -151,7 +166,7 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="zoomMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-13 left-100 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
+                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="zoomBtn"
@@ -206,15 +221,27 @@
             </ul>
           </nav>
           <div class="flex gap-7 items-center flex-1 justify-end p-5">
-            <label for="searchInput" class="sr-only">Search</label>
-            <input
-              type="search"
-              class="w-[20rem] p-2 ps-4 rounded-md dark:bg-ys-overlay-5 bg-white text-ys-textAndIconsLight outline-none"
-              placeholder="Search..."
-              aria-label="search-input"
-              id="searchInput"
-              data-cy="search-input"
-            />
+            <div class="relative">
+              <label for="searchInput" class="sr-only">Search</label>
+              <input
+                type="search"
+                class="w-[20rem] p-2 ps-4 rounded-md dark:bg-ys-overlay-5 bg-white text-ys-textAndIconsLight outline-none"
+                placeholder="Search cell values..."
+                aria-label="search-input"
+                id="searchInput"
+                data-cy="search-input"
+              />
+              <div class="absolute">
+                <div id="searchResultsCount" class="" aria-live="polite"></div>
+                <div
+                  id="searchResultsContainer"
+                  class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-300 shadow-lg p-4 z-50 text-black dark:text-white"
+                >
+                  <ul id="searchResultsList" class="space-y-2"></ul>
+                </div>
+              </div>
+            </div>
+
             <div class="flex flex-col items-center gap-2">
               <button
                 id="darkModeToggleBtn"
@@ -229,7 +256,10 @@
         </div>
       </header>
 
-      <div class="container flex flex-wrap justify-start items-center p-5">
+      <div
+        class="container flex flex-wrap justify-start items-center p-5"
+        data-cy="sidebar"
+      >
         <button class="sideBarBtn">
           <span
             data-icon="hamburgerMenu"
