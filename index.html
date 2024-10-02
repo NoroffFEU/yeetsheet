@@ -27,10 +27,8 @@
         data-cy="top-nav"
       >
         <div class="container flex flex-wrap items-center justify-between">
-
           <div class="m-3">
             <a href="index.html" class="">
-
               <span data-icon="logo" data-size="54" data-class=""></span>
             </a>
           </div>
@@ -47,77 +45,6 @@
                 >
                   File
                 </button>
-                <!-- Dropdown-menu -->
-                <!-- could also be made with JS instead -->
-                <div
-                  id="fileMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="fileBtn"
-                  tabindex="-1"
-                >
-                  <ul
-                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
-                  >
-                    <li>
-                      <button
-                        id="file-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        New file...
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-2"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Import existing file
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-3"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Edit
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-4"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Save
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-5"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Save as...
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-6"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Save copy
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-7"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Export
-                      </button>
-                    </li>
-                  </ul>
-                </div>
               </li>
               <li>
                 <button
@@ -208,38 +135,37 @@
             </ul>
           </nav>
           <div class="flex gap-7 items-center flex-1 justify-end p-5">
-<div class="relative">
-  <label for="searchInput" class="sr-only">Search</label>
-  <input
-    type="search"
-    class="w-[20rem] p-2 ps-4 rounded-md dark:bg-ys-overlay-5 bg-white text-ys-textAndIconsLight outline-none"
-    placeholder="Search cell values..."
-    aria-label="search-input"
-    id="searchInput"
-    data-cy="search-input"
-  />
-  <div class="absolute">
-    <div id="searchResultsCount" class="" aria-live="polite"></div>
-    <div
-      id="searchResultsContainer"
-      class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-300 shadow-lg p-4 z-50 text-black dark:text-white"
-    >
-      <ul id="searchResultsList" class="space-y-2"></ul>
-    </div>
-  </div>
-</div>
+            <div class="relative">
+              <label for="searchInput" class="sr-only">Search</label>
+              <input
+                type="search"
+                class="w-[20rem] p-2 ps-4 rounded-md dark:bg-ys-overlay-5 bg-white text-ys-textAndIconsLight outline-none"
+                placeholder="Search cell values..."
+                aria-label="search-input"
+                id="searchInput"
+                data-cy="search-input"
+              />
+              <div class="absolute">
+                <div id="searchResultsCount" class="" aria-live="polite"></div>
+                <div
+                  id="searchResultsContainer"
+                  class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-300 shadow-lg p-4 z-50 text-black dark:text-white"
+                >
+                  <ul id="searchResultsList" class="space-y-2"></ul>
+                </div>
+              </div>
+            </div>
 
-<div class="flex flex-col items-center gap-2">
-  <button
-    id="darkModeToggleBtn"
-    class="toggle-btn"
-    aria-labelledby="toggleText"
-  >
-    <span class="toggle-switch"></span>
-  </button>
-  <span class="toggle-text text-xs" id="toggleText">Dark on</span>
-</div>
-
+            <div class="flex flex-col items-center gap-2">
+              <button
+                id="darkModeToggleBtn"
+                class="toggle-btn"
+                aria-labelledby="toggleText"
+              >
+                <span class="toggle-switch"></span>
+              </button>
+              <span class="toggle-text text-xs" id="toggleText">Dark on</span>
+            </div>
           </div>
         </div>
       </header>
