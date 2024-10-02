@@ -10,6 +10,7 @@ import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
 import { toggleHamburgerMenu } from './header/hamburgerMenu';
+import changeProjectName from './spreadsheet/sidebar/projectName.js';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
@@ -61,3 +62,6 @@ initDB()
   });
 
 replaceIconsWithSVGs();
+
+// Function to change the project name
+changeProjectName();
