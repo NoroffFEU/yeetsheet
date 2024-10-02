@@ -13,10 +13,8 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-feature/vitest-helpers-tests
-    }
-
-  },
+    },
+  }, // <--- Closing the test config here
   build: {
     outDir: 'dist',
   },
