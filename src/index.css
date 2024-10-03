@@ -135,8 +135,3 @@ li button:hover {
 .active {
   font-size: larger;
 }
-
-/* styling for collapsed sidebar */
-.sidebar-narrow {
-  width: 3rem;
-}
