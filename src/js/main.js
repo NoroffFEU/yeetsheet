@@ -11,6 +11,7 @@ import { setupFileMenu } from './header/fileMenu.js';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
 import { toggleHamburgerMenu } from './header/hamburgerMenu';
+import { toggleEditorSize } from './helpers/toggleEditorSize.js';
 import changeProjectName from './spreadsheet/sidebar/projectName.js';
 import { toggleSidebar } from './utils/toggleSidebar.js';
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
@@ -65,5 +66,6 @@ initDB()
   });
 
 replaceIconsWithSVGs();
+toggleEditorSize();
 toggleSidebar();
 changeProjectName();
