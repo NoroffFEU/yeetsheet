@@ -2,6 +2,7 @@ import createEle from '../helpers/createEle';
 import cellRow from './cellRow';
 import numberToLetter from '../helpers/numberToLetter';
 import ifValidNumber from '../helpers/ifValidNumber';
+import { exportButton, importButton } from './importExport';
 
 const number = numberToLetter(0);
 console.log(number);
@@ -20,7 +21,7 @@ export default function spreadsheet(cols, rows) {
 
   const tableHead = createEle('thead');
 
-  const columnNumbers = createEle('tr', 'flex w-fit');
+  const columnNumbers = createEle('tr', 'flex bg-ys-overlay-15 w-fit');
 
   const emptyTh = createEle('th', 'w-28');
 
@@ -33,7 +34,7 @@ export default function spreadsheet(cols, rows) {
   for (let i = 0; i < cols; i++) {
     const colNumber = createEle(
       'th',
-      'w-28 text-center border-x dark:border-ys-overlay-5 border-ys-amethyst-400 dark:bg-ys-overlay-15 bg-white py-2 snap-start',
+      'w-28 text-center border-x border-ys-backgroundAndText bg-ys-overlay-15 py-2 snap-start',
       numberToLetter(i),
     );
     columnNumbers.appendChild(colNumber);
@@ -49,3 +50,7 @@ export default function spreadsheet(cols, rows) {
 
   return container;
 }
+
+// Import and export buttons
+exportButton('file-item-7');
+importButton('file-item-2');
