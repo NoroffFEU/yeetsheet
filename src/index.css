@@ -119,6 +119,10 @@ svg {
 .hidden {
   display: none;
 }
+/* styling for collapsed sidebar */
+.sidebar-narrow {
+  width: 3rem;
+}
 
 li {
   @apply transition-transform duration-200; /* Smooth transition */
