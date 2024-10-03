@@ -116,3 +116,7 @@ svg {
 .hidden {
   display: none;
 }
+/* styling for collapsed sidebar */
+.sidebar-narrow {
+  width: 3rem;
+}
