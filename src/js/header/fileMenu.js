@@ -25,7 +25,7 @@ export function setupFileMenu() {
 
   const fileMenuContainer = createEle(
     'div',
-    'border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md',
+    'border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md',
   );
   fileMenuContainer.id = 'fileMenu';
   fileMenuContainer.setAttribute('role', 'menu');
