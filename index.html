@@ -270,7 +270,7 @@
         </button>
         <div class="flex items-center gap-4 pr-5">
           <p class="text-sm uppercase">Project name</p>
-          <input type="text" class="hidden" id="projectName" />
+          <input type="text" class="hidden" id="projectName" aria-label="Project name"/>
           <button class="sideBarBtn w-auto">
             <span
               data-icon="editPencil"
@@ -435,15 +435,14 @@
                       type="text"
                       class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="cell"
-                      aria-label=""
-
+                      aria-label="Enter cell ID"
                     />
                     <input
                       type="text"
                       class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="function"
                       value=""
-                      aria-label=""
+                      aria-label="Enter function"
                     />
                     <button id="runFunctionBtn" class="default-btn ml-2">
                       Run
