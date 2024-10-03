@@ -8,6 +8,7 @@ import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
+import { toggleEditorSize } from './helpers/toggleEditorSize.js';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
@@ -57,3 +58,5 @@ initDB()
   });
 
 replaceIconsWithSVGs();
+
+toggleEditorSize();

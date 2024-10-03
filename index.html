@@ -345,12 +345,20 @@
                     Terminal
                   </button>
                 </div>
-                <div class="p-8 dark:bg-ys-backgroundAndText">
-                  <div id="code-wrapper" data-cy="util:code-editor">
+                <div
+                  id="toggle-editor"
+                  class="h-48 transition-all duration-700 p-8 dark:bg-ys-backgroundAndText"
+                >
+                  <div
+                    class="h-14 transition-all duration-700"
+                    id="code-wrapper"
+                    data-cy="util:code-editor"
+                  >
                     <div
                       class="code-editor"
                       id="code-editor"
                       aria-label="Code editor"
+                      tabindex="0"
                     ></div>
                     <!-- <textarea
                       class="dark:bg-ys-backgroundAndText bg-ys-amethyst-200 p-5 outline-none"
