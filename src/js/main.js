@@ -10,8 +10,8 @@ import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
 import { toggleHamburgerMenu } from './header/hamburgerMenu';
+import changeProjectName from './spreadsheet/sidebar/projectName.js';
 import { toggleSidebar } from './utils/toggleSidebar.js';
-
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
 // indexedDB
@@ -64,3 +64,4 @@ initDB()
 
 replaceIconsWithSVGs();
 toggleSidebar();
+changeProjectName();
