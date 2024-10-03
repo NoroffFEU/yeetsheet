@@ -34,7 +34,7 @@
           </div>
           <!-- Mobile hamburger icon -->
           <div class="md:hidden">
-            <button id="nav-hamburger-btn" class="flex justify-end pr-5">
+            <button id="nav-hamburger-btn" class="flex justify-end pr-6">
               <span
                 data-icon="hamburgerMenu"
                 data-size="20"
@@ -44,15 +44,15 @@
             </button>
           </div>
           <nav
-            class="hidden md:flex md:flex-1 md:justify-start z-50 absolute right-0 md:static"
+            class="hidden md:flex w-full md:w-auto text-end md:justify-end z-50 absolute right-0 md:static"
           >
             <ul
-              class="md:flex gap-8 md:bg-transparent absolute right-5 md:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-8 md:p-0 border border-white md:border-0"
+              class="md:flex block w-full md:w-auto md:bg-transparent absolute md:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-4 md:p-0 border border-white md:border-0 text-left"
             >
               <li class="relative">
                 <button
                   type="button"
-                  class="nav-btn"
+                  class="nav-btn text-left uppercase px-2"
                   id="fileBtn"
                   data-menu="fileMenu"
                   aria-label=""
@@ -64,7 +64,7 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="fileMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
+                  class="block border ms-2 dark:border-ys-overlay-30 border-ys-amethyst-400 hidden z-50 md:absolute top-full left-0 w-64 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="fileBtn"
@@ -135,7 +135,7 @@
               <li>
                 <button
                   type="button"
-                  class="nav-btn"
+                  class="nav-btn text-left uppercase px-2"
                   id="fileBtn"
                   aria-label=""
                 >
@@ -145,17 +145,19 @@
               <li>
                 <button
                   type="button"
-                  class="nav-btn"
+                  class="nav-btn text-left uppercase mb-3 px-2"
                   id="fileBtn"
                   aria-label=""
                 >
                   Settings
                 </button>
               </li>
-              <li>
+              <li
+                class="block relative justify-center px-2 border-t-2 pt-3 md:border-0 md:pt-0"
+              >
                 <button
                   type="button"
-                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500 dropdownArrowDown"
+                  class="nav-btn relative dark:bg-ys-overlay-5 bg-ys-amethyst-500 text-center dropdownArrowDown"
                   id="zoomBtn"
                   data-menu="zoomMenu"
                   aria-label=""
@@ -166,14 +168,14 @@
                 <!-- could also be made with JS instead -->
                 <div
                   id="zoomMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
+                  class="border mt-1 dark:border-ys-overlay-30 border-ys-amethyst-400 hidden z-50 w-56 md:w-40 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="zoomBtn"
                   tabindex="-1"
                 >
                   <ul
-                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
+                    class="divide-y justify-start md:absolute divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
                   >
                     <li>
                       <button
@@ -336,99 +338,100 @@
               </div>
             </li>
           </ul>
-        </aside>
-        <div class="flex flex-col overflow-hidden p-5">
-          <h1 class="text-sm flex justify-center p-5 dark:bg-ys-black">
-            Name of the file
-          </h1>
 
-
-      <div class="container p-5">
-        <main class="flex flex-col bg-white dark:bg-ys-overlay-5 p-4">
-          <div class="container flex justify-center">
-            <h1 class="text-sm">Name of the file</h1>
+          <div class="flex flex-col overflow-hidden p-5">
+            <h1 class="text-sm flex justify-center p-5 dark:bg-ys-black">
+              Name of the file
+            </h1>
           </div>
-          <section class="p-5" data-cy="spreadsheet">
-            <div
-              id="spreadsheetContainer"
-              data-cy="spreadsheetContainer"
-              class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
-            ></div>
-          </section>
-          <section class="p-5" data-cy="app-utilities">
-            <div
-              class="dark:bg-ys-overlay-15 dark:border-ys-backgroundAndText bg-ys-amethyst-200 border border-ys-amethyst-400"
-            >
-              <div
-                class="flex dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
-                data-cy="utilities-buttons"
-              >
-                <button class="console-btn" data-cy="code-editor-btn">
-                  Code editor
-                </button>
-                <button class="console-btn" data-cy="console-btn">
-                  Console
-                </button>
-                <button class="console-btn" data-cy="errors-btn">Errors</button>
-                <button class="console-btn" data-cy="terminal-btn">
-                  Terminal
-                </button>
+
+          <div class="container p-5">
+            <main class="flex flex-col bg-white dark:bg-ys-overlay-5 p-4">
+              <div class="container flex justify-center">
+                <h1 class="text-sm">Name of the file</h1>
               </div>
-              <div class="p-8 dark:bg-ys-backgroundAndText">
-                <div id="code-wrapper" data-cy="util:code-editor">
+              <section class="p-5" data-cy="spreadsheet">
+                <div
+                  id="spreadsheetContainer"
+                  data-cy="spreadsheetContainer"
+                  class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
+                ></div>
+              </section>
+              <section class="p-5" data-cy="app-utilities">
+                <div
+                  class="dark:bg-ys-overlay-15 dark:border-ys-backgroundAndText bg-ys-amethyst-200 border border-ys-amethyst-400"
+                >
                   <div
-                    class="code-editor"
-                    id="code-editor"
-                    aria-label="Code editor"
-                  ></div>
-                  <div class="flex gap-1 pt-5">
-                    <input
-                      type="text"
-                      class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
-                      placeholder="cell"
-                      aria-label=""
-
-                      rows="6"
-                    >
-                    </textarea> -->
-                    <div class="flex gap-1 pt-5">
+                    class="flex dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
+                    data-cy="utilities-buttons"
+                  >
+                    <button class="console-btn" data-cy="code-editor-btn">
+                      Code editor
+                    </button>
+                    <button class="console-btn" data-cy="console-btn">
+                      Console
+                    </button>
+                    <button class="console-btn" data-cy="errors-btn">
+                      Errors
+                    </button>
+                    <button class="console-btn" data-cy="terminal-btn">
+                      Terminal
+                    </button>
+                  </div>
+                  <div class="p-8 dark:bg-ys-backgroundAndText">
+                    <div id="code-wrapper" data-cy="util:code-editor">
                       <div
-                        class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400 text-white flex items-center justify-center"
-                        id="selected-cell"
-                      >
-                        none
-                      </div>
-                      <input
-                        type="text"
-                        class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
-                        placeholder="cell"
-                        aria-label=""
-                        id="cellIdentifierDisplay"
-                      />
-                      <input
-                        type="text"
-                        class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
-                        placeholder="function"
-                        value=""
-                        aria-label=""
-                        id="function-call-input"
-                      />
-                      <button id="runFunctionBtn" class="default-btn ml-2">
-                        Run
-                      </button>
-                    </div>
+                        class="code-editor"
+                        id="code-editor"
+                        aria-label="Code editor"
+                      ></div>
+                      <div class="flex gap-1 pt-5">
+                        <input
+                          type="text"
+                          class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                          placeholder="cell"
+                          aria-label=""
+                          rows="6"
+                        />
 
+                        <div class="flex gap-1 pt-5">
+                          <div
+                            class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400 text-white flex items-center justify-center"
+                            id="selected-cell"
+                          >
+                            none
+                          </div>
+                          <input
+                            type="text"
+                            class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                            placeholder="cell"
+                            aria-label=""
+                            id="cellIdentifierDisplay"
+                          />
+                          <input
+                            type="text"
+                            class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                            placeholder="function"
+                            value=""
+                            aria-label=""
+                            id="function-call-input"
+                          />
+                          <button id="runFunctionBtn" class="default-btn ml-2">
+                            Run
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
-        </main>
+              </section>
+            </main>
+          </div>
+
+          <!-- had to add closing </div> to commit without error in prettier -->
+        </div>
       </div>
     </div>
-
-    <footer>
-      <!-- If there´s going to be a footer -->
-    </footer>
+    <footer></footer>
   </body>
 </html>
