@@ -12,20 +12,26 @@
 
 export default function projectName() {
   const projectName = document.getElementById('proName');
+  const editButton = document.getElementById('proNameEdit');
 
-  projectName.addEventListener('click', () => {
+  editButton.addEventListener('click', () => {
     const input = document.createElement('input');
     input.classList.add(
-      'text-black',
+      'bg-[#17152C]',
       'outline-0',
       'py-1',
       'min-w-52',
       'flex',
       'px-2',
       'uppercase',
+      'rounded',
     );
     input.type = 'text';
     input.value = projectName.innerText;
+
+    const confirmIcon = document.createElement('i');
+    confirmIcon.classList.add('fas', 'fa-check', 'cursor-pointer', 'ml-2');
+    editButton.replaceWith(confirmIcon);
 
     input.addEventListener('keydown', (e) => {
       if (
@@ -45,7 +51,7 @@ export default function projectName() {
 
         //    Need to store the name of the project in the database from here
       }
-
+      confirmIcon.replaceWith(editButton);
       input.replaceWith(projectName);
     });
 
@@ -53,6 +59,10 @@ export default function projectName() {
       if (e.key === 'Enter') {
         input.blur();
       }
+    });
+
+    confirmIcon.addEventListener('click', () => {
+      input.blur();
     });
 
     projectName.replaceWith(input);

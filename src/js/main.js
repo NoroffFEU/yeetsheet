@@ -11,6 +11,7 @@ import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
 import { toggleHamburgerMenu } from './header/hamburgerMenu';
 import { toggleSidebar } from './utils/toggleSidebar.js';
+import changeProjectName from './spreadsheet/sidebar/projectName.js';
 
 const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
 
@@ -64,3 +65,4 @@ initDB()
 
 replaceIconsWithSVGs();
 toggleSidebar();
+changeProjectName();
