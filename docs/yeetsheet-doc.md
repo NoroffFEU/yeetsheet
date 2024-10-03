@@ -23,6 +23,7 @@
 - [GitHub (workflow)](https://github.com/NoroffFEU/yeetsheet/tree/workflow)
 - [README.md](https://github.com/NoroffFEU/yeetsheet/blob/main/README.md)
 - [Netlify](https://yeetsheet.netlify.app/)
+- [Figma Designs (Zip File)](https://github.com/user-attachments/files/15737642/Prototype.files.zip)
 
 ### Purpose
 This project's purpose is to create a lightweight browser-based web application for managing tabular data using JavaScript syntax instead of the proprietary language other traditional spreadsheet applications use.

@@ -15,6 +15,10 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/d2f31150c6.js"
+      crossorigin="anonymous"
+    ></script>
     <title>YeetSheet</title>
   </head>
 
@@ -283,11 +287,12 @@
         class="container flex flex-wrap justify-start items-center p-5"
         data-cy="sidebar"
       >
-        <button class="sideBarBtn">
+        <button id="toggleSidebarBtn" class="sideBarBtn mb-12">
           <span
             data-icon="hamburgerMenu"
             data-size="20"
             data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+            aria-expanded="true"
           ></span>
         </button>
         <div class="flex items-center gap-4 pr-5">
