@@ -12,9 +12,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/d2f31150c6.js"
+      crossorigin="anonymous"
+    ></script>
     <title>YeetSheet</title>
   </head>
   <body
@@ -27,8 +31,10 @@
         class="bg-gray-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight py-3"
       >
         <div class="container flex flex-wrap items-center justify-between">
-          <div class="mr-24">
-            <a href="#" class="p-3">LOGO</a>
+          <div class="m-3">
+            <a href="index.html" class="">
+              <span data-icon="logo" data-size="54" data-class=""></span>
+            </a>
           </div>
           <!-- Mobile hamburger icon -->
           <div class="md:hidden">
@@ -57,81 +63,12 @@
                 >
                   File
                 </button>
-                <!-- Dropdown-menu -->
-                <!-- could also be made with JS instead -->
-                <div
-                  id="fileMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="fileBtn"
-                  tabindex="-1"
-                >
-                  <ul>
-                    <li>
-                      <button
-                        id="file-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
-                      >
-                        New file...
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-2"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
-                      >
-                        Import existing file
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-3"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
-                      >
-                        Edit
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-4"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
-                      >
-                        Save
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-5"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
-                      >
-                        Save as...
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-6"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
-                      >
-                        Save copy
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-7"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
-                      >
-                        Export
-                      </button>
-                    </li>
-                  </ul>
-                </div>
               </li>
               <li>
                 <button
                   type="button"
                   class="nav-btn"
-                  id="fileBtn"
+                  id="helpBtn"
                   aria-label=""
                 >
                   Help
@@ -141,7 +78,7 @@
                 <button
                   type="button"
                   class="nav-btn"
-                  id="fileBtn"
+                  id="SettingsBtn"
                   aria-label=""
                 >
                   Settings
@@ -181,32 +118,32 @@
                     </li>
                     <li>
                       <button
-                        id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        id="zoom-item-2"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         150%
                       </button>
                     </li>
                     <li>
                       <button
-                        id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        id="zoom-item-3"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         75%
                       </button>
                     </li>
                     <li>
                       <button
-                        id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        id="zoom-item-4"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         50%
                       </button>
                     </li>
                     <li>
                       <button
-                        id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        id="zoom-item-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         Custom...
                       </button>
@@ -216,137 +153,265 @@
               </li>
             </ul>
           </nav>
-          <div class="flex gap-7 items-center flex-1 flex-row-reverse p-5">
-            <input
-              type="search"
-              class="w-[20rem] p-2 ps-4 rounded-md bg-ys-overlay-5 text-ys-textAndIconsLight outline-none"
-              placeholder="Search..."
-              aria-label="search-input"
-              id="searchInput"
-            />
-            <!-- <button
-            id="darkModeToggleBtn"
-            class="text-xs p-1 h-8 w-10 bg-ys-backgroundAndText dark:bg-ys-whiteGrey text-ys-whiteGrey dark:text-ys-backgroundAndText"
-          >
-            LHT
-          </button> -->
+          <div class="flex gap-7 items-center flex-1 justify-end p-5">
+            <div class="relative">
+              <div class="flex overflow-hidden rounded-l">
+                <label for="searchInput" class="sr-only">Search</label>
+                <input
+                  type="search"
+                  class="w-[20rem] p-2 ps-4 dark:bg-ys-overlay-5 bg-white outline-none rounded-r-none"
+                  placeholder="Search cell values..."
+                  aria-label="search-input"
+                  id="searchInput"
+                  data-cy="search-input"
+                />
+                <button
+                  type="button"
+                  id="searchInputBtn"
+                  aria-label="Search"
+                  class="flex items-center justify-center p-0 w-auto dark:bg-ys-overlay-5 bg-white dark:text-white hover:bg-pink-600 focus:ring-1 focus:outline-none rounded-l-none"
+                >
+                  <div class="border-l border-gray-500 px-3 py-2">
+                    <span class="sr-only">Search</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 192.904 192.904"
+                      width="16px"
+                      class="dark:fill-white"
+                    >
+                      <path
+                        d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"
+                      ></path>
+                    </svg>
+                  </div>
+                </button>
+              </div>
+              <div class="absolute"></div>
+              <div id="searchResultsCount" class="" aria-live="polite"></div>
+              <div
+                id="searchResultsContainer"
+                class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-400 shadow-lg p-4 z-50 text-black dark:text-white rounded-md"
+              >
+                <ul id="searchResultsList" class="space-y-2"></ul>
+              </div>
+            </div>
+
+            <div class="flex flex-col items-center gap-2">
+              <button
+                id="darkModeToggleBtn"
+                class="toggle-btn"
+                aria-labelledby="toggleText"
+              >
+                <span class="toggle-switch"></span>
+              </button>
+              <span class="toggle-text text-xs text-center" id="toggleText"
+                >Dark on</span
+              >
+            </div>
           </div>
         </div>
       </header>
-      <div class="container flex">
-        <aside class="max-w-44 w-full items-start flex-none mt-16 p-3">
-          <ul class="flex flex-col gap-3 mb-8">
-            <li>Sheet1</li>
-            <li>Sheet2</li>
-            <li>Sheet3</li>
-          </ul>
-          <button class="default-btn">Save changes</button>
-        </aside>
-        <div class="flex flex-col overflow-hidden p-5">
-          <h1 class="text-sm flex justify-center p-5 dark:bg-ys-black">
-            Name of the file
-          </h1>
 
-          <main class="flex flex-col bg-gray-200 dark:bg-ys-overlay-5 p-4">
-            <section class="p-5">
+      <div
+        class="container flex flex-wrap justify-start items-center p-5"
+        data-cy="sidebar"
+      >
+        <button id="toggleSidebarBtn" class="sideBarBtn mb-12">
+          <span
+            data-icon="hamburgerMenu"
+            data-size="20"
+            data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+            aria-expanded="true"
+          ></span>
+        </button>
+        <div class="flex items-center gap-4 pr-5">
+          <p id="proName" class="text-sm uppercase">Project name</p>
+          <button id="proNameEdit" class="sideBarBtn w-auto">
+            <i class="fa-solid fa-pen fa-xs"></i>
+          </button>
+          <button
+            class="sideBarBtn text-sm dark:text-ys-buttonPrimary w-auto p-0"
+          >
+            &plus; New sheet
+          </button>
+        </div>
+        <ul class="flex justify-start items-center gap-4 pr-5">
+          <li>
+            <button class="sideBarBtn w-auto dropdownArrow" data-menu="sheet1">
+              Sheet1
+            </button>
+            <div id="sheet1" class="hidden">
+              <ul class="dark:text-ys-logoLoader-yellow text-start pl-5">
+                <li>#</li>
+                <li>#</li>
+                <li>#</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <button class="sideBarBtn w-auto dropdownArrow" data-menu="sheet2">
+              Sheet2
+            </button>
+            <div id="sheet2" class="hidden">
+              <ul class="dark:text-ys-logoLoader-yellow text-start pl-5">
+                <li>#</li>
+                <li>#</li>
+                <li>#</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <button class="sideBarBtn w-auto dropdownArrow" data-menu="sheet3">
+              Sheet3
+            </button>
+            <div id="sheet3" class="hidden">
+              <ul class="dark:text-ys-logoLoader-yellow text-start pl-5">
+                <li>#</li>
+                <li>#</li>
+                <li>#</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <button class="default-btn" data-cy="save-changes-button">
+          Save changes
+        </button>
+      </div>
+
+      <div class="container flex justify-start py-0">
+        <ul class="flex gap-4 flex-wrap justify-center">
+          <li>
+            <button
+              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+            >
+              <span
+                data-icon="share"
+                data-size="20"
+                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+              ></span>
+              Share
+            </button>
+          </li>
+          <li>
+            <button
+              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+            >
+              <span
+                data-icon="fitToWindow"
+                data-size="20"
+                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+              ></span>
+              Fit to window
+            </button>
+          </li>
+          <li>
+            <button
+              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+            >
+              <span
+                data-icon="hand"
+                data-size="20"
+                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+              ></span>
+              Hand tool
+            </button>
+          </li>
+          <li>
+            <button
+              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+            >
+              <span
+                data-icon="import"
+                data-size="20"
+                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+              ></span>
+              Import file
+            </button>
+          </li>
+          <li>
+            <button
+              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+            >
+              <span
+                data-icon="save"
+                data-size="20"
+                data-class="text-ys-buttonPrimary"
+              ></span>
+              Quick save
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="container p-5">
+        <main class="flex flex-col bg-white dark:bg-ys-overlay-5 p-4">
+          <div class="container flex justify-center">
+            <h1 class="text-sm">Name of the file</h1>
+          </div>
+          <section class="p-5" data-cy="spreadsheet">
+            <div
+              id="spreadsheetContainer"
+              data-cy="spreadsheetContainer"
+              class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
+            ></div>
+          </section>
+          <section class="p-5" data-cy="app-utilities">
+            <div
+              class="dark:bg-ys-overlay-15 dark:border-ys-backgroundAndText bg-ys-amethyst-200 border border-ys-amethyst-400"
+            >
               <div
-                id="spreadsheetContainer"
-                class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
+                class="flex dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
+                data-cy="utilities-buttons"
               >
-                <!-- Spreadsheet content goes here -->
+                <button class="console-btn" data-cy="code-editor-btn">
+                  Code editor
+                </button>
+                <button class="console-btn" data-cy="console-btn">
+                  Console
+                </button>
+                <button class="console-btn" data-cy="errors-btn">Errors</button>
+                <button class="console-btn" data-cy="terminal-btn">
+                  Terminal
+                </button>
               </div>
-            </section>
-            <section class="p-5">
-              <div class="dark:bg-ys-overlay-15">
-                <div class="flex">
-                  <button class="console-btn">Code editor</button>
-                  <button class="console-btn">Console</button>
-                  <button class="console-btn">Errors</button>
-                  <button class="console-btn">Terminal</button>
-                </div>
-                <div class="p-8 dark:bg-ys-backgroundAndText">
-                  <div>
-                    <textarea
-                      class="dark:bg-ys-backgroundAndText text-ys-logoLoader-purple p-5 outline-none"
-                      name=""
-                      id=""
+              <div
+                id="toggle-editor"
+                class="h-48 transition-all duration-700 p-8 dark:bg-ys-backgroundAndText"
+              >
+                <div
+                  class="h-14 transition-all duration-700"
+                  id="code-wrapper"
+                  data-cy="util:code-editor"
+                >
+                  <div
+                    class="code-editor"
+                    id="code-editor"
+                    aria-label="Code editor"
+                    tabindex="0"
+                  ></div>
+                  <div class="flex gap-1 pt-5">
+                    <input
+                      type="text"
+                      class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                      placeholder="cell"
                       aria-label=""
-                      rows="6"
-                    >
-                  function laugh() {
-                    let laughter = '';
-                    for (let i = 0; i < 10; i++) {
-                        laughter += 'ha';
-                    }
-                    return laughter + '!';
-                  }
-
-                  console.log(laugh()); // Output: hahahahahahahaha!
-       
-                    </textarea>
-                    <div class="flex gap-1 pt-5">
-                      <input
-                        type="text"
-                        class="w-20 text-center dark:bg-ys-overlay-15"
-                        placeholder="cell"
-                        aria-label=""
-                        id=""
-                      />
-                      <input
-                        type="text"
-                        class="w-full text-start pl-5 dark:bg-ys-overlay-15"
-                        placeholder="function"
-                        value="laugh()"
-                        aria-label=""
-                        id=""
-                      />
-                      <button id="runFunctionBtn" class="default-btn ml-2">
-                        Run
-                      </button>
-                    </div>
+                    />
+                    <input
+                      type="text"
+                      class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                      placeholder="function"
+                      value=""
+                      aria-label=""
+                    />
+                    <button id="runFunctionBtn" class="default-btn ml-2">
+                      Run
+                    </button>
                   </div>
                 </div>
               </div>
-            </section>
-          </main>
-        </div>
-      </div>
-    </div>
-
-    <!-- Import Modal -->
-    <div id="importModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 z-50 flex items-center justify-center">
-      <div class="bg-white dark:bg-ys-overlay-10 shadow-lg max-w-xl p-4 w-full">
-        <div class="p-10">
-        <div class="flex items-center justify-center flex-col">
-          <h2 class="text-sm font-bold mb-4 dark:text-ys-textAndIconsLight">Import files</h2>
-          <h3 class="text-sm mb-4 dark:text-ys-textAndIconsLight">Import existing CSV or JSON files to your project.</h3>
-        </div>
-        <div id="importDropArea"
-          class="border-2 border-dashed border-ys-overlay-30 bg-ys-overlay-5 p-6 flex items-center justify-center mb-4">
-          <input type="file" id="importFileInput" class="hidden" />
-          <label for="importFileInput" class="cursor-pointer">
-            <div class="flex flex-col items-center">
-              <svg class="w-12 h-12 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 17h3a3 3 0 0 0 0-6h-.025a5.56 5.56 0 0 0 .025-.5A5.5 5.5 0 0 0 7.207 9.021C7.137 9.017 7.071 9 7 9a4 4 0 1 0 0 8h2.167M12 19v-9m0 0-2 2m2-2 2 2" />
-              </svg>
-              <span class="text-white-500 dark:text-ys-textAndIconsLight">Drag to import file</span>
-              <span class="text-white-500 dark:text-ys-textAndIconsLight">or</span>
-              <button id="fileClickButton" class="bg-ys-buttonTertiary text-ys-backgroundAndText rounded-md">Browse
-                files</button>
             </div>
-          </label>
-        </div>
-        <div class="mb-4 flex items-center justify-center">
-          <div id="importFileDisplay"></div>
-        </div>
-      </div>
-        <div class="flex justify-end space-x-4">
-          <button id="cancelImportBtn"
-            class="border-2 border-ys-buttonSecondary text-ys-buttonSecondary rounded-md">Cancel</button>
-          <button id="confirmImportBtn" class="bg-ys-buttonSecondary rounded-md">Import</button>
-        </div>
+          </section>
+        </main>
       </div>
     </div>
 

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import toggleDarkMode from '../../darkModeToggle/toggleDarkMode.mjs';
+import toggleDarkMode from './toggleDarkMode.mjs';
 
 describe('toggleDarkMode', () => {
   let darkModeToggleBtn;
