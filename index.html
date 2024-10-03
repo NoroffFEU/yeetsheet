@@ -21,14 +21,14 @@
     ></script>
     <title>YeetSheet</title>
   </head>
+
   <body
-    class="flex flex-wrap min-h-screen bg-gray-100 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+    class="flex flex-wrap min-h-screen bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
   >
-    <div
-      class="w-full bg-gray-100 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-    >
+    <div class="w-full" data-cy="app-container">
       <header
-        class="bg-gray-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight py-3"
+        class="bg-ys-amethyst-400 dark:bg-ys-backgroundAndText py-3"
+        data-cy="top-nav"
       >
         <div class="container flex flex-wrap items-center justify-between">
           <div class="m-3">
@@ -58,6 +58,7 @@
                   type="button"
                   class="nav-btn"
                   id="fileBtn"
+                  data-menu="fileMenu"
                   aria-label=""
                   aria-haspopup=""
                 >
@@ -87,8 +88,9 @@
               <li>
                 <button
                   type="button"
-                  class="nav-btn bg-ys-overlay-5"
+                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500 dropdownArrowDown"
                   id="zoomBtn"
+                  data-menu="zoomMenu"
                   aria-label=""
                 >
                   100%
@@ -103,11 +105,13 @@
                   aria-labelledby="zoomBtn"
                   tabindex="-1"
                 >
-                  <ul>
+                  <ul
+                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
+                  >
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
                       >
                         125%
                       </button>
