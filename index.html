@@ -15,6 +15,10 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/d2f31150c6.js"
+      crossorigin="anonymous"
+    ></script>
     <title>YeetSheet</title>
   </head>
 
@@ -222,23 +226,44 @@
           </nav>
           <div class="flex gap-7 items-center flex-1 justify-end p-5">
             <div class="relative">
-              <label for="searchInput" class="sr-only">Search</label>
-              <input
-                type="search"
-                class="w-[20rem] p-2 ps-4 rounded-md dark:bg-ys-overlay-5 bg-white text-ys-textAndIconsLight outline-none"
-                placeholder="Search cell values..."
-                aria-label="search-input"
-                id="searchInput"
-                data-cy="search-input"
-              />
-              <div class="absolute">
-                <div id="searchResultsCount" class="" aria-live="polite"></div>
-                <div
-                  id="searchResultsContainer"
-                  class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-300 shadow-lg p-4 z-50 text-black dark:text-white"
+              <div class="flex overflow-hidden rounded-l">
+                <label for="searchInput" class="sr-only">Search</label>
+                <input
+                  type="search"
+                  class="w-[20rem] p-2 ps-4 dark:bg-ys-overlay-5 bg-white outline-none rounded-r-none"
+                  placeholder="Search cell values..."
+                  aria-label="search-input"
+                  id="searchInput"
+                  data-cy="search-input"
+                />
+                <button
+                  type="button"
+                  id="searchInputBtn"
+                  aria-label="Search"
+                  class="flex items-center justify-center p-0 w-auto dark:bg-ys-overlay-5 bg-white dark:text-white hover:bg-pink-600 focus:ring-1 focus:outline-none rounded-l-none"
                 >
-                  <ul id="searchResultsList" class="space-y-2"></ul>
-                </div>
+                  <div class="border-l border-gray-500 px-3 py-2">
+                    <span class="sr-only">Search</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 192.904 192.904"
+                      width="16px"
+                      class="dark:fill-white"
+                    >
+                      <path
+                        d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"
+                      ></path>
+                    </svg>
+                  </div>
+                </button>
+              </div>
+              <div class="absolute"></div>
+              <div id="searchResultsCount" class="" aria-live="polite"></div>
+              <div
+                id="searchResultsContainer"
+                class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-400 shadow-lg p-4 z-50 text-black dark:text-white rounded-md"
+              >
+                <ul id="searchResultsList" class="space-y-2"></ul>
               </div>
             </div>
 
@@ -250,7 +275,9 @@
               >
                 <span class="toggle-switch"></span>
               </button>
-              <span class="toggle-text text-xs" id="toggleText">Dark on</span>
+              <span class="toggle-text text-xs text-center" id="toggleText"
+                >Dark on</span
+              >
             </div>
           </div>
         </div>
@@ -260,22 +287,18 @@
         class="container flex flex-wrap justify-start items-center p-5"
         data-cy="sidebar"
       >
-        <button class="sideBarBtn">
+        <button id="toggleSidebarBtn" class="sideBarBtn mb-12">
           <span
             data-icon="hamburgerMenu"
             data-size="20"
             data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+            aria-expanded="true"
           ></span>
         </button>
         <div class="flex items-center gap-4 pr-5">
-          <p class="text-sm uppercase">Project name</p>
-          <input type="text" class="hidden" id="projectName" />
-          <button class="sideBarBtn w-auto">
-            <span
-              data-icon="editPencil"
-              data-size="12"
-              data-class="dark:text-ys-textAndIconsLight"
-            ></span>
+          <p id="proName" class="text-sm uppercase">Project name</p>
+          <button id="proNameEdit" class="sideBarBtn w-auto">
+            <i class="fa-solid fa-pen fa-xs"></i>
           </button>
           <button
             class="sideBarBtn text-sm dark:text-ys-buttonPrimary w-auto p-0"
