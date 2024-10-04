@@ -15,6 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
     <script
       src="https://kit.fontawesome.com/d2f31150c6.js"
       crossorigin="anonymous"
@@ -330,68 +331,112 @@
           Save changes
         </button>
       </div>
-
-      <div class="container flex justify-start py-0">
-        <ul class="flex gap-4 flex-wrap justify-center">
+      <div class="container flex justify-start m-1 mx-5 p-0">
+        <ul class="flex gap-1 flex-wrap justify-center">
           <li>
             <button
-              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+              class="sideBarBtn w-10 flex flex-col justify-center items-center"
+              data-tooltip-target="tooltip-share"
+              aria-label="Share"
             >
               <span
                 data-icon="share"
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
-              Share
             </button>
+            <div
+              id="tooltip-share"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Share
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
           </li>
           <li>
             <button
-              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-fitToWindow"
+              aria-label="Fit to window"
             >
               <span
                 data-icon="fitToWindow"
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
-              Fit to window
             </button>
+            <div
+              id="tooltip-fitToWindow"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Fit to window
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
           </li>
           <li>
             <button
-              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-handTool"
+              aria-label="Hand Tool"
             >
               <span
                 data-icon="hand"
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
-              Hand tool
             </button>
+            <div
+              id="tooltip-handTool"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Hand tool
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
           </li>
           <li>
             <button
-              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-importFile"
+              aria-label="Import File"
             >
               <span
                 data-icon="import"
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
-              Import file
             </button>
+            <div
+              id="tooltip-importFile"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Import file
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
           </li>
           <li>
             <button
-              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-quickSave"
+              aria-label="Quick Save"
             >
               <span
                 data-icon="save"
                 data-size="20"
                 data-class="text-ys-buttonPrimary"
               ></span>
-              Quick save
             </button>
+            <div
+              id="tooltip-quickSave"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Quick save
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
           </li>
         </ul>
       </div>
