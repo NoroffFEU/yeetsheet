@@ -46,12 +46,14 @@ export function searchCellValue(db, query) {
 
 export function attachSearchEventListener(db) {
   const searchInput = document.getElementById('searchInput');
+  const searchInputBtn = document.getElementById('searchInputBtn');
   const searchResultsCount = document.getElementById('searchResultsCount');
   const searchResultsContainer = document.getElementById(
     'searchResultsContainer',
   );
   const searchResultsList = document.getElementById('searchResultsList');
 
+  // Input event listener for highlighting results
   searchInput.addEventListener('input', function () {
     const query = this.value.trim();
 
@@ -62,8 +64,8 @@ export function attachSearchEventListener(db) {
       if (searchResultsCount) {
         searchResultsCount.textContent = ''; // Removes the search results count text
         searchResultsCount.classList.remove(
-          'text-red-400',
-          'text-green-500',
+          'dark:text-red-400',
+          'dark:text-green-500',
           'font-bold',
         ); // Removes all text colors and bold when search field is empty
       }
@@ -85,16 +87,11 @@ export function attachSearchEventListener(db) {
         });
 
         if (results.length > 0) {
-          // If results are found, highlight the cells and scroll to the first result
           results.forEach((result) => {
             const cellId = result.id;
             const cellElement = document.getElementById(cellId);
             if (cellElement) {
               cellElement.classList.add('bg-red-400', 'text-black');
-              cellElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-              });
               cellElement.setAttribute(
                 'aria-label',
                 `Match found: ${result.value}`,
@@ -105,11 +102,12 @@ export function attachSearchEventListener(db) {
           // Update search results count with success message and green color
           if (searchResultsCount) {
             searchResultsCount.textContent = `${results.length} result(s) found.`;
-            searchResultsCount.classList.remove('text-red-500');
-            searchResultsCount.classList.add('text-green-500', 'font-bold');
-          }
-          // Update search results list with the matching cell values
-          if (searchResultsList) {
+            searchResultsCount.classList.remove('dark:text-red-500');
+            searchResultsCount.classList.add(
+              'dark:text-green-500',
+              'font-bold',
+              'm-2',
+            );
             searchResultsList.innerHTML = '';
             results.forEach((result) => {
               const listItem = document.createElement('li');
@@ -118,17 +116,17 @@ export function attachSearchEventListener(db) {
             });
           }
           if (searchResultsContainer) {
-            searchResultsContainer.classList.remove('hidden'); // Vis container når resultater finnes
+            searchResultsContainer.classList.remove('hidden'); // Show container when results exists
           }
         } else {
           // No results found, shows error message and red color
           if (searchResultsCount) {
             searchResultsCount.textContent = 'No results found.';
-            searchResultsCount.classList.remove('text-green-500');
-            searchResultsCount.classList.add('text-red-500', 'font-bold');
+            searchResultsCount.classList.remove('dark:text-green-500');
+            searchResultsCount.classList.add('dark:text-red-500', 'font-bold');
           }
           if (searchResultsContainer) {
-            searchResultsContainer.classList.add('hidden'); // Skjul containeren hvis ingen treff
+            searchResultsContainer.classList.add('hidden'); // Hide container when no results
           }
         }
       })
@@ -146,4 +144,39 @@ export function attachSearchEventListener(db) {
         }
       });
   });
+
+  // Button click event listener for scrolling to the first result
+  searchInputBtn.addEventListener('click', function () {
+    scrollToFirstResult(db);
+  });
+
+  // Listen for "Enter" key to trigger the scroll action
+  searchInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      scrollToFirstResult(db);
+    }
+  });
+
+  function scrollToFirstResult(db) {
+    const query = searchInput.value.trim();
+
+    if (!query) return;
+
+    searchCellValue(db, query)
+      .then((results) => {
+        if (results.length > 0) {
+          const firstResult = results[0];
+          const cellElement = document.getElementById(firstResult.id);
+          if (cellElement) {
+            cellElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            });
+          }
+        }
+      })
+      .catch((error) => {
+        console.error('Error scrolling to first result:', error);
+      });
+  }
 }

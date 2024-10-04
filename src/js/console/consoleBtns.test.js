@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import consoleBtnsActiveState from '../../console/consoleBtns.mjs';
+import consoleBtnsActiveState from './consoleBtns.mjs';
 
 describe('consoleBtnsActiveState', () => {
   let btns;
