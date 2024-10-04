@@ -61,7 +61,7 @@
                     <li>
                       <button
                         id="file-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         New file...
                       </button>
@@ -69,7 +69,7 @@
                     <li>
                       <button
                         id="file-item-2"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         Import existing file
                       </button>
@@ -77,7 +77,7 @@
                     <li>
                       <button
                         id="file-item-3"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         Edit
                       </button>
@@ -85,7 +85,7 @@
                     <li>
                       <button
                         id="file-item-4"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         Save
                       </button>
@@ -93,7 +93,7 @@
                     <li>
                       <button
                         id="file-item-5"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         Save as...
                       </button>
@@ -101,7 +101,7 @@
                     <li>
                       <button
                         id="file-item-6"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         Save copy
                       </button>
@@ -109,7 +109,7 @@
                     <li>
                       <button
                         id="file-item-7"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         Export
                       </button>
@@ -163,7 +163,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         125%
                       </button>
@@ -171,7 +171,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         150%
                       </button>
@@ -179,7 +179,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         75%
                       </button>
@@ -187,7 +187,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         50%
                       </button>
@@ -195,7 +195,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         Custom...
                       </button>
@@ -252,14 +252,14 @@
             </button>
           </div>
           <button
-            class="sideBarBtn text-sm dark:text-ys-buttonPrimary w-auto p-0"
+            class="sideBarBtn text-sm dark:text-ys-buttonPrimary w-auto p-0 hover:font-semibold"
           >
             &plus; New sheet
           </button>
           <ul class="flex flex-col justify-start mt-8">
             <li>
               <button
-                class="sideBarBtn w-auto dropdownArrow"
+                class="sideBarBtn w-auto dropdownArrow on-hover-items"
                 data-menu="sheet1"
               >
                 Sheet1
@@ -274,7 +274,7 @@
             </li>
             <li>
               <button
-                class="sideBarBtn w-auto dropdownArrow"
+                class="sideBarBtn w-auto dropdownArrow on-hover-items"
                 data-menu="sheet2"
               >
                 Sheet2
@@ -289,7 +289,7 @@
             </li>
             <li>
               <button
-                class="sideBarBtn w-auto dropdownArrow"
+                class="sideBarBtn w-auto dropdownArrow on-hover-items"
                 data-menu="sheet3"
               >
                 Sheet3
@@ -332,16 +332,28 @@
                   class="flex dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
                   data-cy="utilities-buttons"
                 >
-                  <button class="console-btn" data-cy="code-editor-btn">
+                  <button
+                    class="console-btn hover:font-semibold"
+                    data-cy="code-editor-btn"
+                  >
                     Code editor
                   </button>
-                  <button class="console-btn" data-cy="console-btn">
+                  <button
+                    class="console-btn hover:font-semibold"
+                    data-cy="console-btn"
+                  >
                     Console
                   </button>
-                  <button class="console-btn" data-cy="errors-btn">
+                  <button
+                    class="console-btn hover:font-semibold"
+                    data-cy="errors-btn"
+                  >
                     Errors
                   </button>
-                  <button class="console-btn" data-cy="terminal-btn">
+                  <button
+                    class="console-btn hover:font-semibold"
+                    data-cy="terminal-btn"
+                  >
                     Terminal
                   </button>
                 </div>
@@ -390,7 +402,7 @@
           <ul class="flex flex-col gap-3 mb-8 text-xs text-center">
             <li>
               <button
-                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3 on-hover-items"
               >
                 <span
                   data-icon="share"
@@ -402,7 +414,7 @@
             </li>
             <li>
               <button
-                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3 on-hover-items"
               >
                 <span
                   data-icon="fitToWindow"
@@ -414,7 +426,7 @@
             </li>
             <li>
               <button
-                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3 on-hover-items"
               >
                 <span
                   data-icon="hand"
@@ -426,7 +438,7 @@
             </li>
             <li>
               <button
-                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3 on-hover-items"
               >
                 <span
                   data-icon="import"
@@ -438,7 +450,7 @@
             </li>
             <li>
               <button
-                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+                class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3 on-hover-items"
               >
                 <span
                   data-icon="save"
