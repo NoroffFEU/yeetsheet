@@ -113,7 +113,7 @@
                     <li>
                       <button
                         id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         125%
                       </button>
@@ -121,7 +121,7 @@
                     <li>
                       <button
                         id="zoom-item-2"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         150%
                       </button>
@@ -129,7 +129,7 @@
                     <li>
                       <button
                         id="zoom-item-3"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         75%
                       </button>
@@ -137,7 +137,7 @@
                     <li>
                       <button
                         id="zoom-item-4"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         50%
                       </button>
@@ -145,7 +145,7 @@
                     <li>
                       <button
                         id="zoom-item-5"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
                       >
                         Custom...
                       </button>
@@ -234,14 +234,17 @@
             <span class="sr-only">Edit project name</span>
           </button>
           <button
-            class="sideBarBtn text-sm dark:text-ys-buttonPrimary w-auto p-0"
+            class="sideBarBtn text-sm dark:text-ys-buttonPrimary w-auto p-0 hover:font-semibold"
           >
             &plus; New sheet
           </button>
         </div>
         <ul class="flex justify-start items-center gap-4 pr-5">
           <li>
-            <button class="sideBarBtn w-auto dropdownArrow" data-menu="sheet1">
+            <button
+              class="sideBarBtn w-auto dropdownArrow on-hover-items"
+              data-menu="sheet1"
+            >
               Sheet1
             </button>
             <div id="sheet1" class="hidden">
@@ -253,7 +256,10 @@
             </div>
           </li>
           <li>
-            <button class="sideBarBtn w-auto dropdownArrow" data-menu="sheet2">
+            <button
+              class="sideBarBtn w-auto dropdownArrow on-hover-items"
+              data-menu="sheet2"
+            >
               Sheet2
             </button>
             <div id="sheet2" class="hidden">
@@ -265,7 +271,10 @@
             </div>
           </li>
           <li>
-            <button class="sideBarBtn w-auto dropdownArrow" data-menu="sheet3">
+            <button
+              class="sideBarBtn w-auto dropdownArrow on-hover-items"
+              data-menu="sheet3"
+            >
               Sheet3
             </button>
             <div id="sheet3" class="hidden">
@@ -367,14 +376,28 @@
                 class="flex dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
                 data-cy="utilities-buttons"
               >
-                <button class="console-btn" data-cy="code-editor-btn">
+                <button
+                  class="console-btn hover:font-semibold"
+                  data-cy="code-editor-btn"
+                >
                   Code editor
                 </button>
-                <button class="console-btn" data-cy="console-btn">
+                <button
+                  class="console-btn hover:font-semibold"
+                  data-cy="console-btn"
+                >
                   Console
                 </button>
-                <button class="console-btn" data-cy="errors-btn">Errors</button>
-                <button class="console-btn" data-cy="terminal-btn">
+                <button
+                  class="console-btn hover:font-semibold"
+                  data-cy="errors-btn"
+                >
+                  Errors
+                </button>
+                <button
+                  class="console-btn hover:font-semibold"
+                  data-cy="terminal-btn"
+                >
                   Terminal
                 </button>
               </div>
@@ -400,7 +423,6 @@
                       placeholder="cell"
                       aria-label="Enter cell ID"
                       id="cellIdentifierDisplay"
-
                     />
                     <input
                       type="text"
