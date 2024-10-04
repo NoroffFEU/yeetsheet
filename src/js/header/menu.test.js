@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { showDropdownMenu } from '../../header/menu.mjs';
+import { showDropdownMenu } from './menu.mjs';
 
 vi.mock('../helpers/closeOnOutsideClick.mjs', () => ({
   default: vi.fn(),
