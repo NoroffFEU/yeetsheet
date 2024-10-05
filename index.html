@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
       rel="stylesheet"
     />
-    <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
+    <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
     <script
       src="https://kit.fontawesome.com/d2f31150c6.js"
       crossorigin="anonymous"
@@ -189,13 +189,14 @@
                   </div>
                 </button>
               </div>
-              <div class="absolute"></div>
-              <div id="searchResultsCount" class="" aria-live="polite"></div>
-              <div
-                id="searchResultsContainer"
-                class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-400 shadow-lg p-4 z-50 text-black dark:text-white rounded-md"
-              >
-                <ul id="searchResultsList" class="space-y-2"></ul>
+              <div class="absolute">
+                <div id="searchResultsCount" aria-live="polite"></div>
+                <div
+                  id="searchResultsContainer"
+                  class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-400 shadow-lg p-4 z-50 text-black dark:text-white rounded-md"
+                >
+                  <ul id="searchResultsList" class="space-y-2"></ul>
+                </div>
               </div>
             </div>
 
@@ -304,6 +305,7 @@
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
+              <span class="sr-only">Share</span>
             </button>
             <div
               id="tooltip-share"
@@ -325,6 +327,7 @@
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
+              <span class="sr-only">Fit to window</span>
             </button>
             <div
               id="tooltip-fitToWindow"
@@ -339,13 +342,14 @@
             <button
               class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
               data-tooltip-target="tooltip-handTool"
-              aria-label="Hand Tool"
+              aria-label="Hand tool"
             >
               <span
                 data-icon="hand"
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
+              <span class="sr-only">Hand tool</span>
             </button>
             <div
               id="tooltip-handTool"
@@ -360,13 +364,14 @@
             <button
               class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
               data-tooltip-target="tooltip-importFile"
-              aria-label="Import File"
+              aria-label="Import file"
             >
               <span
                 data-icon="import"
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
+              <span class="sr-only">Import file</span>
             </button>
             <div
               id="tooltip-importFile"
@@ -381,13 +386,14 @@
             <button
               class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
               data-tooltip-target="tooltip-quickSave"
-              aria-label="Quick Save"
+              aria-label="Quick save"
             >
               <span
                 data-icon="save"
                 data-size="20"
                 data-class="text-ys-buttonPrimary"
               ></span>
+              <span class="sr-only">Quick save</span>
             </button>
             <div
               id="tooltip-quickSave"
