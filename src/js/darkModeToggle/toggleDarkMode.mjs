@@ -18,24 +18,33 @@ export default function toggleDarkMode() {
     throw new Error('Dark Mode Toggle Button (#darkModeToggleBtn) not found.')
   }
   else {
-    // if elements are available, then use this code
-    const theme = localStorage.getItem("theme");
-    if (theme === "light") {
-      document.documentElement.classList.remove("dark");
-      darkModeToggleText.innerText = "Dark off"
-      darkModeToggleBtn.classList.add("light");
-    }
-    darkModeToggleBtn.addEventListener("click", (e) => {
-      document.documentElement.classList.toggle("dark");
-      if (!document.documentElement.classList.contains("dark")) {
-        e.target.classList.add("light");
-        darkModeToggleText.innerText = "Dark off"
-        localStorage.setItem("theme", "light")
-      } else {
-        e.target.classList.remove("light");
-        darkModeToggleText.innerText = "Dark on"
-        localStorage.removeItem("theme")
-      }
-    });
+        // if elements are available, then use this code
+        const updateDOM = (isDarkMode) => {
+          if(isDarkMode){
+            document.documentElement.classList.add("dark");
+            darkModeToggleText.innerText = "Dark on";
+            darkModeToggleBtn.classList.remove("light");
+            darkModeToggleBtn.setAttribute("aria-pressed","true");
+            localStorage.setItem("theme","dark");
+          }
+          else{
+            document.documentElement.classList.remove("dark");
+            darkModeToggleText.innerText = "Dark off";
+            darkModeToggleBtn.classList.remove("light");
+            darkModeToggleBtn.setAttribute("aria-pressed","false");
+            localStorage.setItem("theme","light");
+          }
+        };
+
+          // Initialize the theme on page load
+          const theme = localStorage.getItem("theme") || "light"; // Default to light
+          updateDOM(theme === "dark");
+
+          // Add event listener for toggle button
+          darkModeToggleBtn.addEventListener("click", () => {
+          const isDarkMode = document.documentElement.classList.toggle("dark");
+          updateDOM(isDarkMode);
+          });
+      }    
   }
-}
+
