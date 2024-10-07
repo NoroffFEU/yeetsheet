@@ -14,7 +14,6 @@ import { setupZoomMenu } from './header/zoomMenu.js';
 import { toggleHamburgerMenu } from './header/hamburgerMenu';
 import { toggleEditorSize } from './helpers/toggleEditorSize.js';
 import changeProjectName from './spreadsheet/sidebar/projectName.js';
-import { toggleSidebar } from './utils/toggleSidebar.js';
 import { renderHelpMenu } from './header/helpMenu.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -80,6 +79,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   replaceIconsWithSVGs();
   toggleEditorSize();
-  toggleSidebar();
   changeProjectName();
 });
