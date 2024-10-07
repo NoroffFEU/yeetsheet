@@ -118,3 +118,8 @@ svg {
   height: 100%;
   min-height: 5em;
 }
+#selected-cell:hover {
+  background-color: #555163; 
+  transition: background-color 0.3s ease; 
+ cursor: pointer;
+}

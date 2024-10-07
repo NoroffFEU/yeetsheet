@@ -61,39 +61,93 @@
                   class="nav-btn"
                   id="fileBtn"
                   data-menu="fileMenu"
-                  aria-label=""
-                  aria-haspopup=""
                 >
                   File
                 </button>
-              </li>
-              <li class="relative">
-                <button
-                  type="button"
-                  class="nav-btn"
-                  id="helpBtn"
-                  data-menu="helpMenu"
-                  aria-label=""
+                <!-- Dropdown-menu -->
+                <div
+                  id="fileMenu"
+                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="fileBtn"
+                  tabindex="-1"
                 >
-                  Help
-                </button>
+                  <ul
+                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
+                  >
+                    <li>
+                      <button
+                        id="file-item-1"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                      >
+                        New file...
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        id="file-item-2"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                      >
+                        Import existing file
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        id="file-item-3"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                      >
+                        Edit
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        id="file-item-4"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                      >
+                        Save
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        id="file-item-5"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                      >
+                        Save as...
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        id="file-item-6"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                      >
+                        Save copy
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        id="file-item-7"
+                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
+                      >
+                        Export
+                      </button>
+                    </li>
+                  </ul>
+                </div>
               </li>
               <li>
-                <button
-                  type="button"
-                  class="nav-btn"
-                  id="SettingsBtn"
-                  aria-label=""
-                >
+                <button type="button" class="nav-btn" id="helpBtn">Help</button>
+              </li>
+              <li>
+                <button type="button" class="nav-btn" id="settingsBtn">
                   Settings
                 </button>
               </li>
               <li>
                 <button
                   type="button"
-                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500 dropdownArrowDown"
+                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500"
                   id="zoomBtn"
-                  aria-label=""
                 >
                   100%
                 </button>
@@ -477,7 +531,6 @@
                       type="text"
                       class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="function"
-                      value=""
                       aria-label="Enter function"
                     />
                     <button id="runFunctionBtn" class="default-btn ml-2">
@@ -493,7 +546,36 @@
     </div>
 
     <footer>
-      <!-- If there´s going to be a footer -->
+      <!-- If there's going to be a footer -->
     </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const projectNameDisplay =
+          document.getElementById('projectNameDisplay');
+        const projectNameInput = document.getElementById('projectNameInput');
+        const editProjectNameBtn =
+          document.getElementById('editProjectNameBtn');
+        const saveProjectNameBtn =
+          document.getElementById('saveProjectNameBtn');
+
+        // "Edit" button functionality to edit project name
+        editProjectNameBtn.addEventListener('click', function () {
+          projectNameInput.value = projectNameDisplay.textContent;
+          projectNameDisplay.classList.add('hidden');
+          projectNameInput.classList.remove('hidden');
+          saveProjectNameBtn.classList.remove('hidden');
+          editProjectNameBtn.classList.add('hidden');
+        });
+
+        // "Save" button functionality to save project name
+        saveProjectNameBtn.addEventListener('click', function () {
+          projectNameDisplay.textContent = projectNameInput.value;
+          projectNameDisplay.classList.remove('hidden');
+          projectNameInput.classList.add('hidden');
+          saveProjectNameBtn.classList.add('hidden');
+          editProjectNameBtn.classList.remove('hidden');
+        });
+      });
+    </script>
   </body>
 </html>
