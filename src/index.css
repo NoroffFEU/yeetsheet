@@ -123,3 +123,23 @@ svg {
   transition: background-color 0.3s ease; 
  cursor: pointer;
 }
+/* styling for collapsed sidebar */
+.sidebar-narrow {
+  width: 3rem;
+}
+
+li {
+  @apply transition-transform duration-200; /* Smooth transition */
+}
+
+li button:hover {
+  @apply transform scale-105; /* Scale up on hover */
+}
+
+#fileBtn:hover {
+  @apply transform scale-110; /* Scale up on hover */
+}
+
+.active {
+  font-size: larger;
+}

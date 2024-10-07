@@ -39,8 +39,8 @@
             </a>
           </div>
           <!-- Mobile hamburger icon -->
-          <div class="md:hidden">
-            <button id="nav-hamburger-btn" class="flex justify-end pr-5">
+          <div id="mobileNav" class="md:hidden">
+            <button id="nav-hamburger-btn" class="flex justify-end pr-6">
               <span
                 data-icon="hamburgerMenu"
                 data-size="20"
@@ -50,15 +50,15 @@
             </button>
           </div>
           <nav
-            class="hidden md:flex md:flex-1 md:justify-start z-50 absolute right-0 md:static"
+            class="hidden md:flex md:flex-1 w-full md:justify-start z-50 absolute right-0 md:static"
           >
             <ul
-              class="md:flex gap-8 md:bg-transparent absolute right-5 md:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-8 md:p-0 border border-white md:border-0"
+              class="md:flex block w-full md:w-auto md:bg-transparent absolute md:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-4 md:p-0 border border-white md:border-0 text-left"
             >
               <li class="relative">
                 <button
                   type="button"
-                  class="nav-btn"
+                  class="nav-btn text-left uppercase px-2"
                   id="fileBtn"
                   data-menu="fileMenu"
                 >
@@ -138,12 +138,26 @@
               <li>
                 <button type="button" class="nav-btn" id="helpBtn">Help</button>
               </li>
+
+              <li class="relative">
+                <button
+                  type="button"
+                  class="nav-btn text-left uppercase px-2"
+                  id="helpBtn"
+                  data-menu="helpMenu"
+                  aria-label=""
+                >
+                  Help
+                </button>
+              </li>
               <li>
                 <button type="button" class="nav-btn" id="settingsBtn">
                   Settings
                 </button>
               </li>
-              <li>
+              <li
+                class="block relative justify-center px-2 border-t-2 pt-3 md:border-0 md:pt-0"
+              >
                 <button
                   type="button"
                   class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500"
@@ -154,14 +168,14 @@
                 <!-- Dropdown-menu -->
                 <div
                   id="zoomMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
+                  class="border mt-1 dark:border-ys-overlay-30 border-ys-amethyst-400 hidden z-50 w-56 md:w-40 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="zoomBtn"
                   tabindex="-1"
                 >
                   <ul
-                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
+                    class="divide-y justify-start md:absolute divide-solid dark:divide-ys-overlay-30 bg-ys-amethyst-200 dark:bg-ys-overlay-10 divide-ys-amethyst-400"
                   >
                     <li>
                       <button
