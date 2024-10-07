@@ -115,4 +115,5 @@ svg {
 #selected-cell:hover {
   background-color: #555163; 
   transition: background-color 0.3s ease; 
+ 
 }
