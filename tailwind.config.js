@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+import flowbitePlugin from 'flowbite/plugin';
+
 export default {
-  content: ['./index.html', './src/**/*.{js, mjs}'],
+  content: [
+    './index.html',
+    './src/**/*.{js, mjs}',
+    './node_modules/flowbite/**/*.js',
+  ],
   theme: {
     extend: {
       container: {
@@ -37,6 +43,6 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [flowbitePlugin],
   darkMode: 'selector',
 };
