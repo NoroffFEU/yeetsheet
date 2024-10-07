@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+import flowbitePlugin from 'flowbite/plugin';
+
 export default {
-  content: ['./index.html', './src/**/*.{js, mjs}'],
+  content: [
+    './index.html',
+    './src/**/*.{js, mjs}',
+    './node_modules/flowbite/**/*.js',
+  ],
   theme: {
     extend: {
       container: {
@@ -17,6 +23,7 @@ export default {
         'ys-amethyst-300': '#E0DFF1',
         'ys-amethyst-400': '#9E9AC8',
         'ys-amethyst-500': '#7A75AF',
+        'ys-pink-500': '#D53890',
         // Different shades of backgroundcolor(#0B0821)
         'ys-overlay-5': '#17142C',
         'ys-overlay-10': '#232137',
@@ -37,6 +44,6 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [flowbitePlugin],
   darkMode: 'selector',
 };

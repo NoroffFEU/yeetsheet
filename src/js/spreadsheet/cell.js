@@ -1,6 +1,6 @@
 import createEle from '../helpers/createEle';
 import numberToLetter from '../helpers/numberToLetter';
-// import { getCellValue } from './db.js';
+import { getCellValue } from './db.js';
 
 /**
  * Creates a table cell element with specified row and column indices.
@@ -13,33 +13,18 @@ import numberToLetter from '../helpers/numberToLetter';
  * @param {number} col - The column index of the cell.
  * @returns {HTMLElement} - The created table cell element.
  */
-export default function cell(row, col, cellData = null) {
+// Store the reference to the previously clicked cell
+let previouslyClickedCell = null;
+
+export default function cell(row, col) {
   const cellContainer = createEle(
     'td',
-    'p-0 w-28 border relative flex items-center justify-center dark:border-ys-overlay-5 border-ys-amethyst-400 ',
+    'p-0 w-28 border dark:border-ys-overlay-5 border-ys-amethyst-400 relative flex justify-center items-center',
   );
   cellContainer.setAttribute('id', numberToLetter(col) + (row + 1));
-  cellContainer.setAttribute('tabindex', 0);
 
   cellContainer.dataset.col = col;
   cellContainer.dataset.row = row;
-
-
-  // data[row][col]?.value && (cellContainer.textContent = data[row][col].value);
-  if (row === 0 && col === 0) {
-    console.log(cellData);
-  }
-
-  if (cellData) {
-    cellContainer.textContent = cellData.value ? cellData.value : '';
-  }
-
-  // const cellId = numberToLetter(col) + (row + 1);
-  // getCellValue(cellId).then((value) => {
-  //   if (value !== null) {
-  //     cellContainer.textContent = value;
-  //   }
-  // });
 
   const cellId = numberToLetter(col) + (row + 1);
   getCellValue(cellId).then((value) => {
@@ -47,14 +32,48 @@ export default function cell(row, col, cellData = null) {
       cellContainer.textContent = value;
     }
   });
+
+  // Add event listener to handle click
   cellContainer.addEventListener('click', () => {
-    const cellIdentifierDisplay = document.getElementById(
-      'cellIdentifierDisplay',
-    );
-    if (cellIdentifierDisplay) {
-      cellIdentifierDisplay.value = cellId;
-    }
+    handleCellClick(cellContainer, cellId);
   });
 
-  return cellContainer;
+  return cellContainer; // Return the cell container as-is
+}
+
+/**
+ *
+ * @param {*} cell
+ * @param {*} cellId
+ * this function is used to handle the click event on the cell, it will remove the pink border from the previously clicked cell and add the pink border to the currently
+ */
+
+// Function to handle cell click
+function handleCellClick(cell, cellId) {
+  // Remove the pink border from the previously clicked cell, if there was one
+  if (previouslyClickedCell && previouslyClickedCell !== cell) {
+    previouslyClickedCell.classList.remove(
+      'border-ys-pink-500',
+      'dark:border-ys-pink-500',
+    );
+    previouslyClickedCell.classList.add(
+      'border-ys-amethyst-400',
+      'dark:border-ys-overlay-5',
+    );
+  }
+
+  // Add pink border to the currently clicked cell
+  cell.classList.remove('border-ys-amethyst-400', 'dark:border-ys-overlay-5');
+  cell.classList.add('border-ys-pink-500', 'dark:border-ys-pink-500');
+
+  // Update the display of the selected cell ID
+  const cellIdentifierDisplay = document.getElementById(
+    'cellIdentifierDisplay',
+  );
+  if (cellIdentifierDisplay) {
+    cellIdentifierDisplay.value = cellId;
+  }
+
+  // Update the reference to the currently clicked cell
+  previouslyClickedCell = cell;
 }
