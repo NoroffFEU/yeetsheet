@@ -5,55 +5,81 @@ import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
 import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
 import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
+import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
+import { setupFileMenu } from './header/fileMenu.js';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
+import { setupZoomMenu } from './header/zoomMenu.js';
+import { toggleHamburgerMenu } from './header/hamburgerMenu';
+import { toggleEditorSize } from './helpers/toggleEditorSize.js';
+import changeProjectName from './spreadsheet/sidebar/projectName.js';
+import { toggleSidebar } from './utils/toggleSidebar.js';
+import { renderHelpMenu } from './header/helpMenu.js';
 
-const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
+document.addEventListener('DOMContentLoaded', () => {
+  const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
+  console.log(spreadsheetContainer); // Debug to ensure it's found
 
-// indexedDB
-initDB()
-  .then(() => {
-    console.log('IndexedDB initialized');
+  if (!spreadsheetContainer) {
+    console.error('Spreadsheet container not found');
+    return;
+  }
 
-    // Header menu
-    showDropdownMenu();
+  // Initialize the zoom menu
+  setupZoomMenu();
 
-    // Active state of buttons in the console
-    consoleBtnsActiveState();
+  // Initialize IndexedDB
+  initDB()
+    .then((db) => {
+      console.log('IndexedDB initialized');
 
-    // DarkMode
-    toggleDarkMode();
+      // Header menu
+      setupFileMenu();
+      renderHelpMenu();
+      toggleHamburgerMenu();
+      showDropdownMenu();
 
-    const [cols, rows] = userColsAndRows();
+      // Active state of buttons in the console
+      consoleBtnsActiveState();
 
-    // Create and append the spreadsheet to the container
-    spreadsheetContainer.append(spreadsheet(cols, rows));
+      // DarkMode
+      toggleDarkMode();
 
-    mountEditor(() => {
-      // get the code editor current value.
-      const value = getValue();
+      const [cols, rows] = userColsAndRows();
 
-      // just log to the console to show how to use it.
-      console.log('editor', value);
+      // Create and append the spreadsheet to the container
+      spreadsheetContainer.append(spreadsheet(cols, rows));
+
+      mountEditor(() => {
+        // get the code editor current value.
+        const value = getValue();
+        console.log('editor', value);
+      });
+
+      addCellTargetingEvents(
+        '#spreadsheetContainer table',
+        (col, row) => {
+          const cellId = numberToLetter(col) + (row + 1);
+          // read cell value from IndexedDB
+          return getCellValue(cellId).then((value) => value || '');
+        },
+        (col, row, value) => {
+          const cellId = numberToLetter(col) + (row + 1);
+          // save cell value to IndexedDB
+          saveCellValue(cellId, value);
+        },
+      );
+
+      // Call toggleSidebar to set up the event listener
+      attachSearchEventListener(db);
+    })
+    .catch((error) => {
+      console.error('Failed to initialize IndexedDB:', error);
     });
 
-    addCellTargetingEvents(
-      '#spreadsheetContainer table',
-      (col, row) => {
-        const cellId = numberToLetter(col) + (row + 1);
-        // read cell value from IndexedDB
-        return getCellValue(cellId).then((value) => value || '');
-      },
-      (col, row, value) => {
-        const cellId = numberToLetter(col) + (row + 1);
-        // save cell value to IndexedDB
-        saveCellValue(cellId, value);
-      },
-    );
-  })
-  .catch((error) => {
-    console.error('Failed to initialize IndexedDB:', error);
-  });
-
-replaceIconsWithSVGs();
+  replaceIconsWithSVGs();
+  toggleEditorSize();
+  toggleSidebar();
+  changeProjectName();
+});
