@@ -15,6 +15,7 @@ import { toggleHamburgerMenu } from './header/hamburgerMenu';
 import { toggleEditorSize } from './helpers/toggleEditorSize.js';
 import changeProjectName from './spreadsheet/sidebar/projectName.js';
 import { renderHelpMenu } from './header/helpMenu.js';
+import { rightClickEventListener } from './spreadsheet/popup/rightClickEventListener';
 
 document.addEventListener('DOMContentLoaded', () => {
   const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
@@ -49,6 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Create and append the spreadsheet to the container
       spreadsheetContainer.append(spreadsheet(cols, rows));
+
+      // cell popup listener
+      rightClickEventListener();
 
       mountEditor(() => {
         // get the code editor current value.

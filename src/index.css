@@ -68,7 +68,7 @@ textarea {
   @apply w-full bg-gray-300 text-black;
 }
 
-.spreadsheet-container div {
+.spreadsheet-container div:not(#cell-popup, #cell-popup *) {
   @apply dark:text-ys-textAndIconsLight dark:bg-ys-overlay-15;
 }
 
