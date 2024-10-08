@@ -20,7 +20,6 @@ export function createPopup(tdElement) {
   buttonsDiv.classList.add('absolute', 'top-0', 'right-0');
 
   const closeButton = document.createElement('button');
-  // closeButton.classList.add('absolute', 'top-0', 'right-0', 'p-2');
   closeButton.classList.add('w-8', 'text-ys-buttonGray');
   const closeButtonIcon = document.createElement('i');
   closeButtonIcon.classList.add('fa-solid', 'fa-x');
@@ -32,10 +31,9 @@ export function createPopup(tdElement) {
       'border-ys-pink-500',
     );
     lastActiveTd.classList.add('dark:border-ys-overlay-5');
-    console.log('last active td: ', lastActiveTd);
   });
+
   const trashButton = document.createElement('button');
-  // trashButton.classList.add('absolute', 'top-3', 'left-3');
   trashButton.classList.add('w-8', 'text-ys-buttonGray');
   const trashButtonIcon = document.createElement('i');
   trashButtonIcon.classList.add('fa-solid', 'fa-trash');
@@ -61,6 +59,6 @@ export function createPopup(tdElement) {
 
   popup.append(buttonsDiv, valueHeading, valueInput);
 
-  document.body.append(popup);
+  // document.body.append(popup);
   return popup;
 }

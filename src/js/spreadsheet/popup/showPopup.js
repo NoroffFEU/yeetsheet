@@ -38,7 +38,6 @@ export function showPopup(event) {
   relativeTarget.classList.add('relative');
   relativeTarget.append(popup);
 
-  console.log('targetTd after relative add', targetTd);
   popup.classList.add('absolute', 'left-full', 'top-2/4');
 
   lastActiveTd = targetTd;
@@ -46,7 +45,6 @@ export function showPopup(event) {
   handleOutsideClicks(popup, lastActiveTd);
 
   if (targetTd.tagName === 'INPUT') {
-    console.log('keydown eventlistener');
     handleKeydownInput(popup, lastActiveTd);
   }
 }
