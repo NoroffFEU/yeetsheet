@@ -1,6 +1,6 @@
 import { createPopup } from './createPopup';
 
-let lastActiveTd = null;
+export let lastActiveTd = null;
 
 export function showPopup(event) {
   event.preventDefault();

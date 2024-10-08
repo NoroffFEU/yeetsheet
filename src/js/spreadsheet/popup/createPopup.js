@@ -1,3 +1,5 @@
+import { lastActiveTd } from './showPopup';
+
 export function createPopup(tdElement) {
   const popup = document.createElement('div');
   popup.id = 'cell-popup';
@@ -9,21 +11,27 @@ export function createPopup(tdElement) {
     'max-h-fit',
     'p-4',
     'z-50',
+    'w-72',
   );
 
   const buttonsDiv = document.createElement('div');
-  buttonsDiv.classList.add('flex', 'items-center', 'justify-end');
+  buttonsDiv.classList.add('absolute', 'top-0', 'right-0');
 
   const closeButton = document.createElement('button');
   // closeButton.classList.add('absolute', 'top-0', 'right-0', 'p-2');
-  closeButton.classList.add('w-4');
+  closeButton.classList.add('w-8');
   const closeButtonIcon = document.createElement('i');
   closeButtonIcon.classList.add('fa-solid', 'fa-x');
   closeButton.append(closeButtonIcon);
-  closeButton.addEventListener('click', () => popup.classList.add('hidden'));
-
+  closeButton.addEventListener('click', () => {
+    popup.classList.add('hidden');
+    lastActiveTd.classList.remove('dark:border-white');
+    lastActiveTd.classList.add('dark:border-ys-overlay-5');
+    console.log('last active td: ', lastActiveTd);
+  });
   const trashButton = document.createElement('button');
   // trashButton.classList.add('absolute', 'top-3', 'left-3');
+  trashButton.classList.add('w-8');
   const trashButtonIcon = document.createElement('i');
   trashButtonIcon.classList.add('fa-solid', 'fa-trash');
   trashButton.append(trashButtonIcon);
@@ -32,7 +40,7 @@ export function createPopup(tdElement) {
     popup.classList.add('hidden');
   });
 
-  buttonsDiv.append(closeButton, trashButton);
+  buttonsDiv.append(trashButton, closeButton);
 
   const valueHeading = document.createElement('h3');
   valueHeading.textContent = 'Value:';
