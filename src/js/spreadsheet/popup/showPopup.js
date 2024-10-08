@@ -31,18 +31,22 @@ export function showPopup(event) {
 
   popup = createPopup(targetTd);
 
-  const rect = targetTd.getBoundingClientRect();
-
   popup.classList.remove('hidden');
 
-  popup.style.top = `${rect.top + window.scrollY + rect.height / 2 - popup.offsetHeight / 2}px`;
-  popup.style.left = `${rect.left + window.scrollX + rect.width}px`;
+  const relativeTarget =
+    targetTd.tagName === 'TD' ? targetTd : targetTd.parentElement;
+  relativeTarget.classList.add('relative');
+  relativeTarget.append(popup);
+
+  console.log('targetTd after relative add', targetTd);
+  popup.classList.add('absolute', 'left-full', 'top-2/4');
 
   lastActiveTd = targetTd;
 
   handleOutsideClicks(popup, lastActiveTd);
 
   if (targetTd.tagName === 'INPUT') {
+    console.log('keydown eventlistener');
     handleKeydownInput(popup, lastActiveTd);
   }
 }
