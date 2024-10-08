@@ -29,7 +29,14 @@ export default function cell(row, col) {
   const cellId = numberToLetter(col) + (row + 1);
   getCellValue(cellId).then((value) => {
     if (value !== null) {
-      cellContainer.textContent = value;
+      //Check if the value is too long
+      if (value.length > 10) {
+        // Truncate the value if it's too long
+        cellContainer.textContent = value.slice(0, 10) + '...';
+      } else {
+        // Setter verdien direkte hvis den er kortere enn 10 tegn
+        cellContainer.textContent = value;
+      }
     }
   });
 
