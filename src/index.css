@@ -137,3 +137,12 @@ li button:hover {
 .active {
   font-size: larger;
 }
+
+/* Highlight for rows / columns */
+.highlight-row, .highlight-column {
+  background-color: rgba(213, 95, 168, 0.3); 
+}
+
+.spreadsheet-container th {
+  cursor: pointer; 
+}

@@ -23,6 +23,7 @@ export default function cell(row, col) {
 
   cellContainer.dataset.col = col;
   cellContainer.dataset.row = row;
+  cellContainer.textContent = '';
 
   const cellId = numberToLetter(col) + (row + 1);
   getCellValue(cellId).then((value) => {
