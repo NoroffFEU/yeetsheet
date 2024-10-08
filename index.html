@@ -15,6 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
     <script
       src="https://kit.fontawesome.com/d2f31150c6.js"
       crossorigin="anonymous"
@@ -27,7 +28,7 @@
   >
     <div class="w-full" data-cy="app-container">
       <header
-        class="bg-ys-amethyst-400 dark:bg-ys-backgroundAndText py-3"
+        class="sticky top-0 z-50 bg-ys-amethyst-400 dark:bg-ys-backgroundAndText py-3"
         data-cy="top-nav"
       >
         <div class="container flex flex-wrap items-center justify-between">
@@ -38,8 +39,8 @@
             </a>
           </div>
           <!-- Mobile hamburger icon -->
-          <div class="md:hidden">
-            <button id="nav-hamburger-btn" class="flex justify-end pr-5">
+          <div id="mobileNav" class="md:hidden">
+            <button id="nav-hamburger-btn" class="flex justify-end pr-6">
               <span
                 data-icon="hamburgerMenu"
                 data-size="20"
@@ -49,15 +50,15 @@
             </button>
           </div>
           <nav
-            class="hidden md:flex md:flex-1 md:justify-start z-50 absolute right-0 md:static"
+            class="hidden md:flex md:flex-1 w-full md:justify-start z-50 absolute right-0 md:static"
           >
             <ul
-              class="md:flex gap-8 md:bg-transparent absolute right-5 md:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-8 md:p-0 border border-white md:border-0"
+              class="md:flex block w-full md:w-auto md:bg-transparent absolute md:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-4 md:p-0 border border-white md:border-0 text-left"
             >
               <li class="relative">
                 <button
                   type="button"
-                  class="nav-btn"
+                  class="nav-btn text-left uppercase px-2"
                   id="fileBtn"
                   data-menu="fileMenu"
                   aria-label=""
@@ -69,7 +70,7 @@
               <li class="relative">
                 <button
                   type="button"
-                  class="nav-btn"
+                  class="nav-btn text-left uppercase px-2"
                   id="helpBtn"
                   data-menu="helpMenu"
                   aria-label=""
@@ -81,77 +82,23 @@
                 <button
                   type="button"
                   class="nav-btn"
-                  id="SettingsBtn"
+                  id="settingsBtn"
                   aria-label=""
                 >
                   Settings
                 </button>
               </li>
-              <li>
+              <li
+                class="block relative justify-center px-2 border-t-2 pt-3 md:border-0 md:pt-0"
+              >
                 <button
                   type="button"
                   class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500 dropdownArrowDown"
                   id="zoomBtn"
                   data-menu="zoomMenu"
-                  aria-label=""
                 >
                   100%
                 </button>
-                <!-- Dropdown-menu -->
-                <!-- could also be made with JS instead -->
-                <div
-                  id="zoomMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="zoomBtn"
-                  tabindex="-1"
-                >
-                  <ul
-                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
-                  >
-                    <li>
-                      <button
-                        id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        125%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-2"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        150%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-3"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        75%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-4"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        50%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-5"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        Custom...
-                      </button>
-                    </li>
-                  </ul>
-                </div>
               </li>
             </ul>
           </nav>
@@ -188,13 +135,14 @@
                   </div>
                 </button>
               </div>
-              <div class="absolute"></div>
-              <div id="searchResultsCount" class="" aria-live="polite"></div>
-              <div
-                id="searchResultsContainer"
-                class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-400 shadow-lg p-4 z-50 text-black dark:text-white rounded-md"
-              >
-                <ul id="searchResultsList" class="space-y-2"></ul>
+              <div class="absolute">
+                <div id="searchResultsCount" aria-live="polite"></div>
+                <div
+                  id="searchResultsContainer"
+                  class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-400 shadow-lg p-4 z-50 text-black dark:text-white rounded-md"
+                >
+                  <ul id="searchResultsList" class="space-y-2"></ul>
+                </div>
               </div>
             </div>
 
@@ -218,15 +166,6 @@
         class="container flex flex-wrap justify-start items-center p-5"
         data-cy="sidebar"
       >
-        <button id="toggleSidebarBtn" class="sideBarBtn mb-12">
-          <span
-            data-icon="hamburgerMenu"
-            data-size="20"
-            data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-            aria-expanded="true"
-          ></span>
-          <span class="sr-only">Open menu</span>
-        </button>
         <div class="flex items-center gap-4 pr-5">
           <p id="proName" class="text-sm uppercase">Project name</p>
           <button id="proNameEdit" class="sideBarBtn w-auto">
@@ -290,68 +229,117 @@
           Save changes
         </button>
       </div>
-
-      <div class="container flex justify-start py-0">
-        <ul class="flex gap-4 flex-wrap justify-center">
+      <div class="container flex justify-start p-0">
+        <ul class="flex gap-1 flex-wrap justify-center m-1 mx-5">
           <li>
             <button
-              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+              class="sideBarBtn w-10 flex flex-col justify-center items-center"
+              data-tooltip-target="tooltip-share"
+              aria-label="Share"
             >
               <span
                 data-icon="share"
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
-              Share
+              <span class="sr-only">Share</span>
             </button>
+            <div
+              id="tooltip-share"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Share
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
           </li>
           <li>
             <button
-              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-fitToWindow"
+              aria-label="Fit to window"
             >
               <span
                 data-icon="fitToWindow"
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
-              Fit to window
+              <span class="sr-only">Fit to window</span>
             </button>
+            <div
+              id="tooltip-fitToWindow"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Fit to window
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
           </li>
           <li>
             <button
-              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-handTool"
+              aria-label="Hand tool"
             >
               <span
                 data-icon="hand"
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
-              Hand tool
+              <span class="sr-only">Hand tool</span>
             </button>
+            <div
+              id="tooltip-handTool"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Hand tool
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
           </li>
           <li>
             <button
-              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-importFile"
+              aria-label="Import file"
             >
               <span
                 data-icon="import"
                 data-size="20"
                 data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
               ></span>
-              Import file
+              <span class="sr-only">Import file</span>
             </button>
+            <div
+              id="tooltip-importFile"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Import file
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
           </li>
           <li>
             <button
-              class="sideBarBtn w-20 p-2 flex flex-col justify-center items-center gap-3"
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-quickSave"
+              aria-label="Quick save"
             >
               <span
                 data-icon="save"
                 data-size="20"
                 data-class="text-ys-buttonPrimary"
               ></span>
-              Quick save
+              <span class="sr-only">Quick save</span>
             </button>
+            <div
+              id="tooltip-quickSave"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Quick save
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
           </li>
         </ul>
       </div>
@@ -365,7 +353,7 @@
             <div
               id="spreadsheetContainer"
               data-cy="spreadsheetContainer"
-              class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
+              class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left"
             ></div>
           </section>
           <section class="p-5" data-cy="app-utilities">
@@ -373,29 +361,30 @@
               class="dark:bg-ys-overlay-15 dark:border-ys-backgroundAndText bg-ys-amethyst-200 border border-ys-amethyst-400"
             >
               <div
-                class="flex dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
                 data-cy="utilities-buttons"
               >
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold sm:border-r-2 md:border-r-0"
                   data-cy="code-editor-btn"
                 >
                   Code editor
                 </button>
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold border-t-2 sm:border-t-0 md:border-l-2"
                   data-cy="console-btn"
                 >
                   Console
                 </button>
+
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold border-t-2 sm:border-r-2 md:border-r-0 md:border-t-0 md:border-l-2"
                   data-cy="errors-btn"
                 >
                   Errors
                 </button>
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold border-t-2 md:border-r-0 md:border-t-0 md:border-l-2"
                   data-cy="terminal-btn"
                 >
                   Terminal
@@ -403,10 +392,10 @@
               </div>
               <div
                 id="toggle-editor"
-                class="h-48 transition-all duration-700 p-8 dark:bg-ys-backgroundAndText"
+                class="h-96 sm:h-48 transition-all duration-700 p-8 dark:bg-ys-backgroundAndText"
               >
                 <div
-                  class="h-14 transition-all duration-700"
+                  class="h-52 sm:h-14 transition-all duration-700"
                   id="code-wrapper"
                   data-cy="util:code-editor"
                 >
@@ -416,25 +405,28 @@
                     aria-label="Code editor"
                     tabindex="0"
                   ></div>
-                  <div class="flex gap-1 pt-5">
+                  <div class="flex gap-1 pt-5 flex-wrap">
                     <input
                       type="text"
-                      class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                      class="py-2 sm:py-0 w-10 sm:w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="cell"
                       aria-label="Enter cell ID"
                       id="cellIdentifierDisplay"
                     />
                     <input
                       type="text"
-                      class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                      class="w-10 flex-grow text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="function"
-                      value=""
                       aria-label="Enter function"
                       id="functionTextInput"
                     />
-                    <button id="runFunctionBtn" class="default-btn ml-2">
-                      Run
-                    </button>
+                    <div
+                      class="w-full sm:w-auto flex justify-center sm:justify-start mt-4 sm:mt-0"
+                    >
+                      <button id="runFunctionBtn" class="default-btn px-5">
+                        Run
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

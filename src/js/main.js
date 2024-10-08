@@ -11,62 +11,75 @@ import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { setupFileMenu } from './header/fileMenu.js';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
+import { setupZoomMenu } from './header/zoomMenu.js';
 import { toggleHamburgerMenu } from './header/hamburgerMenu';
 import { toggleEditorSize } from './helpers/toggleEditorSize.js';
 import changeProjectName from './spreadsheet/sidebar/projectName.js';
-import { toggleSidebar } from './utils/toggleSidebar.js';
 import { renderHelpMenu } from './header/helpMenu.js';
-const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
+import { rightClickEventListener } from './spreadsheet/popup/rightClickEventListener';
 
-// indexedDB
-initDB()
-  .then((db) => {
-    console.log('IndexedDB initialized');
+document.addEventListener('DOMContentLoaded', () => {
+  const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
+  console.log(spreadsheetContainer); // Debug to ensure it's found
 
-    // Header menu
-    setupFileMenu();
-    renderHelpMenu();
-    toggleHamburgerMenu();
-    showDropdownMenu();
+  if (!spreadsheetContainer) {
+    console.error('Spreadsheet container not found');
+    return;
+  }
 
-    // Active state of buttons in the console
-    consoleBtnsActiveState();
+  // Initialize the zoom menu
+  setupZoomMenu();
 
-    // DarkMode
-    toggleDarkMode();
+  // Initialize IndexedDB
+  initDB()
+    .then((db) => {
+      console.log('IndexedDB initialized');
 
-    const [cols, rows] = userColsAndRows();
+      // Header menu
+      setupFileMenu();
+      renderHelpMenu();
+      toggleHamburgerMenu();
+      showDropdownMenu();
 
-    // Create and append the spreadsheet to the container
-    spreadsheetContainer.append(spreadsheet(cols, rows));
+      // Active state of buttons in the console
+      consoleBtnsActiveState();
 
-    mountEditor(() => {
-      // get the code editor current value.
-      const value = getValue();
+      // DarkMode
+      toggleDarkMode();
 
-      // just log to the console to show how to use it.
-      console.log('editor', value);
+      const [cols, rows] = userColsAndRows();
+
+      // Create and append the spreadsheet to the container
+      spreadsheetContainer.append(spreadsheet(cols, rows));
+
+      // cell popup listener
+      rightClickEventListener();
+
+      mountEditor(() => {
+        // get the code editor current value.
+        const value = getValue();
+        console.log('editor', value);
+      });
+
+      addCellTargetingEvents(
+        '#spreadsheetContainer table',
+        (col, row) => {
+          const cellId = numberToLetter(col) + (row + 1);
+          // read cell value from IndexedDB
+          return getCellValue(cellId).then((value) => value || '');
+        },
+        (col, row, value) => {
+          const cellId = numberToLetter(col) + (row + 1);
+          // save cell value to IndexedDB
+          saveCellValue(cellId, value);
+        },
+      );
+
+      attachSearchEventListener(db);
+    })
+    .catch((error) => {
+      console.error('Failed to initialize IndexedDB:', error);
     });
-
-    addCellTargetingEvents(
-      '#spreadsheetContainer table',
-      (col, row) => {
-        const cellId = numberToLetter(col) + (row + 1);
-        // read cell value from IndexedDB
-        return getCellValue(cellId).then((value) => value || '');
-      },
-      (col, row, value) => {
-        const cellId = numberToLetter(col) + (row + 1);
-        // save cell value to IndexedDB
-        saveCellValue(cellId, value);
-      },
-    );
-    // Call toggleSidebar to set up the event listener
-    attachSearchEventListener(db);
-  })
-  .catch((error) => {
-    console.error('Failed to initialize IndexedDB:', error);
-  });
 
 replaceIconsWithSVGs();
 toggleEditorSize();
@@ -74,3 +87,5 @@ toggleSidebar();
 changeProjectName();
 // function for running code from the code editor
 runEditor();
+});
+

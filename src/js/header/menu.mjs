@@ -13,12 +13,19 @@ import closeOnOutsideClick from '../helpers/closeOnOutsideClick.mjs';
  */
 
 export function showDropdownMenu() {
-  const menuBtn = document.querySelectorAll('[data-menu]');
-  if (menuBtn) {
-    menuBtn.forEach((btn) => {
+  const menuBtns = document.querySelectorAll('[data-menu]');
+  if (menuBtns) {
+    menuBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const menuBtn = e.target.dataset.menu;
         const menuDropdown = document.querySelector('#' + menuBtn);
+        menuBtns.forEach((prevBtn) => {
+          const otherBtn = prevBtn.dataset.menu;
+          const otherDropdown = document.querySelector('#' + otherBtn);
+          if(otherDropdown !== menuDropdown){
+            otherDropdown.classList.add("hidden");
+          }
+        })
         e.stopPropagation();
         menuDropdown.classList.toggle('hidden');
         closeOnOutsideClick(menuDropdown);

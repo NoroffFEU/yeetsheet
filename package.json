@@ -16,7 +16,8 @@
   "devDependencies": {
     "@babel/core": "^7.24.6",
     "@babel/preset-env": "^7.24.6",
-    "autoprefixer": "^10.4.19",
+    "@vitest/coverage-v8": "^2.1.1",
+    "autoprefixer": "^10.4.20",
     "cypress": "^13.10.0",
     "cypress-downloadfile": "^1.2.3",
     "cypress-file-upload": "^5.0.8",
@@ -30,12 +31,11 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.5",
     "monaco-editor": "^0.49.0",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.47",
     "prettier": "^3.2.5",
-    "tailwindcss": "^3.4.3",
+    "tailwindcss": "^3.4.13",
     "vite": "^5.2.0",
-    "vitest": "^2.1.1",
-    "@vitest/coverage-v8": "^2.1.1"
+    "vitest": "^2.1.1"
   },
   "lint-staged": {
     "*.js": [
@@ -45,5 +45,8 @@
     "*.html": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "flowbite": "^2.5.2"
   }
 }
