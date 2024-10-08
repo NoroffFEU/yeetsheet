@@ -13,12 +13,15 @@ export function showPopup(event) {
   }
 
   if (lastActiveTd && lastActiveTd !== targetTd) {
-    lastActiveTd.classList.remove('dark:border-white');
+    lastActiveTd.classList.remove(
+      'dark:border-ys-pink-500',
+      'border-ys-pink-500',
+    );
     lastActiveTd.classList.add('dark:border-ys-overlay-5');
   }
   console.log('target id: ', targetTd);
 
-  targetTd.classList.add('dark:border-white');
+  targetTd.classList.add('dark:border-ys-pink-500');
   targetTd.classList.remove('dark:border-ys-overlay-5');
 
   console.log('Target td classes', targetTd.className);

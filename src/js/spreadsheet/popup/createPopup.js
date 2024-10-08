@@ -12,26 +12,30 @@ export function createPopup(tdElement) {
     'p-4',
     'z-50',
     'w-72',
+    'dark:bg-ys-backgroundAndText',
+    'bg-ys-amethyst-300',
   );
-
   const buttonsDiv = document.createElement('div');
   buttonsDiv.classList.add('absolute', 'top-0', 'right-0');
 
   const closeButton = document.createElement('button');
   // closeButton.classList.add('absolute', 'top-0', 'right-0', 'p-2');
-  closeButton.classList.add('w-8');
+  closeButton.classList.add('w-8', 'text-ys-buttonGray');
   const closeButtonIcon = document.createElement('i');
   closeButtonIcon.classList.add('fa-solid', 'fa-x');
   closeButton.append(closeButtonIcon);
   closeButton.addEventListener('click', () => {
     popup.classList.add('hidden');
-    lastActiveTd.classList.remove('dark:border-white');
+    lastActiveTd.classList.remove(
+      'dark:border-ys-pink-500',
+      'border-ys-pink-500',
+    );
     lastActiveTd.classList.add('dark:border-ys-overlay-5');
     console.log('last active td: ', lastActiveTd);
   });
   const trashButton = document.createElement('button');
   // trashButton.classList.add('absolute', 'top-3', 'left-3');
-  trashButton.classList.add('w-8');
+  trashButton.classList.add('w-8', 'text-ys-buttonGray');
   const trashButtonIcon = document.createElement('i');
   trashButtonIcon.classList.add('fa-solid', 'fa-trash');
   trashButton.append(trashButtonIcon);
