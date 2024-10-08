@@ -32,8 +32,8 @@ export function addCellTargetingEvents(
         'px-1',
         'appearance-none',
         'focus:outline-none',
-        'bg-ys-backgroundAndText',
-        'text-white',
+        'dark:bg-ys-backgroundAndText',
+        'dark:text-white',
         'focus:border-ys-pink-500',
       );
 

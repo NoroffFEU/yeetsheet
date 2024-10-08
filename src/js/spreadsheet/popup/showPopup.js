@@ -18,11 +18,17 @@ export function showPopup(event) {
       'dark:border-ys-pink-500',
       'border-ys-pink-500',
     );
-    lastActiveTd.classList.add('dark:border-ys-overlay-5');
+    lastActiveTd.classList.add(
+      'dark:border-ys-overlay-5',
+      'border-ys-amethyst-400',
+    );
   }
 
-  targetTd.classList.add('dark:border-ys-pink-500');
-  targetTd.classList.remove('dark:border-ys-overlay-5');
+  targetTd.classList.add('border-ys-pink-500');
+  targetTd.classList.remove(
+    'dark:border-ys-overlay-5',
+    'border-ys-amethyst-400',
+  );
 
   let popup = document.getElementById('cell-popup');
   if (popup) {
