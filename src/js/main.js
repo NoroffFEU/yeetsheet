@@ -3,7 +3,8 @@ import userColsAndRows from './helpers/userColsAndRows';
 import numberToLetter from './helpers/numberToLetter';
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
-import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
+import { getValue, mountEditor } from './codeEditor/codeEditor.js';
+import { runEditor } from './codeEditor/runEditor.js';
 import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
@@ -71,3 +72,5 @@ replaceIconsWithSVGs();
 toggleEditorSize();
 toggleSidebar();
 changeProjectName();
+// function for running code from the code editor
+runEditor();
