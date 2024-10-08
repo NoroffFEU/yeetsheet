@@ -373,29 +373,30 @@
               class="dark:bg-ys-overlay-15 dark:border-ys-backgroundAndText bg-ys-amethyst-200 border border-ys-amethyst-400"
             >
               <div
-                class="flex dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
                 data-cy="utilities-buttons"
               >
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold sm:border-r-2 md:border-r-0"
                   data-cy="code-editor-btn"
                 >
                   Code editor
                 </button>
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold border-t-2 sm:border-t-0 md:border-l-2"
                   data-cy="console-btn"
                 >
                   Console
                 </button>
+
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold border-t-2 sm:border-r-2 md:border-r-0 md:border-t-0 md:border-l-2"
                   data-cy="errors-btn"
                 >
                   Errors
                 </button>
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold border-t-2 md:border-r-0 md:border-t-0 md:border-l-2"
                   data-cy="terminal-btn"
                 >
                   Terminal
@@ -403,10 +404,10 @@
               </div>
               <div
                 id="toggle-editor"
-                class="h-48 transition-all duration-700 p-8 dark:bg-ys-backgroundAndText"
+                class="h-96 sm:h-48 transition-all duration-700 p-8 dark:bg-ys-backgroundAndText"
               >
                 <div
-                  class="h-14 transition-all duration-700"
+                  class="h-52 sm:h-14 transition-all duration-700"
                   id="code-wrapper"
                   data-cy="util:code-editor"
                 >
@@ -416,24 +417,28 @@
                     aria-label="Code editor"
                     tabindex="0"
                   ></div>
-                  <div class="flex gap-1 pt-5">
+                  <div class="flex gap-1 pt-5 flex-wrap">
                     <input
                       type="text"
-                      class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                      class="py-2 sm:py-0 w-10 sm:w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="cell"
                       aria-label="Enter cell ID"
                       id="cellIdentifierDisplay"
                     />
                     <input
                       type="text"
-                      class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                      class="w-10 flex-grow text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="function"
                       value=""
                       aria-label="Enter function"
                     />
-                    <button id="runFunctionBtn" class="default-btn ml-2">
-                      Run
-                    </button>
+                    <div
+                      class="w-full sm:w-auto flex justify-center sm:justify-start mt-4 sm:mt-0"
+                    >
+                      <button id="runFunctionBtn" class="default-btn px-5">
+                        Run
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
