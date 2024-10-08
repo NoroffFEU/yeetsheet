@@ -282,7 +282,7 @@
         class="container flex flex-wrap justify-start items-center pt-0 md:pt-5 pb-4 px-5"
         data-cy="sidebar"
       >
-        <div class="flex items-center gap-2 pr-5">
+        <div class="flex flex-wrap items-center gap-2 pr-5">
           <p id="proName" class="text-sm uppercase">Project name</p>
           <button id="proNameEdit" class="sideBarBtn w-auto">
             <i class="fa-solid fa-pen fa-xs"></i>
@@ -294,7 +294,7 @@
             &plus; New sheet
           </button>
         </div>
-        <ul class="flex items-center text-sm pr-2">
+        <ul class="flex flex-wrap items-center text-sm pr-2">
           <li>
             <button
               class="sideBarBtn w-auto dropdownArrow on-hover-items"
@@ -341,123 +341,123 @@
             </div>
           </li>
         </ul>
-        <button class="default-btn" data-cy="save-changes-button">
+        <button class="default-btn w-auto" data-cy="save-changes-button">
           Save changes
         </button>
-      </div>
-      <div class="container flex justify-start p-0">
-        <ul class="flex gap-1 flex-wrap justify-center m-1 mx-5">
-          <li>
-            <button
-              class="sideBarBtn w-10 flex flex-col justify-center items-center"
-              data-tooltip-target="tooltip-share"
-              aria-label="Share"
-            >
-              <span
-                data-icon="share"
-                data-size="20"
-                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-              ></span>
-              <span class="sr-only">Share</span>
-            </button>
-            <div
-              id="tooltip-share"
-              role="tooltip"
-              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-            >
-              Share
-              <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-          </li>
-          <li>
-            <button
-              class="sideBarBtn w-10 flex flex-col justify-center items-center"
-              data-tooltip-target="tooltip-fitToWindow"
-              aria-label="Fit to window"
-            >
-              <span
-                data-icon="fitToWindow"
-                data-size="20"
-                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-              ></span>
-              <span class="sr-only">Fit to window</span>
-            </button>
-            <div
-              id="tooltip-fitToWindow"
-              role="tooltip"
-              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-            >
-              Fit to window
-              <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-          </li>
-          <li>
-            <button
-              class="sideBarBtn w-10 flex flex-col justify-center items-center"
-              data-tooltip-target="tooltip-handTool"
-              aria-label="Hand tool"
-            >
-              <span
-                data-icon="hand"
-                data-size="20"
-                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-              ></span>
-              <span class="sr-only">Hand tool</span>
-            </button>
-            <div
-              id="tooltip-handTool"
-              role="tooltip"
-              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-            >
-              Hand tool
-              <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-          </li>
-          <li>
-            <button
-              class="sideBarBtn w-10 flex flex-col justify-center items-center"
-              data-tooltip-target="tooltip-importFile"
-              aria-label="Import file"
-            >
-              <span
-                data-icon="import"
-                data-size="20"
-                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-              ></span>
-              <span class="sr-only">Import file</span>
-            </button>
-            <div
-              id="tooltip-importFile"
-              role="tooltip"
-              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-            >
-              Import file
-              <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-          </li>
-          <li>
-            <button
-              class="sideBarBtn w-10 flex flex-col justify-center items-center"
-              data-tooltip-target="tooltip-quickSave"
-              aria-label="Quick save"
-            >
-              <span
-                data-icon="save"
-                data-size="20"
-                data-class="text-ys-buttonPrimary"
-              ></span>
-              <span class="sr-only">Quick save</span>
-            </button>
-            <div
-              id="tooltip-quickSave"
-              role="tooltip"
-              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-            >
-              Quick save
-              <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-          </li>
-        </ul>
+        <div class="flex flex-wrap justify-start p-0">
+          <ul class="flex flex-wrap justify-start m-1">
+            <li>
+              <button
+                class="sideBarBtn w-10 flex flex-col justify-center items-center"
+                data-tooltip-target="tooltip-share"
+                aria-label="Share"
+              >
+                <span
+                  data-icon="share"
+                  data-size="20"
+                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+                ></span>
+                <span class="sr-only">Share</span>
+              </button>
+              <div
+                id="tooltip-share"
+                role="tooltip"
+                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                Share
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </li>
+            <li>
+              <button
+                class="sideBarBtn w-10 flex flex-col justify-center items-center"
+                data-tooltip-target="tooltip-fitToWindow"
+                aria-label="Fit to window"
+              >
+                <span
+                  data-icon="fitToWindow"
+                  data-size="20"
+                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+                ></span>
+                <span class="sr-only">Fit to window</span>
+              </button>
+              <div
+                id="tooltip-fitToWindow"
+                role="tooltip"
+                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                Fit to window
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </li>
+            <li>
+              <button
+                class="sideBarBtn w-10 flex flex-col justify-center items-center"
+                data-tooltip-target="tooltip-handTool"
+                aria-label="Hand tool"
+              >
+                <span
+                  data-icon="hand"
+                  data-size="20"
+                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+                ></span>
+                <span class="sr-only">Hand tool</span>
+              </button>
+              <div
+                id="tooltip-handTool"
+                role="tooltip"
+                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                Hand tool
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </li>
+            <li>
+              <button
+                class="sideBarBtn w-10 flex flex-col justify-center items-center"
+                data-tooltip-target="tooltip-importFile"
+                aria-label="Import file"
+              >
+                <span
+                  data-icon="import"
+                  data-size="20"
+                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+                ></span>
+                <span class="sr-only">Import file</span>
+              </button>
+              <div
+                id="tooltip-importFile"
+                role="tooltip"
+                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                Import file
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </li>
+            <li>
+              <button
+                class="sideBarBtn w-10 flex flex-col justify-center items-center"
+                data-tooltip-target="tooltip-quickSave"
+                aria-label="Quick save"
+              >
+                <span
+                  data-icon="save"
+                  data-size="20"
+                  data-class="text-ys-buttonPrimary"
+                ></span>
+                <span class="sr-only">Quick save</span>
+              </button>
+              <div
+                id="tooltip-quickSave"
+                role="tooltip"
+                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                Quick save
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="container p-1">
