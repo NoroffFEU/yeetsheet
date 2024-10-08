@@ -29,7 +29,7 @@ button {
 }
 
 .console-btn {
-  @apply border-r rounded-none dark:border-ys-backgroundAndText border-ys-amethyst-400 dark:text-ys-textAndIconsLight text-ys-backgroundAndText;
+  @apply w-full rounded-none dark:border-ys-backgroundAndText border-ys-amethyst-400 dark:text-ys-textAndIconsLight text-ys-backgroundAndText;
 }
 
 .sideBarBtn {
@@ -116,11 +116,7 @@ svg {
   height: 100%;
   min-height: 5em;
 }
-#selected-cell:hover {
-  background-color: #555163;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
+
 /* styling for collapsed sidebar */
 .sidebar-narrow {
   width: 3rem;

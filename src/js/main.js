@@ -14,7 +14,6 @@ import { setupZoomMenu } from './header/zoomMenu.js';
 import { toggleHamburgerMenu } from './header/hamburgerMenu';
 import { toggleEditorSize } from './helpers/toggleEditorSize.js';
 import changeProjectName from './spreadsheet/sidebar/projectName.js';
-import { toggleSidebar } from './utils/toggleSidebar.js';
 import { renderHelpMenu } from './header/helpMenu.js';
 import { rightClickEventListener } from './spreadsheet/popup/rightClickEventListener';
 
@@ -75,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       );
 
-      // Call toggleSidebar to set up the event listener
       attachSearchEventListener(db);
     })
     .catch((error) => {
@@ -84,6 +82,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   replaceIconsWithSVGs();
   toggleEditorSize();
-  toggleSidebar();
   changeProjectName();
 });

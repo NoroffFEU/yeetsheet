@@ -61,79 +61,11 @@
                   class="nav-btn text-left uppercase px-2"
                   id="fileBtn"
                   data-menu="fileMenu"
+                  aria-label=""
+                  aria-haspopup=""
                 >
                   File
                 </button>
-                <!-- Dropdown-menu -->
-                <div
-                  id="fileMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="fileBtn"
-                  tabindex="-1"
-                >
-                  <ul
-                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
-                  >
-                    <li>
-                      <button
-                        id="file-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        New file...
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-2"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Import existing file
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-3"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Edit
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-4"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Save
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-5"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Save as...
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-6"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Save copy
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-7"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Export
-                      </button>
-                    </li>
-                  </ul>
-                </div>
               </li>
               <li class="relative">
                 <button
@@ -147,7 +79,12 @@
                 </button>
               </li>
               <li>
-                <button type="button" class="nav-btn" id="settingsBtn">
+                <button
+                  type="button"
+                  class="nav-btn"
+                  id="settingsBtn"
+                  aria-label=""
+                >
                   Settings
                 </button>
               </li>
@@ -156,65 +93,12 @@
               >
                 <button
                   type="button"
-                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500"
+                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500 dropdownArrowDown"
                   id="zoomBtn"
+                  data-menu="zoomMenu"
                 >
                   100%
                 </button>
-                <!-- Dropdown-menu -->
-                <div
-                  id="zoomMenu"
-                  class="border mt-1 dark:border-ys-overlay-30 border-ys-amethyst-400 hidden z-50 w-56 md:w-40 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="zoomBtn"
-                  tabindex="-1"
-                >
-                  <ul
-                    class="divide-y justify-start md:absolute divide-solid dark:divide-ys-overlay-30 bg-ys-amethyst-200 dark:bg-ys-overlay-10 divide-ys-amethyst-400"
-                  >
-                    <li>
-                      <button
-                        id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        125%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-2"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        150%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-3"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        75%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-4"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        50%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-5"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        Custom...
-                      </button>
-                    </li>
-                  </ul>
-                </div>
               </li>
             </ul>
           </nav>
@@ -282,15 +166,6 @@
         class="container flex flex-wrap justify-start items-center p-5"
         data-cy="sidebar"
       >
-        <button id="toggleSidebarBtn" class="sideBarBtn mb-12">
-          <span
-            data-icon="hamburgerMenu"
-            data-size="20"
-            data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-            aria-expanded="true"
-          ></span>
-          <span class="sr-only">Open menu</span>
-        </button>
         <div class="flex items-center gap-4 pr-5">
           <p id="proName" class="text-sm uppercase">Project name</p>
           <button id="proNameEdit" class="sideBarBtn w-auto">
@@ -486,29 +361,30 @@
               class="dark:bg-ys-overlay-15 dark:border-ys-backgroundAndText bg-ys-amethyst-200 border border-ys-amethyst-400"
             >
               <div
-                class="flex dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 dark:border border-b border-ys-amethyst-400 dark:border-ys-backgroundAndText"
                 data-cy="utilities-buttons"
               >
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold sm:border-r-2 md:border-r-0"
                   data-cy="code-editor-btn"
                 >
                   Code editor
                 </button>
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold border-t-2 sm:border-t-0 md:border-l-2"
                   data-cy="console-btn"
                 >
                   Console
                 </button>
+
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold border-t-2 sm:border-r-2 md:border-r-0 md:border-t-0 md:border-l-2"
                   data-cy="errors-btn"
                 >
                   Errors
                 </button>
                 <button
-                  class="console-btn hover:font-semibold"
+                  class="console-btn hover:font-semibold border-t-2 md:border-r-0 md:border-t-0 md:border-l-2"
                   data-cy="terminal-btn"
                 >
                   Terminal
@@ -516,10 +392,10 @@
               </div>
               <div
                 id="toggle-editor"
-                class="h-48 transition-all duration-700 p-8 dark:bg-ys-backgroundAndText"
+                class="h-96 sm:h-48 transition-all duration-700 p-8 dark:bg-ys-backgroundAndText"
               >
                 <div
-                  class="h-14 transition-all duration-700"
+                  class="h-52 sm:h-14 transition-all duration-700"
                   id="code-wrapper"
                   data-cy="util:code-editor"
                 >
@@ -529,23 +405,27 @@
                     aria-label="Code editor"
                     tabindex="0"
                   ></div>
-                  <div class="flex gap-1 pt-5">
+                  <div class="flex gap-1 pt-5 flex-wrap">
                     <input
                       type="text"
-                      class="w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                      class="py-2 sm:py-0 w-10 sm:w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="cell"
                       aria-label="Enter cell ID"
                       id="cellIdentifierDisplay"
                     />
                     <input
                       type="text"
-                      class="w-full text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                      class="w-10 flex-grow text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="function"
                       aria-label="Enter function"
                     />
-                    <button id="runFunctionBtn" class="default-btn ml-2">
-                      Run
-                    </button>
+                    <div
+                      class="w-full sm:w-auto flex justify-center sm:justify-start mt-4 sm:mt-0"
+                    >
+                      <button id="runFunctionBtn" class="default-btn px-5">
+                        Run
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -556,36 +436,7 @@
     </div>
 
     <footer>
-      <!-- If there's going to be a footer -->
+      <!-- If there´s going to be a footer -->
     </footer>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const projectNameDisplay =
-          document.getElementById('projectNameDisplay');
-        const projectNameInput = document.getElementById('projectNameInput');
-        const editProjectNameBtn =
-          document.getElementById('editProjectNameBtn');
-        const saveProjectNameBtn =
-          document.getElementById('saveProjectNameBtn');
-
-        // "Edit" button functionality to edit project name
-        editProjectNameBtn.addEventListener('click', function () {
-          projectNameInput.value = projectNameDisplay.textContent;
-          projectNameDisplay.classList.add('hidden');
-          projectNameInput.classList.remove('hidden');
-          saveProjectNameBtn.classList.remove('hidden');
-          editProjectNameBtn.classList.add('hidden');
-        });
-
-        // "Save" button functionality to save project name
-        saveProjectNameBtn.addEventListener('click', function () {
-          projectNameDisplay.textContent = projectNameInput.value;
-          projectNameDisplay.classList.remove('hidden');
-          projectNameInput.classList.add('hidden');
-          saveProjectNameBtn.classList.add('hidden');
-          editProjectNameBtn.classList.remove('hidden');
-        });
-      });
-    </script>
   </body>
 </html>
