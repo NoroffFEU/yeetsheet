@@ -29,7 +29,7 @@ button {
 }
 
 .console-btn {
-  @apply border-r rounded-none dark:border-ys-backgroundAndText border-ys-amethyst-400 dark:text-ys-textAndIconsLight text-ys-backgroundAndText;
+  @apply w-full rounded-none dark:border-ys-backgroundAndText border-ys-amethyst-400 dark:text-ys-textAndIconsLight text-ys-backgroundAndText;
 }
 
 .sideBarBtn {
