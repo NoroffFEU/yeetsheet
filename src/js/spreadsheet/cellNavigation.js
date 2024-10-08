@@ -25,7 +25,17 @@ export function addCellTargetingEvents(
 
       let input = document.createElement('input');
       input.type = 'text';
-      input.classList.add('p-0', 'text-black', 'px-1');
+      input.classList.add(
+        'p-0',
+        'px-1',
+        'appearance-none',
+        'focus:outline-none',
+        'bg-ys-backgroundAndText',
+        'text-white',
+        'focus:border-ys-pink-500',
+      );
+
+      input.style.boxShadow = 'none';
 
       input.dataset.col = col;
       input.dataset.row = row;
