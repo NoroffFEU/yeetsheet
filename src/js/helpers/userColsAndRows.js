@@ -26,7 +26,6 @@ export default function userColsAndRows(
   width = Number(width) ? width : cellwidth * 51;
   height = Number(height) ? height : cellHeight * 51;
 
-  console.log(width / cellwidth, height / cellHeight);
   // Calculate the number of columns and rows that will fit in the screen. -1 is subtracted due to the column and row headers/index.
   const cols = Math.floor(width / cellwidth) - 1;
   const rows = Math.floor(height / cellHeight) - 1;
