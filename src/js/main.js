@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       );
 
-      // Call toggleSidebar to set up the event listener
       attachSearchEventListener(db);
     })
     .catch((error) => {
