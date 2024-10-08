@@ -1,4 +1,5 @@
 import { createPopup } from './createPopup';
+import { handleKeydownInput } from './handleKeydownInput';
 import { handleOutsideClicks } from './handleOutsideClicks';
 
 export let lastActiveTd = null;
@@ -19,18 +20,14 @@ export function showPopup(event) {
     );
     lastActiveTd.classList.add('dark:border-ys-overlay-5');
   }
-  console.log('target id: ', targetTd);
 
   targetTd.classList.add('dark:border-ys-pink-500');
   targetTd.classList.remove('dark:border-ys-overlay-5');
-
-  console.log('Target td classes', targetTd.className);
 
   let popup = document.getElementById('cell-popup');
   if (popup) {
     popup.remove();
   }
-  console.log('targetTd after popup exists: ', targetTd.className);
 
   popup = createPopup(targetTd);
 
@@ -44,4 +41,8 @@ export function showPopup(event) {
   lastActiveTd = targetTd;
 
   handleOutsideClicks(popup, lastActiveTd);
+
+  if (targetTd.tagName === 'INPUT') {
+    handleKeydownInput(popup, lastActiveTd);
+  }
 }
