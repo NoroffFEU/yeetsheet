@@ -58,6 +58,5 @@ export function createPopup(tdElement) {
 
   popup.append(buttonsDiv, valueHeading, valueInput);
 
-  // document.body.append(popup);
   return popup;
 }
