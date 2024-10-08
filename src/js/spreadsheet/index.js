@@ -2,6 +2,7 @@ import createEle from '../helpers/createEle';
 import cellRow from './cellRow';
 import numberToLetter from '../helpers/numberToLetter';
 import ifValidNumber from '../helpers/ifValidNumber';
+import { deleteSheetData } from './db'; // Import deleteSheetData function
 
 const number = numberToLetter(0);
 console.log(number);
@@ -47,5 +48,44 @@ export default function spreadsheet(cols, rows) {
 
   container.appendChild(tableBody);
 
+  // Add the delete button
+  const deleteBtn = document.createElement('button');
+  deleteBtn.innerHTML = 'Delete Sheet Data';
+  deleteBtn.classList.add('delete-button'); // You can style the button with CSS
+  deleteBtn.addEventListener('click', handleDeleteSheetData); // Attach delete function to button
+
+  // Append the button to the container (or wherever it's appropriate in your UI)
+  container.appendChild(deleteBtn);
+
   return container;
+}
+
+/**
+ * Handles the deletion of the cell data from the spreadsheet.
+ * This function shows a confirmation dialog to the user,
+ * and upon confirmation, it deletes the cell data from IndexedDB and clears the UI.
+ *
+ * @function handleDeleteSheetData
+ */
+function handleDeleteSheetData() {
+  const confirmation = confirm(
+    'Are you sure you want to delete all cell data?',
+  );
+  if (confirmation) {
+    const cells = document.querySelectorAll('td'); // Select all cells
+    cells.forEach((cell) => {
+      const cellId = cell.getAttribute('id');
+      if (cellId) {
+        deleteSheetData(cellId)
+          .then(() => {
+            // Clear the cell content in the UI
+            cell.textContent = '';
+          })
+          .catch((error) => {
+            console.error('Error deleting cell data:', error);
+          });
+      }
+    });
+    alert('All cell data deleted successfully.');
+  }
 }

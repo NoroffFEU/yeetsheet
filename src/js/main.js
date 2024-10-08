@@ -4,7 +4,12 @@ import numberToLetter from './helpers/numberToLetter';
 import toggleDarkMode from './darkModeToggle/toggleDarkMode.mjs';
 import { addCellTargetingEvents } from './spreadsheet/cellNavigation';
 import { getValue, mountEditor } from './spreadsheet/codeEditor.js';
-import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
+import {
+  initDB,
+  saveCellValue,
+  getCellValue,
+  deleteSheetData,
+} from './spreadsheet/db.js';
 import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { setupFileMenu } from './header/fileMenu.js';
@@ -78,8 +83,49 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Failed to initialize IndexedDB:', error);
     });
 
+  // Add the event listener for the delete changes button
+  const deleteButton = document.querySelector(
+    '[data-cy="delete-changes-button"]',
+  );
+
+  if (deleteButton) {
+    deleteButton.addEventListener('click', handleDeleteSheetData);
+  } else {
+    console.error('Delete changes button not found');
+  }
+
   replaceIconsWithSVGs();
   toggleEditorSize();
   toggleSidebar();
   changeProjectName();
 });
+
+/**
+ * Handles the deletion of all cell data from the spreadsheet.
+ * This function shows a confirmation dialog to the user,
+ * and upon confirmation, it deletes all cell data from IndexedDB and clears the UI.
+ *
+ * @function handleDeleteSheetData
+ */
+function handleDeleteSheetData() {
+  const confirmation = confirm(
+    'Are you sure you want to delete all cell data?',
+  );
+  if (confirmation) {
+    const cells = document.querySelectorAll('td'); // Select all table cells
+    cells.forEach((cell) => {
+      const cellId = cell.getAttribute('id');
+      if (cellId) {
+        deleteSheetData(cellId)
+          .then(() => {
+            // Clear the cell content in the UI
+            cell.textContent = '';
+          })
+          .catch((error) => {
+            console.error('Error deleting cell data:', error);
+          });
+      }
+    });
+    alert('All cell data deleted successfully.');
+  }
+}
