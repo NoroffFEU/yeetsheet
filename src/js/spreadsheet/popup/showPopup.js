@@ -1,4 +1,5 @@
 import { createPopup } from './createPopup';
+import { handleOutsideClicks } from './handleOutsideClicks';
 
 export let lastActiveTd = null;
 
@@ -38,4 +39,6 @@ export function showPopup(event) {
   popup.style.left = `${rect.left + window.scrollX + rect.width}px`;
 
   lastActiveTd = targetTd;
+
+  handleOutsideClicks(popup, lastActiveTd);
 }
