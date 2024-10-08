@@ -7,6 +7,7 @@ export function createPopup(tdElement) {
     'absolute',
     'bg-red-500',
     'border',
+    'border-ys-buttonGray',
     'shadow-lg',
     'max-h-fit',
     'p-4',
