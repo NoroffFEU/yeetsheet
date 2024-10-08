@@ -14,7 +14,7 @@ import { getCellValue } from './db.js';
  * @returns {HTMLElement} - The created table cell element.
  */
 // Store the reference to the previously clicked cell
-let previouslyClickedCell = null;
+// let previouslyClickedCell = null;
 
 export default function cell(row, col) {
   const cellContainer = createEle(
@@ -33,47 +33,56 @@ export default function cell(row, col) {
     }
   });
 
-  // Add event listener to handle click
+  // // Add event listener to handle click
+  // cellContainer.addEventListener('click', () => {
+  //   handleCellClick(cellContainer, cellId);
+  // });
+
   cellContainer.addEventListener('click', () => {
-    handleCellClick(cellContainer, cellId);
+    const cellIdentifierDisplay = document.getElementById(
+      'cellIdentifierDisplay',
+    );
+    if (cellIdentifierDisplay) {
+      cellIdentifierDisplay.value = cellId;
+    }
   });
 
   return cellContainer; // Return the cell container as-is
 }
 
-/**
- *
- * @param {*} cell
- * @param {*} cellId
- * this function is used to handle the click event on the cell, it will remove the pink border from the previously clicked cell and add the pink border to the currently
- */
+// /**
+//  *
+//  * @param {*} cell
+//  * @param {*} cellId
+//  * this function is used to handle the click event on the cell, it will remove the pink border from the previously clicked cell and add the pink border to the currently
+//  */
 
-// Function to handle cell click
-function handleCellClick(cell, cellId) {
-  // Remove the pink border from the previously clicked cell, if there was one
-  if (previouslyClickedCell && previouslyClickedCell !== cell) {
-    previouslyClickedCell.classList.remove(
-      'border-ys-pink-500',
-      'dark:border-ys-pink-500',
-    );
-    previouslyClickedCell.classList.add(
-      'border-ys-amethyst-400',
-      'dark:border-ys-overlay-5',
-    );
-  }
+// // Function to handle cell click
+// function handleCellClick(cell, cellId) {
+//   // Remove the pink border from the previously clicked cell, if there was one
+//   if (previouslyClickedCell && previouslyClickedCell !== cell) {
+//     previouslyClickedCell.classList.remove(
+//       'border-ys-pink-500',
+//       'dark:border-ys-pink-500',
+//     );
+//     previouslyClickedCell.classList.add(
+//       'border-ys-amethyst-400',
+//       'dark:border-ys-overlay-5',
+//     );
+//   }
 
-  // Add pink border to the currently clicked cell
-  cell.classList.remove('border-ys-amethyst-400', 'dark:border-ys-overlay-5');
-  cell.classList.add('border-ys-pink-500', 'dark:border-ys-pink-500');
+//   // Add pink border to the currently clicked cell
+//   cell.classList.remove('border-ys-amethyst-400', 'dark:border-ys-overlay-5');
+//   cell.classList.add('border-ys-pink-500', 'dark:border-ys-pink-500');
 
-  // Update the display of the selected cell ID
-  const cellIdentifierDisplay = document.getElementById(
-    'cellIdentifierDisplay',
-  );
-  if (cellIdentifierDisplay) {
-    cellIdentifierDisplay.value = cellId;
-  }
+//   // Update the display of the selected cell ID
+//   const cellIdentifierDisplay = document.getElementById(
+//     'cellIdentifierDisplay',
+//   );
+//   if (cellIdentifierDisplay) {
+//     cellIdentifierDisplay.value = cellId;
+//   }
 
-  // Update the reference to the currently clicked cell
-  previouslyClickedCell = cell;
-}
+//   // Update the reference to the currently clicked cell
+//   previouslyClickedCell = cell;
+// }
