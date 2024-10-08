@@ -1,3 +1,5 @@
+import { showPopup } from './popup/showPopup';
+
 /**
  * @description Add events to handle cell navigation.
  * @param {string} tableSelector
@@ -36,6 +38,8 @@ export function addCellTargetingEvents(
       );
 
       input.style.boxShadow = 'none';
+
+      input.addEventListener('contextmenu', showPopup);
 
       input.dataset.col = col;
       input.dataset.row = row;
