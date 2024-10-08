@@ -53,8 +53,7 @@ export function importJSON(file) {
           resolve(parsedData);
         }
       } catch (error) {
-        reject(new Error('Invalid JSON file format'));
-        console.log('Error: ', error);
+        reject(new Error('Invalid JSON file format', error));
       }
     };
     reader.onerror = (error) => {
