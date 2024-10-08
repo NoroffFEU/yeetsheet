@@ -5,7 +5,6 @@ export function createPopup(tdElement) {
   popup.id = 'cell-popup';
   popup.classList.add(
     'absolute',
-    'bg-red-500',
     'border',
     'border-ys-buttonGray',
     'shadow-lg',
@@ -13,8 +12,8 @@ export function createPopup(tdElement) {
     'p-4',
     'z-50',
     'w-72',
+    'bg-ys-amethyst-400',
     'dark:bg-ys-backgroundAndText',
-    'bg-ys-amethyst-300',
   );
   const buttonsDiv = document.createElement('div');
   buttonsDiv.classList.add('absolute', 'top-0', 'right-0');
