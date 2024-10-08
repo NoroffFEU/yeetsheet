@@ -29,12 +29,11 @@ export default function cell(row, col) {
   const cellId = numberToLetter(col) + (row + 1);
   getCellValue(cellId).then((value) => {
     if (value !== null) {
-      //Check if the value is too long
+      // Set the cell value
       if (value.length > 10) {
-        // Truncate the value if it's too long
+        // If the value is longer than 10 characters, truncate it and add an ellipsis
         cellContainer.textContent = value.slice(0, 10) + '...';
       } else {
-        // Setter verdien direkte hvis den er kortere enn 10 tegn
         cellContainer.textContent = value;
       }
     }
@@ -43,6 +42,13 @@ export default function cell(row, col) {
   // Add event listener to handle click
   cellContainer.addEventListener('click', () => {
     handleCellClick(cellContainer, cellId);
+  });
+
+  // Listen for when the user clicks outside the cell (blur)
+  document.addEventListener('click', (event) => {
+    if (previouslyClickedCell && event.target !== previouslyClickedCell) {
+      restoreEllipsis(previouslyClickedCell); // Restore ellipsis when clicking outside the cell
+    }
   });
 
   return cellContainer; // Return the cell container as-is
@@ -57,8 +63,9 @@ export default function cell(row, col) {
 
 // Function to handle cell click
 function handleCellClick(cell, cellId) {
-  // Remove the pink border from the previously clicked cell, if there was one
+  // Check if there was a previously clicked cell, and restore its ellipsis
   if (previouslyClickedCell && previouslyClickedCell !== cell) {
+    restoreEllipsis(previouslyClickedCell); // Restore the ellipsis on the previous cell
     previouslyClickedCell.classList.remove(
       'border-ys-pink-500',
       'dark:border-ys-pink-500',
@@ -83,4 +90,21 @@ function handleCellClick(cell, cellId) {
 
   // Update the reference to the currently clicked cell
   previouslyClickedCell = cell;
+}
+
+// Function to restore ellipsis on cell when it loses focus
+function restoreEllipsis(cell) {
+  const cellId = cell.getAttribute('id');
+
+  // Fetch the value again and reapply the truncation if necessary
+  getCellValue(cellId).then((value) => {
+    if (value !== null) {
+      // Truncate the value again if it's longer than 10 characters
+      if (value.length > 10) {
+        cell.textContent = value.slice(0, 10) + '...';
+      } else {
+        cell.textContent = value;
+      }
+    }
+  });
 }
