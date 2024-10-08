@@ -8,7 +8,7 @@ export function showPopup(event) {
 
   const targetTd = event.target;
 
-  if (targetTd.tagName !== 'TD') {
+  if (targetTd.tagName !== 'TD' && targetTd.tagName !== 'INPUT') {
     return;
   }
 

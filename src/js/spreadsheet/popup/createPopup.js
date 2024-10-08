@@ -50,7 +50,9 @@ export function createPopup(tdElement) {
   valueHeading.textContent = 'Value:';
 
   const valueInput = document.createElement('span');
-  if (tdElement.textContent.length === 0) {
+  if (tdElement.tagName === 'INPUT') {
+    valueInput.textContent = tdElement.value;
+  } else if (tdElement.textContent.length === 0) {
     valueInput.textContent = 'No value yet.';
   } else {
     valueInput.textContent = tdElement.textContent;
