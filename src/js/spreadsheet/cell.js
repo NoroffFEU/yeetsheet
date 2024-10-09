@@ -13,8 +13,6 @@ import { getCellValue } from './db.js';
  * @param {number} col - The column index of the cell.
  * @returns {HTMLElement} - The created table cell element.
  */
-// Store the reference to the previously clicked cell
-let previouslyClickedCell = null;
 
 export default function cell(row, col) {
   const cellContainer = createEle(
@@ -25,6 +23,7 @@ export default function cell(row, col) {
 
   cellContainer.dataset.col = col;
   cellContainer.dataset.row = row;
+  cellContainer.textContent = '';
 
   const cellId = numberToLetter(col) + (row + 1);
   getCellValue(cellId).then((value) => {
@@ -39,9 +38,13 @@ export default function cell(row, col) {
     }
   });
 
-  // Add event listener to handle click
   cellContainer.addEventListener('click', () => {
-    handleCellClick(cellContainer, cellId);
+    const cellIdentifierDisplay = document.getElementById(
+      'cellIdentifierDisplay',
+    );
+    if (cellIdentifierDisplay) {
+      cellIdentifierDisplay.value = cellId;
+    }
   });
 
   // Listen for when the user clicks outside the cell (blur)
@@ -53,6 +56,7 @@ export default function cell(row, col) {
 
   return cellContainer; // Return the cell container as-is
 }
+
 
 /**
  *

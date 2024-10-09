@@ -1,6 +1,7 @@
 import createEle from '../helpers/createEle';
 import cell from './cell';
 import ifValidNumber from '../helpers/ifValidNumber';
+import { highlightRow } from './cellHighlight';
 
 /**
  * Creates a table row container with a specified number of cells.
@@ -30,6 +31,8 @@ export default function cellRow(cols, row) {
     'w-28 text-center border-y dark:border-ys-overlay-5 border-ys-amethyst-400 dark:bg-ys-overlay-15 bg-white py-2 flex-none snap-start',
     rowIndex,
   );
+
+  highlightRow(rowNumber);
 
   rowContainer.appendChild(rowNumber);
 
