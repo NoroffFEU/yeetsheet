@@ -63,11 +63,6 @@ export function addCellTargetingEvents(
           saveCellCallback(col, row, value);
 
           if (popup) {
-            input.classList.remove(
-              'dark:border-ys-overlay-5',
-              'border-ys-amethyst-400',
-            );
-            input.classList.add('border-ys-pink-500');
             return;
           } else {
             ev.currentTarget?.remove();
@@ -114,7 +109,6 @@ export function addCellTargetingEvents(
 
         const popup = document.getElementById('cell-popup');
         if (popup) {
-          console.log('it does return');
           return;
         } else {
           td.textContent = '';
