@@ -41,6 +41,7 @@ export function setupZoomMenu() {
       option,
     );
     button.id = `zoom-item-${i}`;
+
     if (option === selectedZoom) {
       button.classList.add('selected-zoom');
     }
@@ -49,20 +50,21 @@ export function setupZoomMenu() {
     button.addEventListener('click', () => {
       document.querySelectorAll('.selected-zoom').forEach((btn) => {
         btn.classList.remove('selected-zoom');
-        btn.style.backgroundColor = '';
+        btn.style.backgroundColor = ''; // Reset background
         btn.style.color = '';
         btn.style.fontWeight = '';
       });
 
-      // Add selected class to the clicked button
+      // Set the background color based on the current theme
+      const isDarkMode = document.documentElement.classList.contains('dark');
       button.classList.add('selected-zoom');
-      button.style.backgroundColor = 'rgba(213, 95, 168, 0.3)';
+      button.style.backgroundColor = isDarkMode
+        ? 'rgba(213, 95, 168, 0.3)' // Dark mode color
+        : 'rgb(122, 117, 175, 0.5)'; // Light mode color
       button.style.fontWeight = 'bold';
 
       selectedZoom = option;
-
       zoomMenu.classList.add('hidden');
-
       zoomBtn.textContent = `${selectedZoom}`;
     });
 
