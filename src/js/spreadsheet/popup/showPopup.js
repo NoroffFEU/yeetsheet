@@ -13,6 +13,11 @@ export async function showPopup(event) {
     return;
   }
 
+  // Stop propagation if the target is an input element
+  if (targetTd.tagName === 'INPUT') {
+    event.stopPropagation();
+  }
+
   if (lastActiveTd && lastActiveTd !== targetTd) {
     lastActiveTd.classList.remove(
       'dark:border-ys-pink-500',
