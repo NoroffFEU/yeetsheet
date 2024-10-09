@@ -12,7 +12,19 @@
 
 export default function projectName() {
   const projectName = document.getElementById('proName');
+  const sheetHeader = document.getElementById('proNameSheet');
   const editButton = document.getElementById('proNameEdit');
+
+  // load name from localStorage if there is one
+  window.onload = () => {
+    const storedProjectName =
+      JSON.parse(localStorage.getItem('yeetsheet')) || {};
+
+    if (storedProjectName.projectName) {
+      projectName.innerText = storedProjectName.projectName;
+      sheetHeader.innerText = storedProjectName.projectName;
+    }
+  };
 
   editButton.addEventListener('click', () => {
     const input = document.createElement('input');
@@ -48,10 +60,20 @@ export default function projectName() {
         input.value = projectName.innerText;
       } else {
         projectName.innerText = input.value;
+        sheetHeader.innerText = input.value;
+
+        // Temporary store to localStorage
+        const projectString =
+          JSON.parse(localStorage.getItem('yeetsheet')) || {};
+        projectString.projectName = input.value;
+
+        const newProjectString = JSON.stringify(projectString);
+        localStorage.setItem('yeetsheet', newProjectString);
 
         //    Need to store the name of the project in the database from here
       }
       confirmIcon.replaceWith(editButton);
+
       input.replaceWith(projectName);
     });
 
