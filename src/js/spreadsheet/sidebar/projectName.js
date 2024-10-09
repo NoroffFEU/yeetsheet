@@ -1,13 +1,16 @@
 // JSdocs
 
 /**
- * Adds functionality on the sidebar: Change the name of the project
+ * Adds functionality to change the project name in the sidebar and update it in the associated sheet header. The project name is also temporarily stored in localStorage for persistence across page reloads.
  *
- * When the user clicks on the project name, it will be replaced with an input field
+ * Features:
+ * - On page load, it checks if a project name is stored in localStorage under the 'yeetsheet' key and sets the project name and sheet header accordingly.
+ * - When the user clicks the edit button, the current project name is replaced with an input field to allow renaming.
+ * - The user can press Enter or click outside the input field to save the new name.
+ * - Updates the project name in both the sidebar and sheet header.
+ * - Saves the new project name in localStorage under the 'yeetsheet' key.
+ * - Ensures a maximum input length of 20 characters.
  *
- * The user can then change the name of the project
- *
- * The user can press enter to save the new name or click outside the input field
  */
 
 export default function projectName() {
