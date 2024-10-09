@@ -2,43 +2,123 @@ import createEle from '../helpers/createEle';
 
 export function setupZoomMenu() {
   const zoomBtn = document.getElementById('zoomBtn');
+  const spreadsheetContainer = document.getElementById('spreadsheetContainer');
 
-  if (!zoomBtn) {
-    console.error('Zoom button not found.');
+  if (!zoomBtn || !spreadsheetContainer) {
+    console.error('Required elements not found.');
     return;
   }
 
-  const zoomMenu = createEle(
-    'div',
-    'border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 md:w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md',
-  );
+  let zoomMenu;
 
-  zoomMenu.id = 'zoomMenu';
-  zoomMenu.setAttribute('role', 'menu');
-  zoomMenu.setAttribute('aria-orientation', 'vertical');
-  zoomMenu.setAttribute('aria-labelledby', 'zoomBtn');
-  zoomMenu.setAttribute('tabindex', '-1');
+  function resizeCells(zoomPercentage) {
+    const scale = parseFloat(zoomPercentage) / 100;
 
-  // Create the list of zoom options
-  const zoomOptions = ['100%', '125%', '150%', '75%', '50%', 'Custom...'];
-  const ul = createEle(
-    'ul',
-    'divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400',
-  );
+    spreadsheetContainer.style.transform = `scale(${scale})`;
+    spreadsheetContainer.style.transformOrigin = 'top left';
 
-  zoomOptions.forEach((option, i) => {
-    const li = createEle('li');
-    const button = createEle(
-      'button',
-      'w-full text-left dark:text-ys-textAndIconsLight px-5',
-      option,
+    spreadsheetContainer.style.width = `${100 / scale}%`;
+    spreadsheetContainer.style.height = `${100 / scale}%`;
+
+    const originalMaxHeight = 35;
+    spreadsheetContainer.style.maxHeight = `${originalMaxHeight / scale}rem`;
+
+    zoomBtn.textContent = `${zoomPercentage}%`;
+  }
+
+  function handleZoomOption(option) {
+    let zoomValue;
+    if (option === 'Custom...') {
+      const customZoom = prompt('Enter custom zoom percentage:');
+      if (customZoom) {
+        zoomValue = customZoom;
+      } else {
+        return;
+      }
+    } else {
+      zoomValue = option.replace('%', '');
+    }
+
+    resizeCells(zoomValue);
+    closeZoomMenu();
+  }
+
+  function createZoomMenu() {
+    if (zoomMenu) return zoomMenu;
+
+    zoomMenu = createEle(
+      'div',
+      'border dark:border-ys-overlay-30 border-ys-amethyst-400 absolute z-50 bg-ys-amethyst-200 dark:bg-ys-overlay-10 shadow-md',
+      false,
+      {
+        id: 'zoomMenu',
+        role: 'menu',
+        'aria-orientation': 'vertical',
+        'aria-labelledby': 'zoomBtn',
+        tabindex: '-1',
+      },
     );
-    button.id = `zoom-item-${i}`;
 
-    li.appendChild(button);
-    ul.appendChild(li);
+    const zoomOptions = ['100%', '125%', '150%', '75%', '50%', 'Custom...'];
+    const ul = createEle(
+      'ul',
+      'divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400',
+    );
+
+    zoomOptions.forEach((option) => {
+      const li = createEle('li');
+      const button = createEle(
+        'button',
+        'w-full text-left dark:text-ys-textAndIconsLight px-5',
+        option,
+      );
+      button.addEventListener('click', () => handleZoomOption(option));
+      li.appendChild(button);
+      ul.appendChild(li);
+    });
+
+    zoomMenu.appendChild(ul);
+    document.body.appendChild(zoomMenu);
+
+    return zoomMenu;
+  }
+
+  function toggleZoomMenu() {
+    if (!zoomMenu) {
+      zoomMenu = createZoomMenu();
+    }
+
+    if (zoomMenu.style.display === 'none' || !zoomMenu.style.display) {
+      const rect = zoomBtn.getBoundingClientRect();
+      zoomMenu.style.top = `${rect.bottom + window.scrollY}px`;
+      zoomMenu.style.left = `${Math.min(rect.left + window.scrollX, window.innerWidth - zoomMenu.offsetWidth)}px`;
+      zoomMenu.style.display = 'block';
+    } else {
+      closeZoomMenu();
+    }
+  }
+
+  function closeZoomMenu() {
+    if (zoomMenu) {
+      zoomMenu.style.display = 'none';
+    }
+  }
+
+  zoomBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    toggleZoomMenu();
   });
 
-  zoomMenu.appendChild(ul);
-  zoomBtn.after(zoomMenu);
+  document.addEventListener('click', (event) => {
+    if (
+      zoomMenu &&
+      zoomMenu.style.display === 'block' &&
+      !zoomBtn.contains(event.target) &&
+      !zoomMenu.contains(event.target)
+    ) {
+      closeZoomMenu();
+    }
+  });
+
+  resizeCells(100);
 }
