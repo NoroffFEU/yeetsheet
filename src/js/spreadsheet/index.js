@@ -2,7 +2,7 @@ import createEle from '../helpers/createEle';
 import cellRow from './cellRow';
 import numberToLetter from '../helpers/numberToLetter';
 import ifValidNumber from '../helpers/ifValidNumber';
-import { deleteSheetData } from './db'; // Import deleteSheetData function
+import { deleteSheetData } from './db';
 
 const number = numberToLetter(0);
 console.log(number);
@@ -48,13 +48,11 @@ export default function spreadsheet(cols, rows) {
 
   container.appendChild(tableBody);
 
-  // Add the delete button
   const deleteBtn = document.createElement('button');
   deleteBtn.innerHTML = 'Delete Sheet Data';
-  deleteBtn.classList.add('delete-button'); // You can style the button with CSS
-  deleteBtn.addEventListener('click', handleDeleteSheetData); // Attach delete function to button
+  deleteBtn.classList.add('delete-button');
+  deleteBtn.addEventListener('click', handleDeleteSheetData);
 
-  // Append the button to the container (or wherever it's appropriate in your UI)
   container.appendChild(deleteBtn);
 
   return container;
@@ -72,13 +70,12 @@ function handleDeleteSheetData() {
     'Are you sure you want to delete all cell data?',
   );
   if (confirmation) {
-    const cells = document.querySelectorAll('td'); // Select all cells
+    const cells = document.querySelectorAll('td');
     cells.forEach((cell) => {
       const cellId = cell.getAttribute('id');
       if (cellId) {
         deleteSheetData(cellId)
           .then(() => {
-            // Clear the cell content in the UI
             cell.textContent = '';
           })
           .catch((error) => {

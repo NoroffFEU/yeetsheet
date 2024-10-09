@@ -83,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Failed to initialize IndexedDB:', error);
     });
 
-  // Add the event listener for the delete changes button
   const deleteButton = document.querySelector(
     '[data-cy="delete-changes-button"]',
   );
@@ -112,13 +111,12 @@ function handleDeleteSheetData() {
     'Are you sure you want to delete all cell data?',
   );
   if (confirmation) {
-    const cells = document.querySelectorAll('td'); // Select all table cells
+    const cells = document.querySelectorAll('td');
     cells.forEach((cell) => {
       const cellId = cell.getAttribute('id');
       if (cellId) {
         deleteSheetData(cellId)
           .then(() => {
-            // Clear the cell content in the UI
             cell.textContent = '';
           })
           .catch((error) => {
