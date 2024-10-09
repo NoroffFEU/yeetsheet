@@ -2,6 +2,7 @@ import createEle from '../helpers/createEle';
 import cellRow from './cellRow';
 import numberToLetter from '../helpers/numberToLetter';
 import ifValidNumber from '../helpers/ifValidNumber';
+import { highlightColumn } from './cellHighlight';
 import {
   createContextMenuColumn,
   addContextMenuListener,
@@ -36,6 +37,12 @@ export default function spreadsheet(cols, rows) {
       'w-28 text-center border-x dark:border-ys-overlay-5 border-ys-amethyst-400 dark:bg-ys-overlay-15 bg-white py-2 snap-start',
       numberToLetter(i),
     );
+    colNumber.setAttribute('data-col', i);
+
+    // Add column highlight event listener
+    colNumber.addEventListener('click', () => {
+      highlightColumn(i); // Call the function to highlight the column
+    });
 
     // Add menu event listener to column header (A, B, C...)
     colNumber.addEventListener('contextmenu', (e) => {
@@ -67,6 +74,7 @@ export default function spreadsheet(cols, rows) {
     });
 
     columnNumbers.appendChild(colNumber);
+    console.log('clicked', colNumber);
   }
 
   // Create table body rows

@@ -23,6 +23,7 @@ export default function cell(row, col) {
 
   cellContainer.dataset.col = col;
   cellContainer.dataset.row = row;
+  cellContainer.textContent = '';
 
   const cellId = numberToLetter(col) + (row + 1);
   getCellValue(cellId).then((value) => {
@@ -30,6 +31,7 @@ export default function cell(row, col) {
       cellContainer.textContent = value;
     }
   });
+
   cellContainer.addEventListener('click', () => {
     const cellIdentifierDisplay = document.getElementById(
       'cellIdentifierDisplay',
@@ -39,5 +41,5 @@ export default function cell(row, col) {
     }
   });
 
-  return cellContainer;
+  return cellContainer; // Return the cell container as-is
 }

@@ -1,3 +1,5 @@
+import { showPopup } from './popup/showPopup';
+
 /**
  * @description Add events to handle cell navigation.
  * @param {string} tableSelector
@@ -25,7 +27,19 @@ export function addCellTargetingEvents(
 
       let input = document.createElement('input');
       input.type = 'text';
-      input.classList.add('p-0', 'text-black', 'px-1');
+      input.classList.add(
+        'p-0',
+        'px-1',
+        'appearance-none',
+        'focus:outline-none',
+        'dark:bg-ys-backgroundAndText',
+        'dark:text-white',
+        'focus:border-ys-pink-500',
+      );
+
+      input.style.boxShadow = 'none';
+
+      input.addEventListener('contextmenu', showPopup);
 
       input.dataset.col = col;
       input.dataset.row = row;
