@@ -65,16 +65,13 @@ export async function createPopup(tdElement) {
   trashButtonIcon.classList.add('fa-solid', 'fa-trash');
   trashButton.append(trashButtonIcon);
   trashButton.addEventListener('click', () => {
-    let cellId;
     const inputField = tdElement.querySelector('input');
 
     if (inputField) {
       inputField.value = '';
       inputField.parentElement.textContent = '';
-      cellId = tdElement.parentElement.id;
     } else {
       tdElement.textContent = '';
-      cellId = tdElement.id;
     }
 
     saveCellValue(cellId, '');
