@@ -103,7 +103,12 @@ export async function createPopup(tdElement) {
   valueHeading.textContent = 'Value:';
 
   const valueInput = document.createElement('span');
-  valueInput.textContent = cellValue || 'No value yet.';
+
+  if (tdElement.tagName === 'INPUT') {
+    valueInput.textContent = tdElement.value || 'No value yet.';
+  } else {
+    valueInput.textContent = cellValue || 'No value yet.';
+  }
 
   popup.append(buttonsDiv, valueHeading, valueInput);
 
