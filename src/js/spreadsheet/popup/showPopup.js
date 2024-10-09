@@ -4,7 +4,7 @@ import { handleOutsideClicks } from './handleOutsideClicks';
 
 export let lastActiveTd = null;
 
-export function showPopup(event) {
+export async function showPopup(event) {
   event.preventDefault();
 
   const targetTd = event.target;
@@ -35,7 +35,7 @@ export function showPopup(event) {
     popup.remove();
   }
 
-  popup = createPopup(targetTd);
+  popup = await createPopup(targetTd);
 
   popup.classList.remove('hidden');
 
