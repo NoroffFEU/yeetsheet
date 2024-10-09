@@ -50,7 +50,6 @@ export async function createPopup(tdElement) {
   closeButtonIcon.classList.add('fa-solid', 'fa-x');
   closeButton.append(closeButtonIcon);
   closeButton.addEventListener('click', () => {
-    // popup.classList.add('hidden');
     popup.remove();
     lastActiveTd.classList.remove(
       'dark:border-ys-pink-500',
@@ -69,13 +68,8 @@ export async function createPopup(tdElement) {
     const spreadsheetContainer = document.getElementById(
       'spreadsheetContainer',
     );
-    console.log('spreadsheet container: ', spreadsheetContainer);
-    // const inputField = tdElement.querySelector('input');
-    // console.log("input from createPopup: ", inputField);
 
     const inputField = spreadsheetContainer.querySelector('input');
-
-    console.log('input field from spreadsheet container', inputField);
 
     if (inputField) {
       inputField.value = '';
@@ -85,10 +79,8 @@ export async function createPopup(tdElement) {
       tdElement.textContent = '';
     }
 
-    console.log('cell id: ', cellId);
     saveCellValue(cellId, '');
 
-    // popup.classList.add('hidden');
     popup.remove();
     tdElement.classList.remove('dark:border-ys-pink-500', 'border-ys-pink-500');
     tdElement.classList.add(
