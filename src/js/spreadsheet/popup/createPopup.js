@@ -1,7 +1,32 @@
-import { saveCellValue } from '../db';
+import { saveCellValue, getCellValue } from '../db';
 import { lastActiveTd } from './showPopup';
 
-export function createPopup(tdElement) {
+export async function createPopup(tdElement) {
+  // Get tdElement's col and row from data-col and data-row attributes
+  const col = tdElement.getAttribute('data-col');
+  const row = tdElement.getAttribute('data-row');
+
+  // Convert col to letter
+  const numberToLetter = (num) => {
+    let ret = '';
+    for (; num >= 0; num = parseInt(num / 26, 10) - 1) {
+      ret = String.fromCharCode((num % 26) + 0x41) + ret;
+    }
+    return ret;
+  };
+
+  // Create cellId
+  const cellId = numberToLetter(col) + (parseInt(row, 10) + 1);
+
+  // Get cell value from IndexedDB
+  let cellValue;
+  try {
+    cellValue = await getCellValue(cellId);
+  } catch (error) {
+    console.error('Failed to get cell value:', error);
+    cellValue = null;
+  }
+
   const popup = document.createElement('div');
   popup.id = 'cell-popup';
   popup.classList.add(
@@ -58,7 +83,6 @@ export function createPopup(tdElement) {
       cellId = inputField.id;
     } else {
       tdElement.textContent = '';
-      cellId = tdElement.id;
     }
 
     console.log('cell id: ', cellId);
@@ -79,13 +103,7 @@ export function createPopup(tdElement) {
   valueHeading.textContent = 'Value:';
 
   const valueInput = document.createElement('span');
-  if (tdElement.tagName === 'INPUT') {
-    valueInput.textContent = tdElement.value || 'No value yet.';
-  } else if (tdElement.textContent.length === 0) {
-    valueInput.textContent = 'No value yet.';
-  } else {
-    valueInput.textContent = tdElement.textContent;
-  }
+  valueInput.textContent = cellValue || 'No value yet.';
 
   popup.append(buttonsDiv, valueHeading, valueInput);
 

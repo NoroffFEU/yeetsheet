@@ -4,7 +4,7 @@ import { handleOutsideClicks } from './handleOutsideClicks';
 
 export let lastActiveTd = null;
 
-export function showPopup(event) {
+export async function showPopup(event) {
   event.preventDefault();
 
   const targetTd = event.target;
@@ -13,7 +13,11 @@ export function showPopup(event) {
     return;
   }
 
-  console.log('last active td: ', lastActiveTd);
+  // Stop propagation if the target is an input element
+  if (targetTd.tagName === 'INPUT') {
+    event.stopPropagation();
+  }
+
   if (lastActiveTd && lastActiveTd !== targetTd) {
     lastActiveTd.classList.remove(
       'dark:border-ys-pink-500',
@@ -36,7 +40,7 @@ export function showPopup(event) {
     popup.remove();
   }
 
-  popup = createPopup(targetTd);
+  popup = await createPopup(targetTd);
 
   popup.classList.remove('hidden');
 
