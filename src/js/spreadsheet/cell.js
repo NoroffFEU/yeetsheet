@@ -28,7 +28,13 @@ export default function cell(row, col) {
   const cellId = numberToLetter(col) + (row + 1);
   getCellValue(cellId).then((value) => {
     if (value !== null) {
-      cellContainer.textContent = value;
+      // Set the cell value
+      if (value.length > 10) {
+        // If the value is longer than 10 characters, truncate it and add an ellipsis
+        cellContainer.textContent = value.slice(0, 10) + '...';
+      } else {
+        cellContainer.textContent = value;
+      }
     }
   });
 
@@ -41,5 +47,68 @@ export default function cell(row, col) {
     }
   });
 
+  // Listen for when the user clicks outside the cell (blur)
+  document.addEventListener('click', (event) => {
+    if (previouslyClickedCell && event.target !== previouslyClickedCell) {
+      restoreEllipsis(previouslyClickedCell); // Restore ellipsis when clicking outside the cell
+    }
+  });
+
   return cellContainer; // Return the cell container as-is
+}
+
+
+/**
+ *
+ * @param {*} cell
+ * @param {*} cellId
+ * this function is used to handle the click event on the cell, it will remove the pink border from the previously clicked cell and add the pink border to the currently
+ */
+
+// Function to handle cell click
+function handleCellClick(cell, cellId) {
+  // Check if there was a previously clicked cell, and restore its ellipsis
+  if (previouslyClickedCell && previouslyClickedCell !== cell) {
+    restoreEllipsis(previouslyClickedCell); // Restore the ellipsis on the previous cell
+    previouslyClickedCell.classList.remove(
+      'border-ys-pink-500',
+      'dark:border-ys-pink-500',
+    );
+    previouslyClickedCell.classList.add(
+      'border-ys-amethyst-400',
+      'dark:border-ys-overlay-5',
+    );
+  }
+
+  // Add pink border to the currently clicked cell
+  cell.classList.remove('border-ys-amethyst-400', 'dark:border-ys-overlay-5');
+  cell.classList.add('border-ys-pink-500', 'dark:border-ys-pink-500');
+
+  // Update the display of the selected cell ID
+  const cellIdentifierDisplay = document.getElementById(
+    'cellIdentifierDisplay',
+  );
+  if (cellIdentifierDisplay) {
+    cellIdentifierDisplay.value = cellId;
+  }
+
+  // Update the reference to the currently clicked cell
+  previouslyClickedCell = cell;
+}
+
+// Function to restore ellipsis on cell when it loses focus
+function restoreEllipsis(cell) {
+  const cellId = cell.getAttribute('id');
+
+  // Fetch the value again and reapply the truncation if necessary
+  getCellValue(cellId).then((value) => {
+    if (value !== null) {
+      // Truncate the value again if it's longer than 10 characters
+      if (value.length > 10) {
+        cell.textContent = value.slice(0, 10) + '...';
+      } else {
+        cell.textContent = value;
+      }
+    }
+  });
 }
