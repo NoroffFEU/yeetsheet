@@ -5,6 +5,7 @@ import {
   createContextMenuRow,
   addContextMenuListener,
 } from '../helpers/columnRowMenu';
+import { highlightRow } from './cellHighlight';
 
 // Create the context menu globally
 const { contextMenuRow, optionAbove, optionBelow, optionDeleteRow } =
@@ -39,6 +40,7 @@ export default function cellRow(cols, row) {
     'w-28 text-center border-y dark:border-ys-overlay-5 border-ys-amethyst-400 dark:bg-ys-overlay-15 bg-white py-2 flex-none snap-start',
     rowIndex,
   );
+  highlightRow(rowNumber);
 
   // Add menu event listener for the row header
   rowNumber.addEventListener('contextmenu', (e) => {
