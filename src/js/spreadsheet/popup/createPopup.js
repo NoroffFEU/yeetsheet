@@ -25,7 +25,8 @@ export function createPopup(tdElement) {
   closeButtonIcon.classList.add('fa-solid', 'fa-x');
   closeButton.append(closeButtonIcon);
   closeButton.addEventListener('click', () => {
-    popup.classList.add('hidden');
+    // popup.classList.add('hidden');
+    popup.remove();
     lastActiveTd.classList.remove(
       'dark:border-ys-pink-500',
       'border-ys-pink-500',
@@ -46,17 +47,20 @@ export function createPopup(tdElement) {
       inputField.value = '';
       inputField.parentElement.textContent = '';
       cellId = tdElement.parentElement.id;
-      console.log('This clicks');
     } else {
       tdElement.textContent = '';
       cellId = tdElement.id;
     }
 
-    console.log('Cell id: ', cellId);
-
     saveCellValue(cellId, '');
 
-    popup.classList.add('hidden');
+    // popup.classList.add('hidden');
+    popup.remove();
+    tdElement.classList.remove('dark:border-ys-pink-500', 'border-ys-pink-500');
+    tdElement.classList.add(
+      'dark:border-ys-overlay-5',
+      'border-ys-amethyst-400',
+    );
   });
 
   buttonsDiv.append(trashButton, closeButton);
@@ -66,7 +70,7 @@ export function createPopup(tdElement) {
 
   const valueInput = document.createElement('span');
   if (tdElement.tagName === 'INPUT') {
-    valueInput.textContent = tdElement.value;
+    valueInput.textContent = tdElement.value || 'No value yet.';
   } else if (tdElement.textContent.length === 0) {
     valueInput.textContent = 'No value yet.';
   } else {

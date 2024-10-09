@@ -48,7 +48,9 @@ export function showPopup(event) {
 
   lastActiveTd = targetTd;
 
-  handleOutsideClicks(popup, lastActiveTd);
+  if (popup) {
+    handleOutsideClicks(popup, lastActiveTd);
+  }
 
   if (targetTd.tagName === 'INPUT') {
     handleKeydownInput(popup, lastActiveTd);
