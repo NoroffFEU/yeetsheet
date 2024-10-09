@@ -81,11 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Failed to initialize IndexedDB:', error);
     });
 
-replaceIconsWithSVGs();
-toggleEditorSize();
-toggleSidebar();
-changeProjectName();
-// function for running code from the code editor
-runEditor();
+  replaceIconsWithSVGs();
+  toggleEditorSize();
+  changeProjectName();
+  // function for running code from the code editor
+  runEditor();
 });
-
