@@ -1,3 +1,4 @@
+import { saveCellValue } from '../db';
 import { lastActiveTd } from './showPopup';
 
 export function createPopup(tdElement) {
@@ -38,13 +39,23 @@ export function createPopup(tdElement) {
   trashButtonIcon.classList.add('fa-solid', 'fa-trash');
   trashButton.append(trashButtonIcon);
   trashButton.addEventListener('click', () => {
+    let cellId;
     const inputField = tdElement.querySelector('input');
 
     if (inputField) {
       inputField.value = '';
+      inputField.parentElement.textContent = '';
+      cellId = tdElement.parentElement.id;
+      console.log('This clicks');
     } else {
       tdElement.textContent = '';
+      cellId = tdElement.id;
     }
+
+    console.log('Cell id: ', cellId);
+
+    saveCellValue(cellId, '');
+
     popup.classList.add('hidden');
   });
 
