@@ -38,7 +38,13 @@ export function createPopup(tdElement) {
   trashButtonIcon.classList.add('fa-solid', 'fa-trash');
   trashButton.append(trashButtonIcon);
   trashButton.addEventListener('click', () => {
-    tdElement.textContent = '';
+    const inputField = tdElement.querySelector('input');
+
+    if (inputField) {
+      inputField.value = '';
+    } else {
+      tdElement.textContent = '';
+    }
     popup.classList.add('hidden');
   });
 
