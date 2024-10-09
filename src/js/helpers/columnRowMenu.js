@@ -49,12 +49,12 @@ export function createContextMenuRow() {
 
   // New row above
   const optionAbove = createEle('div', 'menu-option gap-2', 'New row above');
-  const aboveArrow = createEle('span', 'arrow-right', '→');
+  const aboveArrow = createEle('span', 'arrow-right', '↑');
   optionAbove.appendChild(aboveArrow);
 
   // New row below
-  const optionBelow = createEle('div', 'menu-option gap-2', 'New row under');
-  const downArrow = createEle('span', 'arrow-right', '←');
+  const optionBelow = createEle('div', 'menu-option gap-2', 'New row below');
+  const downArrow = createEle('span', 'arrow-right', '↓');
   optionBelow.appendChild(downArrow);
 
   // Delete row

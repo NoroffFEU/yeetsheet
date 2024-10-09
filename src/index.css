@@ -122,7 +122,7 @@ svg {
 /* Spreadsheet context menu column/row */
 .context-menu {
   @apply absolute z-50 flex flex-col min-w-[200px] rounded-md shadow-lg;
-  @apply bg-ys-overlay-15 dark:bg-ys-overlay-15;
+  @apply bg-ys-amethyst-400 dark:bg-ys-overlay-15;
   @apply border border-ys-overlay-30;
 }
 
@@ -132,10 +132,11 @@ svg {
 
 .menu-option {
   @apply px-5 py-2 cursor-pointer text-white border-b border-[#333] flex justify-between;
+  @apply text-black dark:text-white;
 }
 
 .menu-option:hover {
-  @apply text-ys-buttonPrimary dark:bg-ys-overlay-20;
+  @apply bg-ys-amethyst-300 text-ys-buttonPrimary dark:bg-ys-overlay-20;
 }
 
 .menu-option:last-child {
@@ -143,5 +144,5 @@ svg {
 }
 
 .arrow-right {
-  @apply ml-auto text-white;
+  @apply ml-auto text-black dark:text-white;
 }
