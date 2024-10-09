@@ -13,6 +13,7 @@ export function showPopup(event) {
     return;
   }
 
+  console.log('last active td: ', lastActiveTd);
   if (lastActiveTd && lastActiveTd !== targetTd) {
     lastActiveTd.classList.remove(
       'dark:border-ys-pink-500',

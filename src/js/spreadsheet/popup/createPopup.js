@@ -41,17 +41,27 @@ export function createPopup(tdElement) {
   trashButton.append(trashButtonIcon);
   trashButton.addEventListener('click', () => {
     let cellId;
-    const inputField = tdElement.querySelector('input');
+    const spreadsheetContainer = document.getElementById(
+      'spreadsheetContainer',
+    );
+    console.log('spreadsheet container: ', spreadsheetContainer);
+    // const inputField = tdElement.querySelector('input');
+    // console.log("input from createPopup: ", inputField);
+
+    const inputField = spreadsheetContainer.querySelector('input');
+
+    console.log('input field from spreadsheet container', inputField);
 
     if (inputField) {
       inputField.value = '';
       inputField.parentElement.textContent = '';
-      cellId = tdElement.parentElement.id;
+      cellId = inputField.id;
     } else {
       tdElement.textContent = '';
       cellId = tdElement.id;
     }
 
+    console.log('cell id: ', cellId);
     saveCellValue(cellId, '');
 
     // popup.classList.add('hidden');

@@ -26,6 +26,7 @@ export function addCellTargetingEvents(
       }
 
       let input = document.createElement('input');
+      input.id = td.id;
       input.type = 'text';
       input.classList.add(
         'p-0',
@@ -35,6 +36,7 @@ export function addCellTargetingEvents(
         'dark:bg-ys-backgroundAndText',
         'dark:text-white',
         'focus:border-ys-pink-500',
+        'text-center',
       );
 
       input.style.boxShadow = 'none';
@@ -50,6 +52,7 @@ export function addCellTargetingEvents(
 
         // Add the FocusEvent
         input.addEventListener('blur', (ev) => {
+          const popup = document.getElementById('cell-popup');
           const cell = ev.currentTarget;
 
           const col = parseInt(cell.dataset.col, 10);
@@ -59,8 +62,17 @@ export function addCellTargetingEvents(
 
           saveCellCallback(col, row, value);
 
-          ev.currentTarget?.remove();
-          td.textContent = value;
+          if (popup) {
+            input.classList.remove(
+              'dark:border-ys-overlay-5',
+              'border-ys-amethyst-400',
+            );
+            input.classList.add('border-ys-pink-500');
+            return;
+          } else {
+            ev.currentTarget?.remove();
+            td.textContent = value;
+          }
         });
 
         input.addEventListener('keydown', (ev) => {
@@ -100,9 +112,15 @@ export function addCellTargetingEvents(
           }
         });
 
-        td.textContent = '';
-        td.appendChild(input);
-        input.focus();
+        const popup = document.getElementById('cell-popup');
+        if (popup) {
+          console.log('it does return');
+          return;
+        } else {
+          td.textContent = '';
+          td.appendChild(input);
+          input.focus();
+        }
       });
     },
     false,
