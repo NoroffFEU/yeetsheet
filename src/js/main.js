@@ -14,6 +14,7 @@ import { runEditor } from './codeEditor/runEditor.js';
 import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { setupFileMenu } from './header/fileMenu.js';
+import { setupSettingsMenu } from './header/settingsMenu.js';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
 import { setupZoomMenu } from './header/zoomMenu.js';
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Header menu
       setupFileMenu();
       renderHelpMenu();
+      setupSettingsMenu();
       toggleHamburgerMenu();
       showDropdownMenu();
 
