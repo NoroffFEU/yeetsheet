@@ -9,9 +9,7 @@ export function setupZoomMenu() {
     return;
   }
 
-
   let zoomMenu;
-  let selectedZoom = '100%';
 
   function resizeCells(zoomPercentage) {
     const scale = parseFloat(zoomPercentage) / 100;
@@ -48,9 +46,10 @@ export function setupZoomMenu() {
   function createZoomMenu() {
     if (zoomMenu) return zoomMenu;
 
+    // Create the zoom menu div
     zoomMenu = createEle(
       'div',
-      'border dark:border-ys-overlay-30 border-ys-amethyst-400 absolute z-50 bg-ys-amethyst-200 dark:bg-ys-overlay-10 shadow-md',
+      'border dark:border-ys-overlay-30 md:w-56 border-ys-amethyst-400 absolute z-50 bg-ys-amethyst-200 dark:bg-ys-overlay-10 shadow-md',
       false,
       {
         id: 'zoomMenu',
@@ -61,27 +60,49 @@ export function setupZoomMenu() {
       },
     );
 
+    // Define the zoom options
+    const zoomOptions = ['100%', '125%', '150%', '75%', '50%', 'Custom...'];
 
-    const zoomOptions = ['50%', '75%', '100%', '125%', '150%', 'Custom...'];
+    // Create a list (ul) for the zoom options
     const ul = createEle(
       'ul',
       'divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400',
     );
 
+    // Loop through each zoom option
     zoomOptions.forEach((option) => {
-      const li = createEle('li');
+      const li = createEle('li'); // Create a list item
       const button = createEle(
         'button',
         'w-full text-left dark:text-ys-textAndIconsLight px-5',
-        option,
+        option, // The text for the button is the zoom option
       );
 
-      if (option === selectedZoom) {
+      // Add click event listener to each zoom option button
+      button.addEventListener('click', () => {
+        // First, remove 'selected-zoom' class from any other button that has it
+        document.querySelectorAll('.selected-zoom').forEach((btn) => {
+          btn.classList.remove('selected-zoom');
+          btn.style.backgroundColor = ''; // Reset background color
+          btn.style.color = ''; // Reset text color
+          btn.style.fontWeight = ''; // Reset font weight
+        });
+
+        // Check if the page is in dark mode
+        const isDarkMode = document.documentElement.classList.contains('dark');
+
+        // Add 'selected-zoom' class to the clicked button
         button.classList.add('selected-zoom');
-      }
+        button.style.backgroundColor = isDarkMode
+          ? 'rgba(213, 95, 168, 0.3)' // Dark mode color
+          : 'rgb(122, 117, 175, 0.5)'; // Light mode color
+        button.style.fontWeight = 'bold';
 
-      button.addEventListener('click', () => handleZoomOption(option));
+        // Call the function to handle the zoom level adjustment
+        handleZoomOption(option);
+      });
 
+      // Append the button to the list item, and then the list item to the ul
       li.appendChild(button);
       ul.appendChild(li);
     });
@@ -130,3 +151,4 @@ export function setupZoomMenu() {
   });
 
   resizeCells(100);
+}
