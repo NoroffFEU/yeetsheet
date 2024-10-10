@@ -61,7 +61,7 @@ export function setupZoomMenu() {
     );
 
     // Define the zoom options
-    const zoomOptions = ['100%', '125%', '150%', '75%', '50%', 'Custom...'];
+    const zoomOptions = ['50%', '75%', '100%', '125%', '150%', 'Custom...'];
 
     // Create a list (ul) for the zoom options
     const ul = createEle(
