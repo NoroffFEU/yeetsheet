@@ -31,16 +31,21 @@
         class="sticky top-0 z-50 bg-ys-amethyst-400 dark:bg-ys-backgroundAndText py-3"
         data-cy="top-nav"
       >
-        <div class="container flex flex-wrap items-center justify-between">
-          <div class="m-3">
+        <div
+          class="container flex flex-wrap lg:flex-nowrap lg:flex-row items-center justify-between flex-grow gap-5 p-1"
+        >
+          <div class="">
             <a href="index.html" class="">
               <span data-icon="logo" data-size="54" data-class=""></span>
               <span class="sr-only">Homepage</span>
             </a>
           </div>
           <!-- Mobile hamburger icon -->
-          <div id="mobileNav" class="md:hidden">
-            <button id="nav-hamburger-btn" class="flex justify-end pr-6">
+          <div id="mobileNav" class="lg:hidden">
+            <button
+              id="nav-hamburger-btn"
+              class="flex justify-end items-center size-12"
+            >
               <span
                 data-icon="hamburgerMenu"
                 data-size="20"
@@ -50,10 +55,10 @@
             </button>
           </div>
           <nav
-            class="hidden md:flex md:flex-1 w-full md:justify-start z-50 absolute right-0 md:static"
+            class="hidden lg:flex lg:flex-1 w-full lg:justify-start z-50 absolute right-0 lg:static"
           >
             <ul
-              class="md:flex block w-full md:w-auto md:bg-transparent absolute md:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-4 md:p-0 border border-white md:border-0 text-left"
+              class="lg:flex block w-full lg:w-auto lg:bg-transparent absolute lg:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-4 md:p-0 border border-white lg:border-0 text-left"
             >
               <li class="relative">
                 <button
@@ -61,79 +66,11 @@
                   class="nav-btn text-left uppercase px-2"
                   id="fileBtn"
                   data-menu="fileMenu"
+                  aria-label=""
+                  aria-haspopup=""
                 >
                   File
                 </button>
-                <!-- Dropdown-menu -->
-                <div
-                  id="fileMenu"
-                  class="border dark:border-ys-overlay-30 border-ys-amethyst-400 hidden absolute z-50 top-full left-0 w-56 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="fileBtn"
-                  tabindex="-1"
-                >
-                  <ul
-                    class="divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400"
-                  >
-                    <li>
-                      <button
-                        id="file-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        New file...
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-2"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Import existing file
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-3"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Edit
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-4"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Save
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-5"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Save as...
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-6"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Save copy
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="file-item-7"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5"
-                      >
-                        Export
-                      </button>
-                    </li>
-                  </ul>
-                </div>
               </li>
               <li class="relative">
                 <button
@@ -147,7 +84,12 @@
                 </button>
               </li>
               <li>
-                <button type="button" class="nav-btn" id="settingsBtn">
+                <button
+                  type="button"
+                  class="nav-btn"
+                  id="settingsBtn"
+                  aria-label=""
+                >
                   Settings
                 </button>
               </li>
@@ -156,75 +98,24 @@
               >
                 <button
                   type="button"
-                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500"
+                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500 dropdownArrowDown"
                   id="zoomBtn"
+                  data-menu="zoomMenu"
                 >
                   100%
                 </button>
-                <!-- Dropdown-menu -->
-                <div
-                  id="zoomMenu"
-                  class="border mt-1 dark:border-ys-overlay-30 border-ys-amethyst-400 hidden z-50 w-56 md:w-40 bg-ys-amethyst-200 dark:bg-ys-overlay-10 focus:outline-none shadow-md"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="zoomBtn"
-                  tabindex="-1"
-                >
-                  <ul
-                    class="divide-y justify-start md:absolute divide-solid dark:divide-ys-overlay-30 bg-ys-amethyst-200 dark:bg-ys-overlay-10 divide-ys-amethyst-400"
-                  >
-                    <li>
-                      <button
-                        id="zoom-item-1"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        125%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-2"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        150%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-3"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        75%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-4"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        50%
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        id="zoom-item-5"
-                        class="w-full text-left dark:text-ys-textAndIconsLight px-5 on-hover-items"
-                      >
-                        Custom...
-                      </button>
-                    </li>
-                  </ul>
-                </div>
               </li>
             </ul>
           </nav>
-          <div class="flex gap-7 items-center flex-1 justify-end p-5">
-            <div class="relative">
-              <div class="flex overflow-hidden rounded-l">
-                <label for="searchInput" class="sr-only">Search</label>
+          <div
+            class="flex flex-wrap gap-2 items-center justify-end w-full grow lg:max-w-2xl"
+          >
+            <div class="relative flex-1">
+              <label for="searchInput" class="sr-only">Search</label>
+              <div class="flex overflow-hidden rounded gap-2">
                 <input
                   type="search"
-                  class="w-[20rem] p-2 ps-4 dark:bg-ys-overlay-5 bg-white outline-none rounded-r-none"
+                  class="w-full p-2 ps-4 dark:bg-ys-overlay-5 bg-white outline-none rounded"
                   placeholder="Search cell values..."
                   aria-label="search-input"
                   id="searchInput"
@@ -234,21 +125,19 @@
                   type="button"
                   id="searchInputBtn"
                   aria-label="Search"
-                  class="flex items-center justify-center p-0 w-auto dark:bg-ys-overlay-5 bg-white dark:text-white hover:bg-pink-600 focus:ring-1 focus:outline-none rounded-l-none"
+                  class="flex items-center justify-center size-14 bg-ys-amethyst-500 dark:bg-ys-overlay-5 text-white hover:bg-pink-600 focus:ring-1 focus:outline-none rounded"
                 >
-                  <div class="border-l border-gray-500 px-3 py-2">
-                    <span class="sr-only">Search</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 192.904 192.904"
-                      width="16px"
-                      class="dark:fill-white"
-                    >
-                      <path
-                        d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"
-                      ></path>
-                    </svg>
-                  </div>
+                  <span class="sr-only">Search</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 192.904 192.904"
+                    width="16px"
+                    class="dark:fill-white"
+                  >
+                    <path
+                      d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"
+                    ></path>
+                  </svg>
                 </button>
               </div>
               <div class="absolute">
@@ -261,7 +150,9 @@
                 </div>
               </div>
             </div>
+          </div>
 
+          <div class="flex flex-wrap gap-2 items-center">
             <div class="flex flex-col items-center gap-2">
               <button
                 id="darkModeToggleBtn"
@@ -270,28 +161,21 @@
               >
                 <span class="toggle-switch"></span>
               </button>
-              <span class="toggle-text text-xs text-center" id="toggleText"
+              <span
+                class="toggle-text text-xs text-center min-w-12"
+                id="toggleText"
                 >Dark on</span
               >
             </div>
           </div>
         </div>
       </header>
-
+      <!--Toolbar-->
       <div
-        class="container flex flex-wrap justify-start items-center p-5"
+        class="container flex flex-wrap justify-start items-center pt-0 md:pt-5 pb-4 px-5"
         data-cy="sidebar"
       >
-        <button id="toggleSidebarBtn" class="sideBarBtn mb-12">
-          <span
-            data-icon="hamburgerMenu"
-            data-size="20"
-            data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-            aria-expanded="true"
-          ></span>
-          <span class="sr-only">Open menu</span>
-        </button>
-        <div class="flex items-center gap-4 pr-5">
+        <div class="flex flex-wrap items-center gap-2 pr-5">
           <p id="proName" class="text-sm uppercase">Project name</p>
           <button id="proNameEdit" class="sideBarBtn w-auto">
             <i class="fa-solid fa-pen fa-xs"></i>
@@ -303,7 +187,7 @@
             &plus; New sheet
           </button>
         </div>
-        <ul class="flex justify-start items-center gap-4 pr-5">
+        <ul class="flex flex-wrap items-center text-sm pr-2">
           <li>
             <button
               class="sideBarBtn w-auto dropdownArrow on-hover-items"
@@ -350,6 +234,7 @@
             </div>
           </li>
         </ul>
+
         <button class="default-btn mr-2" data-cy="save-changes-button">
           Save changes
         </button>
@@ -470,18 +355,136 @@
             </div>
           </li>
         </ul>
+
+        <button class="default-btn w-auto" data-cy="save-changes-button">
+          Save changes
+        </button>
+        <div class="flex flex-wrap justify-start p-0">
+          <ul class="flex flex-wrap justify-start m-1">
+            <li>
+              <button
+                class="sideBarBtn w-10 flex flex-col justify-center items-center"
+                data-tooltip-target="tooltip-share"
+                aria-label="Share"
+              >
+                <span
+                  data-icon="share"
+                  data-size="20"
+                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+                ></span>
+                <span class="sr-only">Share</span>
+              </button>
+              <div
+                id="tooltip-share"
+                role="tooltip"
+                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                Share
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </li>
+            <li>
+              <button
+                class="sideBarBtn w-10 flex flex-col justify-center items-center"
+                data-tooltip-target="tooltip-fitToWindow"
+                aria-label="Fit to window"
+              >
+                <span
+                  data-icon="fitToWindow"
+                  data-size="20"
+                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+                ></span>
+                <span class="sr-only">Fit to window</span>
+              </button>
+              <div
+                id="tooltip-fitToWindow"
+                role="tooltip"
+                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                Fit to window
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </li>
+            <li>
+              <button
+                class="sideBarBtn w-10 flex flex-col justify-center items-center"
+                data-tooltip-target="tooltip-handTool"
+                aria-label="Hand tool"
+              >
+                <span
+                  data-icon="hand"
+                  data-size="20"
+                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+                ></span>
+                <span class="sr-only">Hand tool</span>
+              </button>
+              <div
+                id="tooltip-handTool"
+                role="tooltip"
+                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                Hand tool
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </li>
+            <li>
+              <button
+                class="sideBarBtn w-10 flex flex-col justify-center items-center"
+                data-tooltip-target="tooltip-importFile"
+                aria-label="Import file"
+              >
+                <span
+                  data-icon="import"
+                  data-size="20"
+                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+                ></span>
+                <span class="sr-only">Import file</span>
+              </button>
+              <div
+                id="tooltip-importFile"
+                role="tooltip"
+                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                Import file
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </li>
+            <li>
+              <button
+                class="sideBarBtn w-10 flex flex-col justify-center items-center"
+                data-tooltip-target="tooltip-quickSave"
+                aria-label="Quick save"
+              >
+                <span
+                  data-icon="save"
+                  data-size="20"
+                  data-class="text-ys-buttonPrimary"
+                ></span>
+                <span class="sr-only">Quick save</span>
+              </button>
+              <div
+                id="tooltip-quickSave"
+                role="tooltip"
+                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                Quick save
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="container p-1">
         <main class="flex flex-col bg-white dark:bg-ys-overlay-5 p-4">
           <div class="container flex justify-center">
-            <h1 class="text-sm">Name of the file</h1>
+            <h1 class="text-sm uppercase" id="proNameSheet">Project name</h1>
           </div>
           <section class="p-5" data-cy="spreadsheet">
             <div
               id="spreadsheetContainer"
               data-cy="spreadsheetContainer"
-              class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left snap-both"
+              class="overflow-x-auto overflow-y-auto max-h-[35rem] bg-white dark:bg-ys-backgroundAndText table__sticky-top table__sticky-left"
             ></div>
           </section>
           <section class="p-5" data-cy="app-utilities">
@@ -546,6 +549,7 @@
                       class="w-10 flex-grow text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="function"
                       aria-label="Enter function"
+                      id="functionTextInput"
                     />
                     <div
                       class="w-full sm:w-auto flex justify-center sm:justify-start mt-4 sm:mt-0"
@@ -564,36 +568,7 @@
     </div>
 
     <footer>
-      <!-- If there's going to be a footer -->
+      <!-- If there´s going to be a footer -->
     </footer>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const projectNameDisplay =
-          document.getElementById('projectNameDisplay');
-        const projectNameInput = document.getElementById('projectNameInput');
-        const editProjectNameBtn =
-          document.getElementById('editProjectNameBtn');
-        const saveProjectNameBtn =
-          document.getElementById('saveProjectNameBtn');
-
-        // "Edit" button functionality to edit project name
-        editProjectNameBtn.addEventListener('click', function () {
-          projectNameInput.value = projectNameDisplay.textContent;
-          projectNameDisplay.classList.add('hidden');
-          projectNameInput.classList.remove('hidden');
-          saveProjectNameBtn.classList.remove('hidden');
-          editProjectNameBtn.classList.add('hidden');
-        });
-
-        // "Save" button functionality to save project name
-        saveProjectNameBtn.addEventListener('click', function () {
-          projectNameDisplay.textContent = projectNameInput.value;
-          projectNameDisplay.classList.remove('hidden');
-          projectNameInput.classList.add('hidden');
-          saveProjectNameBtn.classList.add('hidden');
-          editProjectNameBtn.classList.remove('hidden');
-        });
-      });
-    </script>
   </body>
 </html>
