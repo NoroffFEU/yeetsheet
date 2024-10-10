@@ -26,6 +26,7 @@ export function renderColumns(cols, columnNumbers, tableBody) {
       'w-28 text-center border-x dark:border-ys-overlay-5 border-ys-amethyst-400 dark:bg-ys-overlay-15 bg-white py-2 snap-start',
       numberToLetter(i),
     );
+    colNumber.setAttribute('data-col', i);
     // Add column highlight event listener
     colNumber.addEventListener('click', () => {
       highlightColumn(i); // Call the function to highlight the column
