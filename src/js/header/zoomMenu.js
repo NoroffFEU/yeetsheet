@@ -10,6 +10,7 @@ export function setupZoomMenu() {
   }
 
   let zoomMenu;
+  let selectedZoom = '100%';
 
   function resizeCells(zoomPercentage) {
     const scale = parseFloat(zoomPercentage) / 100;
@@ -59,7 +60,7 @@ export function setupZoomMenu() {
       },
     );
 
-    const zoomOptions = ['100%', '125%', '150%', '75%', '50%', 'Custom...'];
+    const zoomOptions = ['50%', '75%', '100%', '125%', '150%', 'Custom...'];
     const ul = createEle(
       'ul',
       'divide-y divide-solid dark:divide-ys-overlay-30 divide-ys-amethyst-400',
@@ -72,7 +73,13 @@ export function setupZoomMenu() {
         'w-full text-left dark:text-ys-textAndIconsLight px-5',
         option,
       );
+
+      if (option === selectedZoom) {
+        button.classList.add('selected-zoom');
+      }
+
       button.addEventListener('click', () => handleZoomOption(option));
+
       li.appendChild(button);
       ul.appendChild(li);
     });
