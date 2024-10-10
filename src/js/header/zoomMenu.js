@@ -9,6 +9,7 @@ export function setupZoomMenu() {
     return;
   }
 
+
   let zoomMenu;
   let selectedZoom = '100%';
 
@@ -59,6 +60,7 @@ export function setupZoomMenu() {
         tabindex: '-1',
       },
     );
+
 
     const zoomOptions = ['50%', '75%', '100%', '125%', '150%', 'Custom...'];
     const ul = createEle(
@@ -128,4 +130,3 @@ export function setupZoomMenu() {
   });
 
   resizeCells(100);
-}

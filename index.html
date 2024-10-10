@@ -31,16 +31,21 @@
         class="sticky top-0 z-50 bg-ys-amethyst-400 dark:bg-ys-backgroundAndText py-3"
         data-cy="top-nav"
       >
-        <div class="container flex flex-wrap items-center justify-between">
-          <div class="m-3">
+        <div
+          class="container flex flex-wrap lg:flex-nowrap lg:flex-row items-center justify-between flex-grow gap-5 p-1"
+        >
+          <div class="">
             <a href="index.html" class="">
               <span data-icon="logo" data-size="54" data-class=""></span>
               <span class="sr-only">Homepage</span>
             </a>
           </div>
           <!-- Mobile hamburger icon -->
-          <div id="mobileNav" class="md:hidden">
-            <button id="nav-hamburger-btn" class="flex justify-end pr-6">
+          <div id="mobileNav" class="lg:hidden">
+            <button
+              id="nav-hamburger-btn"
+              class="flex justify-end items-center size-12"
+            >
               <span
                 data-icon="hamburgerMenu"
                 data-size="20"
@@ -50,10 +55,10 @@
             </button>
           </div>
           <nav
-            class="hidden md:flex md:flex-1 w-full md:justify-start z-50 absolute right-0 md:static"
+            class="hidden lg:flex lg:flex-1 w-full lg:justify-start z-50 absolute right-0 lg:static"
           >
             <ul
-              class="md:flex block w-full md:w-auto md:bg-transparent absolute md:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-4 md:p-0 border border-white md:border-0 text-left"
+              class="lg:flex block w-full lg:w-auto lg:bg-transparent absolute lg:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-4 md:p-0 border border-white lg:border-0 text-left"
             >
               <li class="relative">
                 <button
@@ -102,13 +107,15 @@
               </li>
             </ul>
           </nav>
-          <div class="flex flex-wrap gap-2 items-center justify-end p-5 w-full">
+          <div
+            class="flex flex-wrap gap-2 items-center justify-end w-full grow lg:max-w-2xl"
+          >
             <div class="relative flex-1">
               <label for="searchInput" class="sr-only">Search</label>
-              <div class="flex overflow-hidden rounded">
+              <div class="flex overflow-hidden rounded gap-2">
                 <input
                   type="search"
-                  class="w-full p-2 ps-4 dark:bg-ys-overlay-5 bg-white outline-none rounded-l"
+                  class="w-full p-2 ps-4 dark:bg-ys-overlay-5 bg-white outline-none rounded"
                   placeholder="Search cell values..."
                   aria-label="search-input"
                   id="searchInput"
@@ -118,7 +125,7 @@
                   type="button"
                   id="searchInputBtn"
                   aria-label="Search"
-                  class="flex items-center justify-center p-2 bg-ys-amethyst-500 dark:bg-ys-overlay-5 text-white hover:bg-pink-600 focus:ring-1 focus:outline-none rounded-r"
+                  class="flex items-center justify-center size-14 bg-ys-amethyst-500 dark:bg-ys-overlay-5 text-white hover:bg-pink-600 focus:ring-1 focus:outline-none rounded"
                 >
                   <span class="sr-only">Search</span>
                   <svg
@@ -145,7 +152,7 @@
             </div>
           </div>
 
-          <div class="flex flex-wrap gap-2 items-center justify-end p-5 w-full">
+          <div class="flex flex-wrap gap-2 items-center">
             <div class="flex flex-col items-center gap-2">
               <button
                 id="darkModeToggleBtn"
@@ -154,7 +161,9 @@
               >
                 <span class="toggle-switch"></span>
               </button>
-              <span class="toggle-text text-xs text-center" id="toggleText"
+              <span
+                class="toggle-text text-xs text-center min-w-12"
+                id="toggleText"
                 >Dark on</span
               >
             </div>
@@ -225,123 +234,127 @@
             </div>
           </li>
         </ul>
-        <button class="default-btn w-auto" data-cy="save-changes-button">
+
+        <button class="default-btn mr-2" data-cy="save-changes-button">
           Save changes
         </button>
-        <div class="flex flex-wrap justify-start p-0">
-          <ul class="flex flex-wrap justify-start m-1">
-            <li>
-              <button
-                class="sideBarBtn w-10 flex flex-col justify-center items-center"
-                data-tooltip-target="tooltip-share"
-                aria-label="Share"
-              >
-                <span
-                  data-icon="share"
-                  data-size="20"
-                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-                ></span>
-                <span class="sr-only">Share</span>
-              </button>
-              <div
-                id="tooltip-share"
-                role="tooltip"
-                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-              >
-                Share
-                <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
-            </li>
-            <li>
-              <button
-                class="sideBarBtn w-10 flex flex-col justify-center items-center"
-                data-tooltip-target="tooltip-fitToWindow"
-                aria-label="Fit to window"
-              >
-                <span
-                  data-icon="fitToWindow"
-                  data-size="20"
-                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-                ></span>
-                <span class="sr-only">Fit to window</span>
-              </button>
-              <div
-                id="tooltip-fitToWindow"
-                role="tooltip"
-                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-              >
-                Fit to window
-                <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
-            </li>
-            <li>
-              <button
-                class="sideBarBtn w-10 flex flex-col justify-center items-center"
-                data-tooltip-target="tooltip-handTool"
-                aria-label="Hand tool"
-              >
-                <span
-                  data-icon="hand"
-                  data-size="20"
-                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-                ></span>
-                <span class="sr-only">Hand tool</span>
-              </button>
-              <div
-                id="tooltip-handTool"
-                role="tooltip"
-                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-              >
-                Hand tool
-                <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
-            </li>
-            <li>
-              <button
-                class="sideBarBtn w-10 flex flex-col justify-center items-center"
-                data-tooltip-target="tooltip-importFile"
-                aria-label="Import file"
-              >
-                <span
-                  data-icon="import"
-                  data-size="20"
-                  data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-                ></span>
-                <span class="sr-only">Import file</span>
-              </button>
-              <div
-                id="tooltip-importFile"
-                role="tooltip"
-                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-              >
-                Import file
-                <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
-            </li>
-            <li>
-              <button
-                class="sideBarBtn w-10 flex flex-col justify-center items-center"
-                data-tooltip-target="tooltip-quickSave"
-                aria-label="Quick save"
-              >
-                <span
-                  data-icon="save"
-                  data-size="20"
-                  data-class="text-ys-buttonPrimary"
-                ></span>
-                <span class="sr-only">Quick save</span>
-              </button>
-              <div
-                id="tooltip-quickSave"
-                role="tooltip"
-                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-              >
-                Quick save
-                <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <button class="default-btn ml-1" data-cy="delete-changes-button">
+          delete changes
+        </button>
+      </div>
+      <div class="container flex justify-start p-0">
+        <ul class="flex gap-1 flex-wrap justify-center m-1 mx-5">
+          <li>
+            <button
+              class="sideBarBtn w-10 flex flex-col justify-center items-center"
+              data-tooltip-target="tooltip-share"
+              aria-label="Share"
+            >
+              <span
+                data-icon="share"
+                data-size="20"
+                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+              ></span>
+              <span class="sr-only">Share</span>
+            </button>
+            <div
+              id="tooltip-share"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Share
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+          </li>
+          <li>
+            <button
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-fitToWindow"
+              aria-label="Fit to window"
+            >
+              <span
+                data-icon="fitToWindow"
+                data-size="20"
+                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+              ></span>
+              <span class="sr-only">Fit to window</span>
+            </button>
+            <div
+              id="tooltip-fitToWindow"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Fit to window
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+          </li>
+          <li>
+            <button
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-handTool"
+              aria-label="Hand tool"
+            >
+              <span
+                data-icon="hand"
+                data-size="20"
+                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+              ></span>
+              <span class="sr-only">Hand tool</span>
+            </button>
+            <div
+              id="tooltip-handTool"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Hand tool
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+          </li>
+          <li>
+            <button
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-importFile"
+              aria-label="Import file"
+            >
+              <span
+                data-icon="import"
+                data-size="20"
+                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+              ></span>
+              <span class="sr-only">Import file</span>
+            </button>
+            <div
+              id="tooltip-importFile"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Import file
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+          </li>
+          <li>
+            <button
+              class="sideBarBtn w-10 flex flex-col justify-center items-center gap-3"
+              data-tooltip-target="tooltip-quickSave"
+              aria-label="Quick save"
+            >
+              <span
+                data-icon="save"
+                data-size="20"
+                data-class="text-ys-buttonPrimary"
+              ></span>
+              <span class="sr-only">Quick save</span>
+            </button>
+            <div
+              id="tooltip-quickSave"
+              role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+            >
+              Quick save
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+          </li>
+        </ul>
       </div>
 
       <div class="container p-1">

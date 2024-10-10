@@ -139,10 +139,23 @@ li button:hover {
 }
 
 /* Highlight for rows / columns */
-.highlight-row, .highlight-column {
-  background-color: rgba(213, 95, 168, 0.3); 
+.highlight-row,
+.highlight-column {
+  background-color: rgba(213, 95, 168, 0.3);
 }
 
 .spreadsheet-container th {
-  cursor: pointer; 
+  cursor: pointer;
+}
+
+/* scrollbar */
+
+.dark #spreadsheetContainer {
+  scrollbar-color: #2d2b43 #0b0821;
+  scrollbar-width: auto;
+}
+
+#spreadsheetContainer {
+  scrollbar-color: #9e9ac8 #e0dff1;
+  scrollbar-width: auto;
 }
