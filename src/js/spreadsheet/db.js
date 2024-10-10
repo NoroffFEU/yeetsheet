@@ -67,3 +67,27 @@ export function getCellValue(id) {
     };
   });
 }
+
+/**
+ * Deletes a specific cell's data from the IndexedDB store based on its ID.
+ *
+ * @param {string} cellId - The ID of the cell to be deleted.
+ * @returns {Promise} - A promise that resolves when the cell data is deleted.
+ */
+export function deleteSheetData(cellId) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction([STORE_NAME], 'readwrite');
+    const store = transaction.objectStore(STORE_NAME);
+    const request = store.delete(cellId);
+
+    request.onsuccess = function () {
+      console.log(`Cell with ID ${cellId} deleted successfully.`);
+      resolve();
+    };
+
+    request.onerror = function (event) {
+      console.error(`Error deleting cell ${cellId}:`, event.target.error);
+      reject(event.target.error);
+    };
+  });
+}
