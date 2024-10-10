@@ -10,9 +10,7 @@ import {
   getCellValue,
   deleteSheetData,
 } from './spreadsheet/db.js';
-import { getValue, mountEditor } from './codeEditor/codeEditor.js';
 import { runEditor } from './codeEditor/runEditor.js';
-import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { setupFileMenu } from './header/fileMenu.js';
