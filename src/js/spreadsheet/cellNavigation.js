@@ -1,4 +1,5 @@
 import { showPopup } from './popup/showPopup';
+import { restoreEllipsis } from './cell.js';
 
 /**
  * @description Add events to handle cell navigation.
@@ -67,6 +68,7 @@ export function addCellTargetingEvents(
           } else {
             ev.currentTarget?.remove();
             td.textContent = value;
+            restoreEllipsis(td);
           }
         });
 
