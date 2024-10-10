@@ -10,6 +10,9 @@ import {
   getCellValue,
   deleteSheetData,
 } from './spreadsheet/db.js';
+import { getValue, mountEditor } from './codeEditor/codeEditor.js';
+import { runEditor } from './codeEditor/runEditor.js';
+import { initDB, saveCellValue, getCellValue } from './spreadsheet/db.js';
 import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { setupFileMenu } from './header/fileMenu.js';
@@ -19,8 +22,9 @@ import { setupZoomMenu } from './header/zoomMenu.js';
 import { toggleHamburgerMenu } from './header/hamburgerMenu';
 import { toggleEditorSize } from './helpers/toggleEditorSize.js';
 import changeProjectName from './spreadsheet/sidebar/projectName.js';
-import { toggleSidebar } from './utils/toggleSidebar.js';
 import { renderHelpMenu } from './header/helpMenu.js';
+import { rightClickEventListener } from './spreadsheet/popup/rightClickEventListener';
+import { changeSheetName } from './spreadsheet/sidebar/sheetName.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
@@ -56,6 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Create and append the spreadsheet to the container
       spreadsheetContainer.append(spreadsheet(cols, rows));
 
+      // cell popup listener
+      rightClickEventListener();
+
       mountEditor(() => {
         // get the code editor current value.
         const value = getValue();
@@ -76,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       );
 
-      // Call toggleSidebar to set up the event listener
       attachSearchEventListener(db);
     })
     .catch((error) => {
@@ -95,8 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   replaceIconsWithSVGs();
   toggleEditorSize();
-  toggleSidebar();
   changeProjectName();
+  changeSheetName();
+  // function for running code from the code editor
+  runEditor();
 });
 
 /**

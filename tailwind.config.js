@@ -34,6 +34,7 @@ export default {
         'ys-buttonPrimary': '#D55FA8',
         'ys-buttonSecondary': '#C7ADFF',
         'ys-buttonTertiary': '#FDB0C4',
+        'ys-buttonGray': '#504E5F',
         // Hover state buttons
         'ys-hoverPrimary': '#D97BB5',
         // Logo and Loading colors
