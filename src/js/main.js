@@ -17,6 +17,7 @@ import { toggleEditorSize } from './helpers/toggleEditorSize.js';
 import changeProjectName from './spreadsheet/sidebar/projectName.js';
 import { renderHelpMenu } from './header/helpMenu.js';
 import { rightClickEventListener } from './spreadsheet/popup/rightClickEventListener';
+import { changeSheetName } from './spreadsheet/sidebar/sheetName.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
@@ -84,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   replaceIconsWithSVGs();
   toggleEditorSize();
   changeProjectName();
+  changeSheetName();
   // function for running code from the code editor
   runEditor();
 });
