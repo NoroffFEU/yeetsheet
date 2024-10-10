@@ -14,6 +14,8 @@ import { getCellValue } from './db.js';
  * @returns {HTMLElement} - The created table cell element.
  */
 
+let previouslyClickedCell = null;
+
 export default function cell(row, col) {
   const cellContainer = createEle(
     'td',
@@ -28,7 +30,13 @@ export default function cell(row, col) {
   const cellId = numberToLetter(col) + (row + 1);
   getCellValue(cellId).then((value) => {
     if (value !== null) {
-      cellContainer.textContent = value;
+      // Set the cell value
+      if (value.length > 10) {
+        // If the value is longer than 10 characters, truncate it and add an ellipsis
+        cellContainer.textContent = value.slice(0, 10) + '...';
+      } else {
+        cellContainer.textContent = value;
+      }
     }
   });
 
@@ -41,5 +49,29 @@ export default function cell(row, col) {
     }
   });
 
+  // Listen for when the user clicks outside the cell (blur)
+  document.addEventListener('click', (event) => {
+    if (previouslyClickedCell && event.target !== previouslyClickedCell) {
+      restoreEllipsis(previouslyClickedCell); // Restore ellipsis when clicking outside the cell
+    }
+  });
+
   return cellContainer; // Return the cell container as-is
+}
+
+// Function to restore ellipsis on cell when it loses focus
+function restoreEllipsis(cell) {
+  const cellId = cell.getAttribute('id');
+
+  // Fetch the value again and reapply the truncation if necessary
+  getCellValue(cellId).then((value) => {
+    if (value !== null) {
+      // Truncate the value again if it's longer than 10 characters
+      if (value.length > 10) {
+        cell.textContent = value.slice(0, 10) + '...';
+      } else {
+        cell.textContent = value;
+      }
+    }
+  });
 }
