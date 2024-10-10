@@ -124,6 +124,7 @@ svg {
   @apply absolute z-50 flex flex-col min-w-[200px] rounded-md shadow-lg;
   @apply bg-ys-overlay-15 dark:bg-ys-overlay-15;
   @apply border border-ys-overlay-30;
+  overflow: hidden;
 }
 
 .context-menu.hidden {
@@ -136,6 +137,7 @@ svg {
 
 .menu-option:hover {
   @apply text-ys-buttonPrimary dark:bg-ys-overlay-20;
+  
 }
 
 .menu-option:last-child {
