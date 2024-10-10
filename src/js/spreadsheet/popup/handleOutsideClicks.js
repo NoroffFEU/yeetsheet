@@ -1,6 +1,6 @@
 export function handleOutsideClicks(popup, lastActiveTd) {
-  function onClick() {
-    if (popup) {
+  function onClick(event) {
+    if (popup && !popup.contains(event.target)) {
       popup.remove();
       lastActiveTd.classList.remove('border-ys-pink-500');
       lastActiveTd.classList.add(
