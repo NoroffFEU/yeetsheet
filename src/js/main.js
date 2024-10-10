@@ -17,6 +17,7 @@ import { toggleEditorSize } from './helpers/toggleEditorSize.js';
 import changeProjectName from './spreadsheet/sidebar/projectName.js';
 import { renderHelpMenu } from './header/helpMenu.js';
 import { rightClickEventListener } from './spreadsheet/popup/rightClickEventListener';
+import { editorRouter } from './codeEditor/console.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
@@ -86,4 +87,5 @@ document.addEventListener('DOMContentLoaded', () => {
   changeProjectName();
   // function for running code from the code editor
   runEditor();
+  editorRouter();
 });
