@@ -4,13 +4,18 @@ import { handleOutsideClicks } from './handleOutsideClicks';
 
 export let lastActiveTd = null;
 
-export function showPopup(event) {
+export async function showPopup(event) {
   event.preventDefault();
 
   const targetTd = event.target;
 
   if (targetTd.tagName !== 'TD' && targetTd.tagName !== 'INPUT') {
     return;
+  }
+
+  // Stop propagation if the target is an input element
+  if (targetTd.tagName === 'INPUT') {
+    event.stopPropagation();
   }
 
   if (lastActiveTd && lastActiveTd !== targetTd) {
@@ -35,7 +40,7 @@ export function showPopup(event) {
     popup.remove();
   }
 
-  popup = createPopup(targetTd);
+  popup = await createPopup(targetTd);
 
   popup.classList.remove('hidden');
 
@@ -48,7 +53,9 @@ export function showPopup(event) {
 
   lastActiveTd = targetTd;
 
-  handleOutsideClicks(popup, lastActiveTd);
+  if (popup) {
+    handleOutsideClicks(popup, lastActiveTd);
+  }
 
   if (targetTd.tagName === 'INPUT') {
     handleKeydownInput(popup, lastActiveTd);
