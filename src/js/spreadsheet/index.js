@@ -1,7 +1,6 @@
 import createEle from '../helpers/createEle';
 import cellRow from './cellRow';
 import ifValidNumber from '../helpers/ifValidNumber';
-
 // import { newColumn } from './newColumn';
 import { renderColumns } from './renderColumns';
 import {
