@@ -1,3 +1,5 @@
+import { getTableMetadata, saveTableMetadata } from '../spreadsheet/db';
+
 /**
  * Calculates the number of cells that can fit in the screen based on the provided cell width and cell height.
  *
@@ -12,24 +14,32 @@
  * @returns {Array<number>} - An array containing two numbers: the number of columns and the number of rows.
  *
  */
-
-// return number of cells that can fit in the screen based on cellwidth and cellheight.
-// Set default values for cellwidth and cellheight, but if adding props while calling it will overwrite the default values.
-// This function will return an array with two values: width and height.
-export default function userColsAndRows(
+export default async function userColsAndRows(
   height,
   width,
   cellwidth = 112,
   cellHeight = 26,
 ) {
-  // Width and height defaults set to cell width and height * 50
-  width = Number(width) ? width : cellwidth * 51;
-  height = Number(height) ? height : cellHeight * 51;
+  try {
+    // Fetch the metadata for cols and rows from IndexedDB
+    const { cols, rows } = await getTableMetadata();
+    if (cols !== null && rows !== null) {
+      // If metadata exists, return the stored values
+      return [cols, rows];
+    }
+  } catch (error) {
+    console.error('Error fetching table metadata:', error);
+  }
 
-  // Calculate the number of columns and rows that will fit in the screen. -1 is subtracted due to the column and row headers/index.
-  const cols = Math.floor(width / cellwidth) - 1;
-  const rows = Math.floor(height / cellHeight) - 1;
+  // Fallback to calculated values if no metadata is found
+  width = Number(width) ? width : cellwidth * 31;
+  height = Number(height) ? height : cellHeight * 31;
 
-  // returns an array with the number of cols and rows that will fit
-  return [cols, rows];
+  const calculatedCols = Math.floor(width / cellwidth) - 1;
+  const calculatedRows = Math.floor(height / cellHeight) - 1;
+
+  // Store the calculated values in the database (if it's the first run)
+  saveTableMetadata(calculatedCols, calculatedRows);
+
+  return [calculatedCols, calculatedRows];
 }
