@@ -77,7 +77,10 @@ export async function createPopup(tdElement) {
       cellId = inputField.id;
     } else {
       tdElement.textContent = '';
+      cellId = tdElement.id;
     }
+
+    console.log('cellId: ', cellId);
 
     saveCellValue(cellId, '');
 
