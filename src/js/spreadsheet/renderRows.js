@@ -4,14 +4,13 @@ import {
 } from '../helpers/columnRowMenu';
 import createEle from '../helpers/createEle';
 import { highlightRow } from './cellHighlight';
-import { newRows } from './newRows';
 
 // Create the context menu globally
 const { contextMenuRow, optionAbove, optionBelow, optionDeleteRow } =
   createContextMenuRow();
 addContextMenuListener(contextMenuRow);
 
-export function renderRows(rowIndex, rowContainer, row, cols) {
+export function renderRows(rowIndex, rowContainer, row) {
   // Displaying the row number
   const rowNumber = createEle(
     'th',
@@ -39,21 +38,21 @@ export function renderRows(rowIndex, rowContainer, row, cols) {
     // Option for adding a row above
     optionAbove.onclick = () => {
       console.log(`Insert a row above row ${rowIndex}`);
-      newRows('above', cols, rowContainer.parentElement, row); // Pass current row index
+      // Add function to create new row
       contextMenuRow.classList.add('hidden');
     };
 
     // Option for adding a row below
     optionBelow.onclick = () => {
       console.log(`Insert a row below row ${rowIndex}`);
-      //   const currentRowCount = rowContainer.parentElement.rows.length;
-      newRows('below', cols, rowContainer.parentElement, row + 1);
+      //  Add function to create new row
       contextMenuRow.classList.add('hidden');
     };
 
     // Option for deleting the row
     optionDeleteRow.onclick = () => {
       console.log(`Delete row ${rowIndex}`);
+      // Add function to delete row
       contextMenuRow.classList.add('hidden');
     };
   });
