@@ -83,12 +83,13 @@
                   Help
                 </button>
               </li>
-              <li>
+              <li class="relative">
                 <button
                   type="button"
                   class="nav-btn"
                   id="settingsBtn"
-                  aria-label=""
+                  data-menu="settingsMenu"
+                  aria-label="Settings menu"
                 >
                   Settings
                 </button>
@@ -380,11 +381,13 @@
                 <button
                   class="console-btn hover:font-semibold sm:border-r-2 md:border-r-0"
                   data-cy="code-editor-btn"
+                  id="editor-button"
                 >
                   Code editor
                 </button>
                 <button
                   class="console-btn hover:font-semibold border-t-2 sm:border-t-0 md:border-l-2"
+                  id="console-button"
                   data-cy="console-btn"
                 >
                   Console
@@ -421,14 +424,14 @@
                   <div class="flex gap-1 pt-5 flex-wrap">
                     <input
                       type="text"
-                      class="py-2 sm:py-0 w-10 sm:w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                      class="py-2 sm:py-0 w-12 sm:w-20 text-center dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="cell"
                       aria-label="Enter cell ID"
                       id="cellIdentifierDisplay"
                     />
                     <input
                       type="text"
-                      class="w-10 flex-grow text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
+                      class="w-24 flex-grow text-start pl-5 dark:bg-ys-overlay-15 border dark:border-none border-ys-amethyst-400"
                       placeholder="function"
                       aria-label="Enter function"
                       id="functionTextInput"

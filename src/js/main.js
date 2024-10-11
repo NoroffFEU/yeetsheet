@@ -14,6 +14,7 @@ import { runEditor } from './codeEditor/runEditor.js';
 import { attachSearchEventListener } from './spreadsheet/search.js';
 import consoleBtnsActiveState from './console/consoleBtns.mjs';
 import { setupFileMenu } from './header/fileMenu.js';
+import { setupSettingsMenu } from './header/settingsMenu.js';
 import { showDropdownMenu } from './header/menu.mjs';
 import replaceIconsWithSVGs from './icons/replaceIconsWithSVGs.js';
 import { setupZoomMenu } from './header/zoomMenu.js';
@@ -22,6 +23,7 @@ import { toggleEditorSize } from './helpers/toggleEditorSize.js';
 import changeProjectName from './spreadsheet/sidebar/projectName.js';
 import { renderHelpMenu } from './header/helpMenu.js';
 import { rightClickEventListener } from './spreadsheet/popup/rightClickEventListener';
+import { editorRouter } from './codeEditor/console.js';
 import { changeSheetName } from './spreadsheet/sidebar/sheetName.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Header menu
       setupFileMenu();
       renderHelpMenu();
+      setupSettingsMenu();
       toggleHamburgerMenu();
       showDropdownMenu();
 
@@ -105,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     changeSheetName();
     // function for running code from the code editor
     runEditor();
+    editorRouter();
   }
 
   // Run the async function to initialize the app

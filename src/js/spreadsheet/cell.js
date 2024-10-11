@@ -60,7 +60,7 @@ export default function cell(row, col) {
 }
 
 // Function to restore ellipsis on cell when it loses focus
-function restoreEllipsis(cell) {
+export function restoreEllipsis(cell) {
   const cellId = cell.getAttribute('id');
 
   // Fetch the value again and reapply the truncation if necessary
