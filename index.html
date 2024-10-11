@@ -27,149 +27,111 @@
     class="flex flex-wrap min-h-screen bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
   >
     <div class="w-full" data-cy="app-container">
-      <header
-        class="sticky top-0 z-50 bg-ys-amethyst-400 dark:bg-ys-backgroundAndText py-3"
-        data-cy="top-nav"
-      >
-        <div
-          class="container flex flex-wrap lg:flex-nowrap lg:flex-row items-center justify-between flex-grow gap-5 p-1"
-        >
-          <div class="">
-            <a href="index.html" class="">
-              <span data-icon="logo" data-size="54" data-class=""></span>
-              <span class="sr-only">Homepage</span>
-            </a>
-          </div>
-          <!-- Mobile hamburger icon -->
-          <div id="mobileNav" class="lg:hidden">
-            <button
-              id="nav-hamburger-btn"
-              class="flex justify-end items-center size-12"
-            >
-              <span
-                data-icon="hamburgerMenu"
-                data-size="20"
-                data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
-              ></span>
-              <span class="sr-only">Hamburger Icon</span>
-            </button>
-          </div>
-          <nav
-            class="hidden lg:flex lg:flex-1 w-full lg:justify-start z-50 absolute right-0 lg:static"
+      <header class="flex items-center justify-between">
+        <!-- Mobile hamburger icon -->
+        <div id="mobileNav" class="lg:hidden">
+          <button
+            id="nav-hamburger-btn"
+            class="flex justify-end items-center size-12"
           >
-            <ul
-              class="lg:flex block w-full lg:w-auto lg:bg-transparent absolute lg:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-4 md:p-0 border border-white lg:border-0 text-left"
-            >
-              <li class="relative">
-                <button
-                  type="button"
-                  class="nav-btn text-left uppercase px-2"
-                  id="fileBtn"
-                  data-menu="fileMenu"
-                  aria-label=""
-                  aria-haspopup=""
-                >
-                  File
-                </button>
-              </li>
-              <li class="relative">
-                <button
-                  type="button"
-                  class="nav-btn text-left uppercase px-2"
-                  id="helpBtn"
-                  data-menu="helpMenu"
-                  aria-label=""
-                >
-                  Help
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  class="nav-btn"
-                  id="settingsBtn"
-                  aria-label=""
-                >
-                  Settings
-                </button>
-              </li>
-              <li
-                class="block relative justify-center px-2 border-t-2 pt-3 md:border-0 md:pt-0"
-              >
-                <button
-                  type="button"
-                  class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500 dropdownArrowDown"
-                  id="zoomBtn"
-                  data-menu="zoomMenu"
-                >
-                  100%
-                </button>
-              </li>
-            </ul>
-          </nav>
-          <div
-            class="flex flex-wrap gap-2 items-center justify-end w-full grow lg:max-w-2xl"
-          >
-            <div class="relative flex-1">
-              <label for="searchInput" class="sr-only">Search</label>
-              <div class="flex overflow-hidden rounded gap-2">
-                <input
-                  type="search"
-                  class="w-full p-2 ps-4 dark:bg-ys-overlay-5 bg-white outline-none rounded"
-                  placeholder="Search cell values..."
-                  aria-label="search-input"
-                  id="searchInput"
-                  data-cy="search-input"
-                />
-                <button
-                  type="button"
-                  id="searchInputBtn"
-                  aria-label="Search"
-                  class="flex items-center justify-center size-14 bg-ys-amethyst-500 dark:bg-ys-overlay-5 text-white hover:bg-pink-600 focus:ring-1 focus:outline-none rounded"
-                >
-                  <span class="sr-only">Search</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 192.904 192.904"
-                    width="16px"
-                    class="dark:fill-white"
-                  >
-                    <path
-                      d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
-              <div class="absolute">
-                <div id="searchResultsCount" aria-live="polite"></div>
-                <div
-                  id="searchResultsContainer"
-                  class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-ys-black border border-gray-400 shadow-lg p-4 z-50 text-black dark:text-white rounded-md"
-                >
-                  <ul id="searchResultsList" class="space-y-2"></ul>
-                </div>
-              </div>
-            </div>
-          </div>
+            <span
+              data-icon="hamburgerMenu"
+              data-size="20"
+              data-class="text-ys-backgroundAndText dark:text-ys-textAndIconsLight"
+            ></span>
+            <span class="sr-only">Hamburger Icon</span>
+          </button>
 
-          <div class="flex flex-wrap gap-2 items-center">
-            <div class="flex flex-col items-center gap-2">
+          <!-- Dark mode toggle button inside the hamburger menu on small screens -->
+          <div id="mobileMenu" class="hidden flex flex-col gap-2 mt-2">
+            <button
+              id="darkModeToggleBtnMobile"
+              class="toggle-btn"
+              aria-labelledby="toggleTextMobile"
+            >
+              <span class="toggle-switch"></span>
+            </button>
+            <span
+              class="toggle-text text-xs text-center min-w-12"
+              id="toggleTextMobile"
+              >Dark on</span
+            >
+          </div>
+        </div>
+
+        <!-- Navigation (for larger screens) -->
+        <nav
+          class="hidden lg:flex lg:flex-1 w-full lg:justify-start z-50 absolute right-0 lg:static"
+        >
+          <ul
+            class="lg:flex block w-full lg:w-auto lg:bg-transparent absolute lg:static bg-ys-amethyst-300 dark:bg-ys-backgroundAndText text-ys-backgroundAndText dark:text-ys-textAndIconsLight p-4 md:p-0 border border-white lg:border-0 text-left"
+          >
+            <li class="relative">
               <button
-                id="darkModeToggleBtn"
-                class="toggle-btn"
-                aria-labelledby="toggleText"
+                type="button"
+                class="nav-btn text-left uppercase px-2"
+                id="fileBtn"
+                data-menu="fileMenu"
+                aria-label="File menu"
               >
-                <span class="toggle-switch"></span>
+                File
               </button>
-              <span
-                class="toggle-text text-xs text-center min-w-12"
-                id="toggleText"
-                >Dark on</span
+            </li>
+            <li class="relative">
+              <button
+                type="button"
+                class="nav-btn text-left uppercase px-2"
+                id="helpBtn"
+                data-menu="helpMenu"
+                aria-label="Help menu"
               >
-            </div>
+                Help
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="nav-btn"
+                id="settingsBtn"
+                aria-label="Settings"
+              >
+                Settings
+              </button>
+            </li>
+            <li
+              class="block relative justify-center px-2 border-t-2 pt-3 md:border-0 md:pt-0"
+            >
+              <button
+                type="button"
+                class="nav-btn dark:bg-ys-overlay-5 bg-ys-amethyst-500 dropdownArrowDown"
+                id="zoomBtn"
+                data-menu="zoomMenu"
+              >
+                100%
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Dark mode toggle button for larger screens -->
+        <div class="hidden lg:flex flex-wrap gap-2 items-center">
+          <div class="flex flex-col items-center gap-2">
+            <button
+              id="darkModeToggleBtn"
+              class="toggle-btn"
+              aria-labelledby="toggleText"
+            >
+              <span class="toggle-switch"></span>
+            </button>
+            <span
+              class="toggle-text text-xs text-center min-w-12"
+              id="toggleText"
+              >Dark on</span
+            >
           </div>
         </div>
       </header>
+
       <!--Toolbar-->
       <div
         class="container flex flex-wrap justify-start items-center pt-0 md:pt-5 pb-4 px-5"
