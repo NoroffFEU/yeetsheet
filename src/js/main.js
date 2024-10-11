@@ -26,7 +26,6 @@ import { rightClickEventListener } from './spreadsheet/popup/rightClickEventList
 import { editorRouter } from './codeEditor/console.js';
 import { changeSheetName } from './spreadsheet/sidebar/sheetName.js';
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const spreadsheetContainer = document.querySelector('#spreadsheetContainer');
   console.log(spreadsheetContainer); // Debug to ensure it's found
@@ -39,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize the zoom menu
   setupZoomMenu();
 
-  // Initialize IndexedDB
-  initDB()
-    .then((db) => {
+  async function initializeApp() {
+    try {
+      const db = await initDB();
       console.log('IndexedDB initialized');
 
       // Header menu
@@ -57,7 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // DarkMode
       toggleDarkMode();
 
-      const [cols, rows] = userColsAndRows();
+      // Use async/await for userColsAndRows
+      const [cols, rows] = await userColsAndRows();
 
       // Create and append the spreadsheet to the container
       spreadsheetContainer.append(spreadsheet(cols, rows));
@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
       mountEditor(() => {
         // get the code editor current value.
         const value = getValue();
+
+        // just log to the console to show how to use it.
         console.log('editor', value);
       });
 
@@ -86,28 +88,31 @@ document.addEventListener('DOMContentLoaded', () => {
       );
 
       attachSearchEventListener(db);
-    })
-    .catch((error) => {
+    } catch (error) {
       console.error('Failed to initialize IndexedDB:', error);
-    });
+    }
 
-  const deleteButton = document.querySelector(
-    '[data-cy="delete-changes-button"]',
-  );
+    const deleteButton = document.querySelector(
+      '[data-cy="delete-changes-button"]',
+    );
 
-  if (deleteButton) {
-    deleteButton.addEventListener('click', handleDeleteSheetData);
-  } else {
-    console.error('Delete changes button not found');
+    if (deleteButton) {
+      deleteButton.addEventListener('click', handleDeleteSheetData);
+    } else {
+      console.error('Delete changes button not found');
+    }
+
+    replaceIconsWithSVGs();
+    toggleEditorSize();
+    changeProjectName();
+    changeSheetName();
+    // function for running code from the code editor
+    runEditor();
+    editorRouter();
   }
 
-  replaceIconsWithSVGs();
-  toggleEditorSize();
-  changeProjectName();
-  changeSheetName();
-  // function for running code from the code editor
-  runEditor();
-  editorRouter();
+  // Run the async function to initialize the app
+  initializeApp();
 });
 
 /**

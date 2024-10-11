@@ -1,14 +1,18 @@
 import createEle from '../helpers/createEle';
 import cellRow from './cellRow';
-import numberToLetter from '../helpers/numberToLetter';
 import ifValidNumber from '../helpers/ifValidNumber';
 import { deleteSheetData } from './db';
-import { highlightColumn } from './cellHighlight';
+// import { newColumn } from './newColumn';
+import { renderColumns } from './renderColumns';
 
+import {
+  createContextMenuColumn,
+  addContextMenuListener,
+} from '../helpers/columnRowMenu';
 
-const number = numberToLetter(0);
-console.log(number);
-
+// Create the context menus
+const { contextMenu } = createContextMenuColumn();
+addContextMenuListener(contextMenu);
 /**
  * Creates a spreadsheet with the specified number of columns and rows.
  *
@@ -21,36 +25,21 @@ export default function spreadsheet(cols, rows) {
 
   const container = createEle('table', 'spreadsheet-container');
   const tableHead = createEle('thead');
+  const tableBody = createEle('tbody');
   const columnNumbers = createEle('tr', 'flex w-fit');
   const emptyTh = createEle('th', 'w-28');
 
-  container.appendChild(tableHead);
-  tableHead.appendChild(columnNumbers);
   columnNumbers.appendChild(emptyTh);
 
-  for (let i = 0; i < cols; i++) {
-    const colNumber = createEle(
-      'th',
-      'w-28 text-center border-x dark:border-ys-overlay-5 border-ys-amethyst-400 dark:bg-ys-overlay-15 bg-white py-2 snap-start',
-      numberToLetter(i),
-    );
-    colNumber.setAttribute('data-col', i);
+  renderColumns(cols, columnNumbers, tableBody);
 
-    // Add column highlight event listener
-    colNumber.addEventListener('click', () => {
-      highlightColumn(i); // Call the function to highlight the column
-    });
-
-    columnNumbers.appendChild(colNumber);
-    console.log('clicked', colNumber);
-  }
-
-  const tableBody = createEle('tbody');
-
+  // Create table body rows
   for (let i = 0; i < rows; i++) {
     tableBody.appendChild(cellRow(cols, i));
   }
 
+  container.appendChild(tableHead);
+  tableHead.appendChild(columnNumbers);
   container.appendChild(tableBody);
 
   const deleteBtn = document.createElement('button');

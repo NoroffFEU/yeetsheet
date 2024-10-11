@@ -21,7 +21,9 @@ export function initDB() {
     request.onupgradeneeded = function (event) {
       const db = event.target.result;
       db.createObjectStore(STORE_NAME, { keyPath: 'id' });
-      console.log('Setup complete');
+
+      db.createObjectStore('metadata', { keyPath: 'key' });
+      // console.log('Setup complete');
     };
 
     request.onsuccess = function (event) {
@@ -37,19 +39,23 @@ export function initDB() {
 }
 
 export function saveCellValue(id, value) {
-  const transaction = db.transaction([STORE_NAME], 'readwrite');
-  const store = transaction.objectStore(STORE_NAME);
-  const cell = { id, value };
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction([STORE_NAME], 'readwrite');
+    const store = transaction.objectStore(STORE_NAME);
+    const cell = { id, value };
 
-  const request = store.put(cell);
+    const request = store.put(cell);
 
-  request.onsuccess = function () {
-    console.log(`Cell ${id} saved successfully`);
-  };
+    request.onsuccess = function () {
+      // console.log(`Cell ${id} saved successfully`);
+      resolve();
+    };
 
-  request.onerror = function (event) {
-    console.error(`Error saving cell ${id}:`, event.target.error);
-  };
+    request.onerror = function (event) {
+      console.error(`Error saving cell ${id}:`, event.target.error);
+      reject(event.target.error);
+    };
+  });
 }
 
 export function getCellValue(id) {
@@ -87,6 +93,71 @@ export function deleteSheetData(cellId) {
 
     request.onerror = function (event) {
       console.error(`Error deleting cell ${cellId}:`, event.target.error);
+      reject(event.target.error);
+    };
+  });
+}
+
+export function deleteCellValue(id) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction([STORE_NAME], 'readwrite');
+    const store = transaction.objectStore(STORE_NAME);
+    const request = store.delete(id);
+
+    request.onsuccess = function () {
+      // console.log(`Cell ${id} deleted successfully`);
+      resolve();
+    };
+
+    request.onerror = function (event) {
+      console.error(`Error deleting cell ${id}:`, event.target.error);
+      reject(event.target.error);
+    };
+  });
+}
+
+// Save rows and cols in the metadata store
+export function saveTableMetadata(cols, rows) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(['metadata'], 'readwrite');
+    const store = transaction.objectStore('metadata');
+
+    // Save the number of columns and rows
+    store.put({ key: 'cols', value: cols });
+    store.put({ key: 'rows', value: rows });
+
+    transaction.oncomplete = function () {
+      resolve();
+    };
+
+    transaction.onerror = function (event) {
+      reject(event.target.error);
+    };
+  });
+}
+
+// Fetch rows and cols from the metadata store
+export function getTableMetadata() {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(['metadata'], 'readonly');
+    const store = transaction.objectStore('metadata');
+
+    const colsRequest = store.get('cols');
+    const rowsRequest = store.get('rows');
+
+    const result = {};
+
+    colsRequest.onsuccess = function () {
+      result.cols = colsRequest.result ? colsRequest.result.value : null;
+      if (result.rows !== undefined) resolve(result);
+    };
+
+    rowsRequest.onsuccess = function () {
+      result.rows = rowsRequest.result ? rowsRequest.result.value : null;
+      if (result.cols !== undefined) resolve(result);
+    };
+
+    transaction.onerror = function (event) {
       reject(event.target.error);
     };
   });
