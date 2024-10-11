@@ -1,3 +1,7 @@
+// search.js
+
+import { getCurrentFileId } from '../spreadsheet/db.js';
+
 const STORE_NAME = 'cells';
 
 /**
@@ -9,10 +13,28 @@ const STORE_NAME = 'cells';
  */
 export function searchCellValue(db, query) {
   return new Promise((resolve, reject) => {
+    let fileId = getCurrentFileId();
+
+    // Ensure fileId is a number
+    if (typeof fileId === 'string') {
+      fileId = Number(fileId);
+    }
+
+    if (fileId === null || isNaN(fileId)) {
+      console.error('Invalid fileId:', fileId);
+      reject(new Error('Invalid fileId'));
+      return;
+    }
+
     const transaction = db.transaction([STORE_NAME], 'readonly');
     const store = transaction.objectStore(STORE_NAME);
-    const request = store.openCursor();
+
     const results = [];
+
+    // Create a key range to only include cells from the current file
+    const keyRange = IDBKeyRange.bound([fileId, ''], [fileId, '\uffff']);
+
+    const request = store.openCursor(keyRange);
 
     request.onsuccess = function (event) {
       const cursor = event.target.result;
@@ -27,6 +49,7 @@ export function searchCellValue(db, query) {
     };
 
     request.onerror = function (event) {
+      console.error('Search cursor error:', event.target.error);
       reject(event.target.error);
     };
   });
@@ -35,39 +58,32 @@ export function searchCellValue(db, query) {
 /**
  * Attaches an input event listener to the search input element to perform searches on input.
  *
- * When the user types in the search input, this function searches the IndexedDB for matching cell values.
- * It then highlights the cells that contain the matching values by adding specific CSS classes.
- *
- * If the search input is cleared, all previous highlights are removed, and a message indicating no results is displayed.
- * After the search is completed, an indicator showing the total number of results found is displayed, and a list of results is updated below the count.
- *
  * @param {IDBDatabase} db - The IndexedDB database instance.
  */
-
 export function attachSearchEventListener(db) {
   const searchInput = document.getElementById('searchInput');
   const searchInputBtn = document.getElementById('searchInputBtn');
   const searchResultsCount = document.getElementById('searchResultsCount');
-  const searchResultsContainer = document.getElementById(
-    'searchResultsContainer',
-  );
+  const searchResultsContainer = document.getElementById('searchResultsContainer');
   const searchResultsList = document.getElementById('searchResultsList');
+
+  if (!searchInput || !searchInputBtn) {
+    console.error('Search input elements not found.');
+    return;
+  }
 
   // Input event listener for highlighting results
   searchInput.addEventListener('input', function () {
     const query = this.value.trim();
 
     if (!query) {
+      // Remove existing highlights
       document.querySelectorAll('.bg-red-400').forEach((cell) => {
         cell.classList.remove('bg-red-400', 'text-black');
       });
       if (searchResultsCount) {
-        searchResultsCount.textContent = ''; // Removes the search results count text
-        searchResultsCount.classList.remove(
-          'dark:text-red-400',
-          'dark:text-green-500',
-          'font-bold',
-        ); // Removes all text colors and bold when search field is empty
+        searchResultsCount.textContent = '';
+        searchResultsCount.classList.remove('dark:text-red-400', 'dark:text-green-500', 'font-bold');
       }
       if (searchResultsList) {
         searchResultsList.innerHTML = '';
@@ -82,6 +98,7 @@ export function attachSearchEventListener(db) {
       .then((results) => {
         console.log('Search results:', results);
 
+        // Remove existing highlights
         document.querySelectorAll('.bg-red-400').forEach((cell) => {
           cell.classList.remove('bg-red-400', 'text-black');
         });
@@ -92,10 +109,7 @@ export function attachSearchEventListener(db) {
             const cellElement = document.getElementById(cellId);
             if (cellElement) {
               cellElement.classList.add('bg-red-400', 'text-black');
-              cellElement.setAttribute(
-                'aria-label',
-                `Match found: ${result.value}`,
-              );
+              cellElement.setAttribute('aria-label', `Match found: ${result.value}`);
             }
           });
 
@@ -103,34 +117,31 @@ export function attachSearchEventListener(db) {
           if (searchResultsCount) {
             searchResultsCount.textContent = `${results.length} result(s) found.`;
             searchResultsCount.classList.remove('dark:text-red-500');
-            searchResultsCount.classList.add(
-              'dark:text-green-500',
-              'font-bold',
-              'm-2',
-            );
-            searchResultsList.innerHTML = '';
-            results.forEach((result) => {
-              const listItem = document.createElement('li');
-              listItem.textContent = `Cell ${result.id}: ${result.value}`;
-              searchResultsList.appendChild(listItem);
-            });
+            searchResultsCount.classList.add('dark:text-green-500', 'font-bold', 'm-2');
+            if (searchResultsList) {
+              searchResultsList.innerHTML = '';
+              results.forEach((result) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `Cell ${result.id}: ${result.value}`;
+                searchResultsList.appendChild(listItem);
+              });
+            }
           }
           if (searchResultsContainer) {
-            searchResultsContainer.classList.remove('hidden'); // Show container when results exists
+            searchResultsContainer.classList.remove('hidden');
           }
         } else {
-          // No results found, shows error message and red color
+          // No results found, show error message and red color
           if (searchResultsCount) {
             searchResultsCount.textContent = 'No results found.';
             searchResultsCount.classList.remove('dark:text-green-500');
             searchResultsCount.classList.add('dark:text-red-500', 'font-bold');
           }
           if (searchResultsContainer) {
-            searchResultsContainer.classList.add('hidden'); // Hide container when no results
+            searchResultsContainer.classList.add('hidden');
           }
         }
       })
-      // Catch any errors that occur during the search process
       .catch((error) => {
         console.error('Search error:', error);
         if (searchResultsCount) {
@@ -153,6 +164,7 @@ export function attachSearchEventListener(db) {
   // Listen for "Enter" key to trigger the scroll action
   searchInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent form submission if within a form
       scrollToFirstResult(db);
     }
   });

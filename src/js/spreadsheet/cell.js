@@ -1,6 +1,8 @@
+// cell.js
+
 import createEle from '../helpers/createEle';
 import numberToLetter from '../helpers/numberToLetter';
-import { getCellValue } from './db.js';
+import { getCellValue, getCurrentFileId } from './db.js';
 
 /**
  * Creates a table cell element with specified row and column indices.
@@ -21,14 +23,15 @@ export default function cell(row, col) {
     'td',
     'p-0 w-28 border dark:border-ys-overlay-5 border-ys-amethyst-400 relative flex justify-center items-center',
   );
-  cellContainer.setAttribute('id', numberToLetter(col) + (row + 1));
+  const cellId = numberToLetter(col) + (row + 1);
+  cellContainer.setAttribute('id', cellId);
 
   cellContainer.dataset.col = col;
   cellContainer.dataset.row = row;
   cellContainer.textContent = '';
 
-  const cellId = numberToLetter(col) + (row + 1);
-  getCellValue(cellId).then((value) => {
+  const fileId = getCurrentFileId();
+  getCellValue(fileId, cellId).then((value) => {
     if (value !== null) {
       // Set the cell value
       if (value.length > 10) {
@@ -62,9 +65,10 @@ export default function cell(row, col) {
 // Function to restore ellipsis on cell when it loses focus
 function restoreEllipsis(cell) {
   const cellId = cell.getAttribute('id');
+  const fileId = getCurrentFileId();
 
   // Fetch the value again and reapply the truncation if necessary
-  getCellValue(cellId).then((value) => {
+  getCellValue(fileId, cellId).then((value) => {
     if (value !== null) {
       // Truncate the value again if it's longer than 10 characters
       if (value.length > 10) {
@@ -72,6 +76,8 @@ function restoreEllipsis(cell) {
       } else {
         cell.textContent = value;
       }
+    } else {
+      cell.textContent = '';
     }
   });
 }
